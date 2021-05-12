@@ -1,0 +1,34 @@
+.container {
+  padding-top: 50px;
+  height: 450px;
+  width: 500px;
+  color: white;
+  text-align: center;
+  background: rgba(27, 17, 27, 0.3)
+}
+
+.address-input {
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+}
+
+.wide-button {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+
+.citizen-card-button {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%
+}
+
+.search-card {
+  background: rgba(255, 255, 255, 0.9);
+  width: 30rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}

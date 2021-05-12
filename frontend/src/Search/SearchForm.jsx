@@ -1,25 +1,20 @@
 import {
   Button, Container, Row, Col,
 } from 'react-bootstrap';
-import { useState } from 'react';
 
-const SearchForm = () => {
-  const [searchValue, setSearchValue] = useState({
-    firstName: '',
-    lastName: '',
-    dateOfBirth: '',
-    placeOfBirth: '',
-    address: '',
-  });
-
+const SearchForm = ({ searchValue, setSearchValue, obtainData }) => {
   const handleChange = (event) => {
     const { value } = event.target;
     setSearchValue({ ...searchValue, [event.target.name]: value });
   };
 
+  if (!searchValue.shouldShow) {
+    return null;
+  }
+
   return (
     <>
-      <Container>
+      <Container className="container">
         <Row>
           <Col>
             <h2>Search</h2>
@@ -63,7 +58,7 @@ const SearchForm = () => {
         </Row>
         <br />
         <Row>
-          <Button variant="outline-danger" size="lg" className="wide-button">Search</Button>
+          <Button variant="outline-danger" size="lg" className="wide-button" onClick={obtainData}>Search</Button>
         </Row>
       </Container>
     </>
