@@ -18,6 +18,12 @@ public class AtmPointDTO {
 		this.AtmTransactions = AtmTransactions;
 	}
 	
+	public AtmPointDTO(String streetName, String postcode) {
+		super();
+		this.streetName = streetName;
+		this.postcode = postcode;
+	}
+	
 	public AtmPointDTO() {
 		super();
 	}

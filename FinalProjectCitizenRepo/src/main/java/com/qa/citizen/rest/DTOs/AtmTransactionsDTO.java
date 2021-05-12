@@ -1,5 +1,7 @@
 package com.qa.citizen.rest.DTOs;
 
+import com.qa.citizen.domain.AtmPoint;
+
 public class AtmTransactionsDTO {
 
 	public AtmTransactionsDTO(String timestamp, Long bankCardNumber, String type, Double amount) {
@@ -8,6 +10,15 @@ public class AtmTransactionsDTO {
 		this.bankCardNumber = bankCardNumber;
 		this.type = type;
 		this.amount = amount;
+	}
+	
+	public AtmTransactionsDTO(String timestamp, Long bankCardNumber, String type, Double amount, AtmPoint atmId) {
+		super();
+		this.timestamp = timestamp;
+		this.bankCardNumber = bankCardNumber;
+		this.type = type;
+		this.amount = amount;
+		this.atmId = atmId;
 	}
 	
 	public AtmTransactionsDTO() {
@@ -21,6 +32,8 @@ public class AtmTransactionsDTO {
 	private String type;
 	
 	private Double amount;
+	
+	private AtmPoint atmId;
 
 	public String getTimestamp() {
 		return timestamp;
@@ -52,6 +65,14 @@ public class AtmTransactionsDTO {
 
 	public void setAmount(Double amount) {
 		this.amount = amount;
+	}
+
+	public AtmPoint getAtmId() {
+		return atmId;
+	}
+
+	public void setAtmId(AtmPoint atmId) {
+		this.atmId = atmId;
 	}
 	
 
