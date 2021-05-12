@@ -28,12 +28,6 @@ public class AtmTransactionService {
 		return cardTransactions;
 	}
 	
-	private AtmPointDTO mapToDTO(AtmPoint atmPoint) {
-		AtmPointDTO dto = new AtmPointDTO();
-		dto.setStreetName(atmPoint.getStreetName());
-		dto.setPostcode(atmPoint.getPostcode());
-		return dto;
-	}
 	
 	private AtmTransactionsDTO mapToDTO(AtmTransaction atmTransaction) {
 		AtmTransactionsDTO atmTransactionDTO = new AtmTransactionsDTO();
@@ -42,11 +36,16 @@ public class AtmTransactionService {
 		atmTransactionDTO.setBankCardNumber(atmTransaction.getBankCardNumber());
 		atmTransactionDTO.setType(atmTransaction.getType());
 		atmTransactionDTO.setAmount(atmTransaction.getAmount());
-				
+		
+		AtmPoint atmPoint = atmTransaction.getAtmId();
+		
+		atmTransactionDTO.setStreetName(atmPoint.getStreetName());
+		atmTransactionDTO.setPostcode(atmPoint.getPostcode());		
+		
 		return atmTransactionDTO;
 	}
 	
-	public List<AtmTransactionsDTO> getAtmTransactionsDTOByCard(Long bankCardNumber) {
+	public List<AtmTransactionsDTO> getDTO(Long bankCardNumber) {
 		List<AtmTransaction> cardTransactions = this.repo.findByBankCardNumber(bankCardNumber);
 		List<AtmTransactionsDTO> dtos = new ArrayList<>();
 
@@ -56,7 +55,6 @@ public class AtmTransactionService {
 		}
 
 		return dtos;
-
 	}
 
 }

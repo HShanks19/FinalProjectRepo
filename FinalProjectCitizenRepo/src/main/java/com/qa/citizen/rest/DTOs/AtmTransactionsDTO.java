@@ -4,12 +4,14 @@ import com.qa.citizen.domain.AtmPoint;
 
 public class AtmTransactionsDTO {
 
-	public AtmTransactionsDTO(String timestamp, Long bankCardNumber, String type, Double amount) {
+	public AtmTransactionsDTO(String timestamp, Long bankCardNumber, String type, Double amount, String streetName, String postcode) {
 		super();
 		this.timestamp = timestamp;
 		this.bankCardNumber = bankCardNumber;
 		this.type = type;
 		this.amount = amount;
+		this.streetName = streetName;
+		this.postcode = postcode;
 	}
 	
 	public AtmTransactionsDTO(String timestamp, Long bankCardNumber, String type, Double amount, AtmPoint atmId) {
@@ -34,6 +36,10 @@ public class AtmTransactionsDTO {
 	private Double amount;
 	
 	private AtmPoint atmId;
+	
+	private String streetName;
+	
+	private String postcode;
 
 	public String getTimestamp() {
 		return timestamp;
@@ -73,6 +79,22 @@ public class AtmTransactionsDTO {
 
 	public void setAtmId(AtmPoint atmId) {
 		this.atmId = atmId;
+	}
+
+	public String getStreetName() {
+		return streetName;
+	}
+
+	public void setStreetName(String streetName) {
+		this.streetName = streetName;
+	}
+
+	public String getPostcode() {
+		return postcode;
+	}
+
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
 	}
 	
 

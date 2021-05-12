@@ -32,8 +32,6 @@ public class AtmTransaction {
 	@Column(name = "timestamp")
 	private String timestamp;
 	
-//	@Column(name = "atm_id")
-//	private Long atmId;
 	
 	@Column(name = "bank_card_number")
 	private Long bankCardNumber;
@@ -51,14 +49,6 @@ public class AtmTransaction {
 	public void setTimestamp(String timestamp) {
 		this.timestamp = timestamp;
 	}
-
-//	public Long getAtmId() {
-//		return atmId;
-//	}
-
-//	public void setAtmId(Long atmId) {
-//		this.atmId = atmId;
-//	}
 
 	public Long getBankCardNumber() {
 		return bankCardNumber;
