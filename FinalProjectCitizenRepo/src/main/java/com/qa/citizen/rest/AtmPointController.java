@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.citizen.domain.AtmPoint;
+import com.qa.citizen.rest.DTOs.AtmPointDTO;
 import com.qa.citizen.service.AtmPointService;
 
 @RestController
@@ -22,6 +23,11 @@ public class AtmPointController {
 	@GetMapping("/getATMPoint/{id}")
 	public AtmPoint getAtmPointById(@PathVariable Long id) {
 		return this.service.getAtmPointById(id);
+	}
+	
+	@GetMapping("/getATMDTO/{id}")
+	public AtmPointDTO getDTO(@PathVariable Long id) {
+		return this.service.getDTO(id);
 	}
 
 }

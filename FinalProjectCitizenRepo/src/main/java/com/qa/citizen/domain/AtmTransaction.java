@@ -14,7 +14,6 @@ public class AtmTransaction {
 	public AtmTransaction(String timestamp, Long bankCardNumber, String type, Double amount) {
 		super();
 		this.timestamp = timestamp;
-//		this.atmId = atmId;
 		this.bankCardNumber = bankCardNumber;
 		this.type = type;
 		this.amount = amount;
