@@ -26,5 +26,6 @@ public class CitizenService {
 		Optional<Citizen> optCitizen = this.repo.findById(id);
 		return optCitizen.get();
 	}
+	
 
 }
