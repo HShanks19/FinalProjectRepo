@@ -1,8 +1,14 @@
 package com.qa.citizen.domain;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class AtmPoint {
@@ -31,6 +37,10 @@ public class AtmPoint {
 		super();
 	}
 	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "atmId")
+	private Set<AtmTransaction> atmTransactions;
+		
 	@Id
 	@Column(name = "atmId")
 	private Long atmId;
@@ -96,6 +106,14 @@ public class AtmPoint {
 
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
+	}
+
+	public Set<AtmTransaction> getAtmTransactions() {
+		return atmTransactions;
+	}
+
+	public void setAtmTransactions(Set<AtmTransaction> atmTransactions) {
+		this.atmTransactions = atmTransactions;
 	}
 
 
