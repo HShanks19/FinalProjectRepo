@@ -1,4 +1,7 @@
-.buttons{
+.CitizenPage {
+    height: 100vh;
+    width: 100vw;
+    background-image: linear-gradient(to right, #0D2545 , #A21F44);
     text-align: center;
 }
 
@@ -11,9 +14,7 @@
     background: rgba(27, 17, 27, 0.3)
 }
 
-.CitizenPage {
-    height: 100vh;
-    width: 100vw;
-    background-image: linear-gradient(to right, #0D2545 , #A21F44);
+
+.buttons{
     text-align: center;
 }
