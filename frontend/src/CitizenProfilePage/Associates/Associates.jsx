@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const Associates = ({
   receiver, receiverPhoneNumber, timeStamp, firstName, lastName, dateOfBirth, placeOfBirth, address,
 }) => {
@@ -8,10 +10,16 @@ const Associates = ({
         <th scope="col">Receiver</th>
         <th scope="col">Receiver Phone Number</th>
         <th scope="col">View Receiver Bio</th>
-        <button type="button" onClick="handleClick">View</button>
       </tr>
     </thead>
-    <tbody />
+    <tbody>
+      <tr>
+        <th scope="row">{timeStamp}</th>
+        <td>{receiver}</td>
+        <td>{receiverPhoneNumber}</td>
+        <button type="button" onClick="handleClick">View</button>
+      </tr>
+    </tbody>
   </table>;
 
   return (
@@ -53,3 +61,14 @@ const Associates = ({
 };
 
 export default Associates;
+
+Associates.propTypes = {
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  dateOfBirth: PropTypes.string.isRequired,
+  placeOfBirth: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
+  timeStamp: PropTypes.string.isRequired,
+  receiver: PropTypes.string.isRequired,
+  receiverPhoneNumber: PropTypes.string.isRequired,
+};

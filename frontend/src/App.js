@@ -13,8 +13,10 @@ function App() {
     <>
       <div className="App">
         <img src={redsearchText} alt="Logo" style={{ height: 120, width: 900, margin: 50 }} />
-        <SearchForm />
         <Router>
+          <Route>
+            <SearchForm />
+          </Route>
           <Route>
             <CitizenPage />
           </Route>
