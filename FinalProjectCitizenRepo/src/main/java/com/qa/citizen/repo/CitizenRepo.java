@@ -11,6 +11,8 @@ import com.qa.citizen.domain.Citizen;
 @Repository
 public interface CitizenRepo extends JpaRepository<Citizen, Long> {
 
+	
+
 	// All Values passed by User
 	@Query(value = "SELECT * from Citizen WHERE forenames = ?1 and surname = ?2 and home_address = ?3 and date_of_birth = ?4 and place_of_birth = ?5", nativeQuery = true)
 	List<Citizen> findCitizenByForenamesAndSurnameAndHomeAddressAndDateOfBirthAndPlaceOfBirth(String forenames,

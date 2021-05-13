@@ -154,7 +154,7 @@ public class CitizenService {
 		} else if (numOfpassedValues == 2 && !dobBlank) {
 			generatedList = this.repo.findByDateOfBirthAndPlaceOfBirth(dob, pob);
 		}
-
+		
 		// If 1 Value have been passed by the user
 		if (!forenameBlank) {
 			generatedList = this.repo.findByForenames(forenames);

@@ -27,14 +27,6 @@ public class CitizenController {
 		return this.service.getCitizenById(id);
 	}
 
-//	@GetMapping("/getCitizenFromSearch")
-//	public List<Citizen> getCitizenFromSearchForm(@RequestBody Citizen citizen) {
-//		Citizen foundCitizen = citizen;
-//
-//		return this.service.findCitizenByCompleteSearch(foundCitizen.getForenames(), foundCitizen.getSurname(),
-//				foundCitizen.getHomeAddress(), foundCitizen.getDateOfBirth(), foundCitizen.getPlaceOfBirth());
-//	}
-
 	@GetMapping("/getCitizenFromSearch")
 	public List<Citizen> getCitizenFromSearchForm(@RequestBody Citizen citizen) {
 		Citizen foundCitizen = citizen;
