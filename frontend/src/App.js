@@ -7,6 +7,10 @@ import './SearchForm/SearchForm.css';
 import './Footer/Footer.css';
 import redsearchText from './redsearchText.svg';
 import CitizenPage from './CitizenProfilePage/CitizenProfile';
+import Biography from './CitizenProfilePage/Biography/Biography';
+import Associates from './CitizenProfilePage/Associates/Associates';
+import Finances from './CitizenProfilePage/FinanceHistory/Finances';
+import Whereabouts from './CitizenProfilePage/Whereabouts/Whereabouts';
 
 function App() {
   return (
@@ -19,6 +23,18 @@ function App() {
           </Route>
           <Route>
             <CitizenPage />
+            <Route>
+              <Biography />
+            </Route>
+            <Route>
+              <Associates />
+            </Route>
+            <Route>
+              <Finances />
+            </Route>
+            <Route>
+              <Whereabouts />
+            </Route>
           </Route>
         </Router>
         <Footer />
