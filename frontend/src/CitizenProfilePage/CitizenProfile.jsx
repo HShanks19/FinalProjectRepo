@@ -2,7 +2,10 @@ import {
   Button, Row, Col, Container,
 } from 'react-bootstrap';
 import Biography from './Biography/Biography';
+import Finances from './FinanceHistory/Finances';
+import Associates from './Associates/Associates';
 import './CitizenProfile.css';
+import Whereabouts from './Whereabouts/Whereabouts';
 
 const CitizenPage = () => (
   <>
@@ -20,6 +23,15 @@ const CitizenPage = () => (
       <Row>
         <Col>
           <Biography />
+        </Col>
+        <Col>
+          <Associates />
+        </Col>
+        <Col>
+          <Finances />
+        </Col>
+        <Col>
+          <Whereabouts />
         </Col>
       </Row>
     </Container>
