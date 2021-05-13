@@ -2,9 +2,11 @@ package com.qa.citizen.rest;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,11 +29,9 @@ public class CitizenController {
 		return this.service.getCitizenById(id);
 	}
 
-	@GetMapping("/getCitizenFromSearch")
-	public List<Citizen> getCitizenFromSearchForm(@RequestBody Citizen citizen) {
-		Citizen foundCitizen = citizen;
-
-		return this.service.findCitizenByCompleteSearch(foundCitizen);
+	@PostMapping("/getAll/")
+	public ResponseEntity<List<Citizen>> sortAndFilterDucks(@RequestBody Citizen citizen) {
+		return ResponseEntity.ok(this.service.sortAndFilterDucks(citizen));
 	}
 
 }
