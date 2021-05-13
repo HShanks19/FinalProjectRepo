@@ -27,6 +27,7 @@ public class CitizenService {
 		Optional<Citizen> optCitizen = this.repo.findById(id);
 		return optCitizen.get();
 	}
+	
 
 	public List<Citizen> sortAndFilterDucks(Citizen citizen) {
 		return this.repo.findAll(Example.of(citizen));
