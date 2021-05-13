@@ -1,8 +1,11 @@
 package com.qa.citizen.domain;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Epos {
@@ -29,6 +32,9 @@ public class Epos {
 	public Epos() {
 		super();
 	}
+	
+	@OneToMany(mappedBy = "id")
+	private Set<EposTransactions> eposTransactions;
 	
 	@Id
 	@Column(name = "id")
@@ -96,6 +102,14 @@ public class Epos {
 
 	@Column(name = "longitude")
 	private Double longitude;
+
+	public Set<EposTransactions> getEposTransactions() {
+		return eposTransactions;
+	}
+
+	public void setEposTransactions(Set<EposTransactions> eposTransactions) {
+		this.eposTransactions = eposTransactions;
+	}
 	
 
 }

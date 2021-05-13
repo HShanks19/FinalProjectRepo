@@ -11,6 +11,8 @@ import com.qa.citizen.domain.Bankcard;
 public interface BankcardRepo extends JpaRepository<Bankcard, Long>{
 
 	List<Bankcard> findByAccountNumber(Long bankAccount);
+	
+	List<Bankcard> findByBankCardId(Long bankCardId);
 
 
 }

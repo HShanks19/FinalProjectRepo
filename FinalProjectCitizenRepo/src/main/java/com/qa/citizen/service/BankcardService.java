@@ -21,5 +21,10 @@ private BankcardRepo repo;
 		List<Bankcard> bankcards = this.repo.findByAccountNumber(bankAccount);
 		return bankcards;
 	}
+	
+	public List<Bankcard> getBankCardsById(Long bankId) {
+		List<Bankcard> bankcards = this.repo.findByBankCardId(bankId);
+		return bankcards;
+	}
 
 }

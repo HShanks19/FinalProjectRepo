@@ -1,8 +1,13 @@
 package com.qa.citizen.domain;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class PeopleBankAccount {
@@ -34,10 +39,10 @@ public class PeopleBankAccount {
 		super();
 	}
 	
-	@Id
 	@Column(name = "bank_account_id")
 	private Long bankAccountId;
 	
+	@Id
 	@Column(name = "account_number")
 	private Long accountNumber;
 	
@@ -56,6 +61,9 @@ public class PeopleBankAccount {
 	@Column(name = "home_address")
 	private String homeAddress;
 
+	@OneToMany(mappedBy = "accountNumber")
+	private Set<Bankcard> bankcards;
+	
 	public Long getBankAccountId() {
 		return bankAccountId;
 	}
@@ -110,6 +118,14 @@ public class PeopleBankAccount {
 
 	public void setHomeAddress(String homeAddress) {
 		this.homeAddress = homeAddress;
+	}
+
+	public Set<Bankcard> getBankcards() {
+		return bankcards;
+	}
+
+	public void setBankcards(Set<Bankcard> bankcards) {
+		this.bankcards = bankcards;
 	}
 
 }

@@ -8,4 +8,6 @@ import com.qa.citizen.domain.PeopleBankAccount;
 @Repository
 public interface PeopleBankAccountRepo extends JpaRepository<PeopleBankAccount, Long> {
 
+	
+	
 }

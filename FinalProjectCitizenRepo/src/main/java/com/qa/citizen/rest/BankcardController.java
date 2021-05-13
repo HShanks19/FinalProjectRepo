@@ -25,5 +25,10 @@ public class BankcardController {
 	public List<Bankcard> getAtmTransactionsByCard(@PathVariable Long bankAccountNumber) {
 		return this.service.getBankCards(bankAccountNumber);
 	}
+	
+	@GetMapping("/getBankcardsById/{bankCardId}")
+	public List<Bankcard> getAtmTransactionsByBankCardId(@PathVariable Long bankCardId) {
+		return this.service.getBankCardsById(bankCardId);
+	}
 
 }
