@@ -3,6 +3,8 @@ package com.qa.citizen.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class EposTransactions {
@@ -11,19 +13,15 @@ public class EposTransactions {
 		super();
 	}
 
-	public EposTransactions(Long eposId, Long bankCardNumber, Long payeeAccount, Double amount) {
+	public EposTransactions(Long eposId, Long payeeAccount, Double amount) {
 		super();
-		this.eposId = eposId;
-		this.bankCardNumber = bankCardNumber;
 		this.payeeAccount = payeeAccount;
 		this.amount = amount;
 	}
 
-	public EposTransactions(String timestamp, Long eposId, Long bankCardNumber, Long payeeAccount, Double amount) {
+	public EposTransactions(String timestamp, Long payeeAccount, Double amount) {
 		super();
 		this.timestamp = timestamp;
-		this.eposId = eposId;
-		this.bankCardNumber = bankCardNumber;
 		this.payeeAccount = payeeAccount;
 		this.amount = amount;
 	}
@@ -31,12 +29,14 @@ public class EposTransactions {
 	@Id
 	@Column(name = "timestamp")
 	private String timestamp;
-	
-	@Column(name = "epos_id")
-	private Long eposId;
-	
-	@Column(name = "bank_card_number")
-	private Long bankCardNumber;
+		
+	@ManyToOne
+	@JoinColumn(name="epos_id", nullable=false)
+	private Epos id;
+		
+	@ManyToOne
+	@JoinColumn(name="bank_card_number", nullable=false)
+	private Bankcard bankCardNumber;
 	
 	@Column(name = "payee_account")
 	private Long payeeAccount;
@@ -50,22 +50,6 @@ public class EposTransactions {
 
 	public void setTimestamp(String timestamp) {
 		this.timestamp = timestamp;
-	}
-
-	public Long getEposId() {
-		return eposId;
-	}
-
-	public void setEposId(Long eposId) {
-		this.eposId = eposId;
-	}
-
-	public Long getBankCardNumber() {
-		return bankCardNumber;
-	}
-
-	public void setBankCardNumber(Long bankCardNumber) {
-		this.bankCardNumber = bankCardNumber;
 	}
 
 	public Long getPayeeAccount() {
@@ -83,5 +67,23 @@ public class EposTransactions {
 	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
+
+	public Epos getId() {
+		return id;
+	}
+
+	public void setId(Epos id) {
+		this.id = id;
+	}
+
+	public Bankcard getBankCardNumber() {
+		return bankCardNumber;
+	}
+
+	public void setBankCardNumber(Bankcard bankCardNumber) {
+		this.bankCardNumber = bankCardNumber;
+	}
+
+	
 
 }

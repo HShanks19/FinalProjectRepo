@@ -1,8 +1,15 @@
 package com.qa.citizen.domain;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Bankcard {
@@ -12,7 +19,6 @@ public class Bankcard {
 		this.cardNumber = cardNumber;
 		this.sortCode = sortCode;
 		this.bankAccountId = bankAccountId;
-		this.accountNumber = accountNumber;
 		this.bank = bank;
 	}
 
@@ -23,7 +29,6 @@ public class Bankcard {
 		this.cardNumber = cardNumber;
 		this.sortCode = sortCode;
 		this.bankAccountId = bankAccountId;
-		this.accountNumber = accountNumber;
 		this.bank = bank;
 	}
 
@@ -31,10 +36,10 @@ public class Bankcard {
 		super();
 	}
 	
-	@Id
 	@Column(name = "bank_card_id")
 	private Long bankCardId;
 	
+	@Id
 	@Column(name = "card_number")
 	private Long cardNumber;
 	
@@ -43,9 +48,16 @@ public class Bankcard {
 	
 	@Column(name = "bank_account_id")
 	private Long bankAccountId;
+		
+	@OneToMany(mappedBy = "bankCardNumber")
+	private Set<AtmTransaction> atmTransactions;
 	
-	@Column(name = "account_number")
-	private Long accountNumber;
+	@OneToMany(mappedBy = "bankCardNumber")
+	private Set<EposTransactions> eposTransactions;
+	
+	@ManyToOne
+	@JoinColumn(name="account_number", nullable=false)
+	private PeopleBankAccount accountNumber;
 	
 	public Long getBankCardId() {
 		return bankCardId;
@@ -79,14 +91,6 @@ public class Bankcard {
 		this.bankAccountId = bankAccountId;
 	}
 
-	public Long getAccountNumber() {
-		return accountNumber;
-	}
-
-	public void setAccountNumber(Long accountNumber) {
-		this.accountNumber = accountNumber;
-	}
-
 	public String getBank() {
 		return bank;
 	}
@@ -97,5 +101,29 @@ public class Bankcard {
 
 	@Column(name = "bank")
 	private String bank;
+
+	public Set<AtmTransaction> getAtmTransactions() {
+		return atmTransactions;
+	}
+	
+	public void setAtmTransactions(Set<AtmTransaction> atmTransactions) {
+		this.atmTransactions = atmTransactions;
+	}
+
+	public PeopleBankAccount getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(PeopleBankAccount accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
+	public Set<EposTransactions> getEposTransactions() {
+		return eposTransactions;
+	}
+
+	public void setEposTransactions(Set<EposTransactions> eposTransactions) {
+		this.eposTransactions = eposTransactions;
+	}
 
 }

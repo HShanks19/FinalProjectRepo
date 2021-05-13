@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.qa.citizen.domain.AtmPoint;
 import com.qa.citizen.domain.AtmTransaction;
+import com.qa.citizen.domain.Bankcard;
 import com.qa.citizen.repo.AtmTransactionsRepo;
 import com.qa.citizen.rest.DTOs.AtmPointDTO;
 import com.qa.citizen.rest.DTOs.AtmTransactionsDTO;
@@ -23,8 +24,8 @@ public class AtmTransactionService {
 		this.repo = repo;
 	}
 	
-	public List<AtmTransaction> getAtmTransactionsByCard(Long bankCardNumber) {
-		List<AtmTransaction> cardTransactions = this.repo.findByBankCardNumber(bankCardNumber);
+	public List<AtmTransaction> getAtmTransactionsByCard(Bankcard cardNumber) {
+		List<AtmTransaction> cardTransactions = this.repo.findByBankCardNumber(cardNumber);
 		return cardTransactions;
 	}
 	
@@ -45,7 +46,7 @@ public class AtmTransactionService {
 		return atmTransactionDTO;
 	}
 	
-	public List<AtmTransactionsDTO> getDTO(Long bankCardNumber) {
+	public List<AtmTransactionsDTO> getDTO(Bankcard bankCardNumber) {
 		List<AtmTransaction> cardTransactions = this.repo.findByBankCardNumber(bankCardNumber);
 		List<AtmTransactionsDTO> dtos = new ArrayList<>();
 
@@ -56,5 +57,6 @@ public class AtmTransactionService {
 
 		return dtos;
 	}
+
 
 }
