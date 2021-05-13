@@ -13,7 +13,6 @@ import com.qa.citizen.domain.Epos;
 import com.qa.citizen.domain.EposTransactions;
 import com.qa.citizen.domain.PeopleBankAccount;
 import com.qa.citizen.repo.PeopleBankAccountRepo;
-import com.qa.citizen.rest.DTOs.AtmPointDTO;
 import com.qa.citizen.rest.DTOs.AtmTransactionsDTO;
 import com.qa.citizen.rest.DTOs.BankcardDTO;
 import com.qa.citizen.rest.DTOs.EposTransactionsDTO;
@@ -28,13 +27,7 @@ public class PeopleBankAccountService {
 		super();
 		this.repo = repo;
 	}
-	
-	//currently not working (No Value Present)
-	public PeopleBankAccount getPeopleBankAccountById(Long id) {
-		Optional<PeopleBankAccount> optPeopleBankAccount = this.repo.findById(id);
-		return optPeopleBankAccount.get();
-	}
-	
+		
 	private AtmTransactionsDTO mapToDTO(AtmTransaction atmTransaction) {
 		AtmTransactionsDTO atmTransactionDTO = new AtmTransactionsDTO();
 
