@@ -39,7 +39,6 @@ public class PeopleBankAccountService {
 		AtmTransactionsDTO atmTransactionDTO = new AtmTransactionsDTO();
 
 		atmTransactionDTO.setTimestamp(atmTransaction.getTimestamp());
-		atmTransactionDTO.setBankCardNumber(atmTransaction.getBankCardNumber());
 		atmTransactionDTO.setType(atmTransaction.getType());
 		atmTransactionDTO.setAmount(atmTransaction.getAmount());
 		
