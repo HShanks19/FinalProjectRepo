@@ -36,11 +36,10 @@ private BankcardRepo repo;
 		return bankcards;
 	}
 	
-	private AtmTransactionsDTO mapToDTO(AtmTransaction atmTransaction) {
+	private AtmTransactionsDTO mapToAtmDTO(AtmTransaction atmTransaction) {
 		AtmTransactionsDTO atmTransactionDTO = new AtmTransactionsDTO();
 
 		atmTransactionDTO.setTimestamp(atmTransaction.getTimestamp());
-		atmTransactionDTO.setBankCardNumber(atmTransaction.getBankCardNumber());
 		atmTransactionDTO.setType(atmTransaction.getType());
 		atmTransactionDTO.setAmount(atmTransaction.getAmount());
 		
@@ -52,7 +51,7 @@ private BankcardRepo repo;
 		return atmTransactionDTO;
 	}
 	
-	private EposTransactionsDTO mapToDTO(EposTransactions eposTransaction) {
+	private EposTransactionsDTO mapToEposDTO(EposTransactions eposTransaction) {
 		EposTransactionsDTO eposTransactionDTO = new EposTransactionsDTO();
 
 		eposTransactionDTO.setTimestamp(eposTransaction.getTimestamp());
@@ -73,7 +72,7 @@ private BankcardRepo repo;
 		Set<AtmTransactionsDTO> atmTransactionDTOs = new HashSet<>();
 
 		for (AtmTransaction atmTransaction : bankcard.getAtmTransactions()) {
-			AtmTransactionsDTO atmTransactionDTO = this.mapToDTO(atmTransaction);
+			AtmTransactionsDTO atmTransactionDTO = this.mapToAtmDTO(atmTransaction);
 			atmTransactionDTOs.add(atmTransactionDTO);
 		}
 
@@ -82,7 +81,7 @@ private BankcardRepo repo;
 		Set<EposTransactionsDTO> eposTransactionDTOs = new HashSet<>();
 		
 		for (EposTransactions eposTransaction : bankcard.getEposTransactions()) {
-			EposTransactionsDTO eposTransactionDTO = this.mapToDTO(eposTransaction);
+			EposTransactionsDTO eposTransactionDTO = this.mapToEposDTO(eposTransaction);
 			eposTransactionDTOs.add(eposTransactionDTO);
 		}
 

@@ -5,23 +5,21 @@ import com.qa.citizen.domain.Bankcard;
 
 public class AtmTransactionsDTO {
 
-	public AtmTransactionsDTO(String timestamp, Bankcard bankCardNumber, String type, Double amount, String streetName, String postcode) {
-		super();
-		this.timestamp = timestamp;
-		this.bankCardNumber = bankCardNumber;
-		this.type = type;
-		this.amount = amount;
-		this.streetName = streetName;
-		this.postcode = postcode;
-	}
+//	public AtmTransactionsDTO(String timestamp, Bankcard bankCardNumber, String type, Double amount, String streetName, String postcode) {
+//		super();
+//		this.timestamp = timestamp;
+//		this.bankCardNumber = bankCardNumber;
+//		this.type = type;
+//		this.amount = amount;
+//		this.streetName = streetName;
+//		this.postcode = postcode;
+//	}
 	
-	public AtmTransactionsDTO(String timestamp, Bankcard bankCardNumber, String type, Double amount, AtmPoint atmId) {
+	public AtmTransactionsDTO(String timestamp, String type, Double amount) {
 		super();
 		this.timestamp = timestamp;
-		this.bankCardNumber = bankCardNumber;
 		this.type = type;
 		this.amount = amount;
-		this.atmId = atmId;
 	}
 	
 	public AtmTransactionsDTO() {
