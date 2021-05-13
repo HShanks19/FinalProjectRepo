@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.citizen.domain.AtmTransaction;
+import com.qa.citizen.domain.Bankcard;
 import com.qa.citizen.rest.DTOs.AtmPointDTO;
 import com.qa.citizen.rest.DTOs.AtmTransactionsDTO;
 import com.qa.citizen.service.AtmTransactionService;
@@ -22,15 +23,16 @@ public class AtmTransactionsController {
 		super();
 		this.service = service;
 	}
-	
+	//DONT USE
 	@GetMapping("/getATMTransactions/{bankCardNumber}")
-	public List<AtmTransaction> getAtmTransactionsByCard(@PathVariable Long bankCardNumber) {
-		return this.service.getAtmTransactionsByCard(bankCardNumber);
+	public List<AtmTransaction> getAtmTransactionsByCard(@PathVariable Bankcard cardNumber) {
+		return this.service.getAtmTransactionsByCard(cardNumber);
+	}
+	//DONT USE
+	@GetMapping("/getATMTransactionsDTO/{bankCardNumber}")
+	public List<AtmTransactionsDTO> getDTO(@PathVariable Bankcard bankCardNumber) {
+		return this.service.getDTO(bankCardNumber);
 	}
 	
-	@GetMapping("/getATMTransactionsDTO/{id}")
-	public List<AtmTransactionsDTO> getDTO(@PathVariable Long id) {
-		return this.service.getDTO(id);
-	}
 
 }

@@ -20,7 +20,7 @@ public class PeopleMobileController {
 		this.service = service;
 	}
 	
-	@GetMapping("/getCitizenInformation/{phoneNumber}")
+	@GetMapping("/getCitizenPhoneInformation/{phoneNumber}")
 	public PeopleMobile getCitizenInformationFromPhoneNumber(@PathVariable String phoneNumber) {
 		return this.service.getCitizen(phoneNumber);
 	}

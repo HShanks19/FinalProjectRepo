@@ -38,7 +38,6 @@ public class AtmPoint {
 		super();
 	}
 	
-	@JsonIgnore
 	@OneToMany(mappedBy = "atmId")
 	private Set<AtmTransaction> atmTransactions;
 		

@@ -12,10 +12,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class AtmTransaction {
 
-	public AtmTransaction(String timestamp, Long bankCardNumber, String type, Double amount) {
+	public AtmTransaction(String timestamp, String type, Double amount) {
 		super();
 		this.timestamp = timestamp;
-		this.bankCardNumber = bankCardNumber;
 		this.type = type;
 		this.amount = amount;
 	}
@@ -28,14 +27,14 @@ public class AtmTransaction {
 	@JoinColumn(name="atm_id", nullable=false)
 	private AtmPoint atmId;
 	
+	@ManyToOne
+	@JoinColumn(name="bank_card_number", nullable=false)
+	private Bankcard bankCardNumber;
+	
 	@Id
 	@Column(name = "timestamp")
 	private String timestamp;
-	
-	
-	@Column(name = "bank_card_number")
-	private Long bankCardNumber;
-	
+		
 	@Column(name = "type")
 	private String type;
 	
@@ -48,14 +47,6 @@ public class AtmTransaction {
 
 	public void setTimestamp(String timestamp) {
 		this.timestamp = timestamp;
-	}
-
-	public Long getBankCardNumber() {
-		return bankCardNumber;
-	}
-
-	public void setBankCardNumber(Long bankCardNumber) {
-		this.bankCardNumber = bankCardNumber;
 	}
 
 	public String getType() {
@@ -81,5 +72,15 @@ public class AtmTransaction {
 	public void setAtmId(AtmPoint atmId) {
 		this.atmId = atmId;
 	}
+
+	public Bankcard getBankCardNumber() {
+		return bankCardNumber;
+	}
+
+	public void setBankCardNumber(Bankcard bankCardNumber) {
+		this.bankCardNumber = bankCardNumber;
+	}
+
+	
 
 }
