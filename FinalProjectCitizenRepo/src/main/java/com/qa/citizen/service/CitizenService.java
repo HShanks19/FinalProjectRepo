@@ -28,7 +28,7 @@ public class CitizenService {
 		return optCitizen.get();
 	}
 
-	public List<Citizen> sortAndFilterDucks(Citizen citizen) {
+	public List<Citizen> sortAndFilterCitizens(Citizen citizen) {
 		return this.repo.findAll(Example.of(citizen));
 	}
 
