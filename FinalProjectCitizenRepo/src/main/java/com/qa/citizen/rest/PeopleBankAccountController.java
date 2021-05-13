@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.citizen.domain.PeopleBankAccount;
+import com.qa.citizen.rest.DTOs.PeopleBankAccountDTO;
 import com.qa.citizen.service.PeopleBankAccountService;
 
 @RestController
@@ -18,12 +19,10 @@ public class PeopleBankAccountController {
 		super();
 		this.service = service;
 	}
-	
-	
-	//currently not working (No Value Present)
-	@GetMapping("/getBankAccount/{id}")
-	public PeopleBankAccount getBankAccountById(@PathVariable Long id) {
-		return this.service.getPeopleBankAccountById(id);
+		
+	@GetMapping("/getBankAccountDTO/{accountNumber}")
+	public PeopleBankAccountDTO getBankAccountByIDDTO(@PathVariable Long accountNumber) {
+		return this.service.getDTO(accountNumber);
 	}
 
 }

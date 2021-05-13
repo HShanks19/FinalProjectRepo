@@ -1,6 +1,18 @@
 package com.qa.citizen.rest.DTOs;
 
+import java.util.Set;
+
 public class PeopleBankAccountDTO {
+
+	public PeopleBankAccountDTO(Set<BankcardDTO> bankcardDTOs, String bank, Long accountNumber, String forenames,
+			String surname) {
+		super();
+		this.bankcardDTOs = bankcardDTOs;
+		this.bank = bank;
+		this.accountNumber = accountNumber;
+		this.forenames = forenames;
+		this.surname = surname;
+	}
 
 	public PeopleBankAccountDTO(String bank, Long accountNumber, String forenames, String surname) {
 		super();
@@ -14,6 +26,8 @@ public class PeopleBankAccountDTO {
 		super();
 	}
 	
+	private Set<BankcardDTO> bankcardDTOs;
+		
 	private String bank;
 	
 	private Long accountNumber;
@@ -53,5 +67,14 @@ public class PeopleBankAccountDTO {
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
+
+	public Set<BankcardDTO> getBankcardDTOs() {
+		return bankcardDTOs;
+	}
+
+	public void setBankcardDTOs(Set<BankcardDTO> bankcardDTOs) {
+		this.bankcardDTOs = bankcardDTOs;
+	}
+
 
 }
