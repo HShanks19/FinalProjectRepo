@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.citizen.domain.Bankcard;
+import com.qa.citizen.rest.DTOs.BankcardDTO;
 import com.qa.citizen.service.BankcardService;
 
 @RestController
@@ -29,6 +30,11 @@ public class BankcardController {
 	@GetMapping("/getBankcardsById/{bankCardId}")
 	public List<Bankcard> getAtmTransactionsByBankCardId(@PathVariable Long bankCardId) {
 		return this.service.getBankCardsById(bankCardId);
+	}
+	
+	@GetMapping("/getBankcardsDTObyNumber/{cardNumber}")
+	public BankcardDTO getCard(@PathVariable Long cardNumber) {
+		return this.service.getDTO(cardNumber);
 	}
 
 }
