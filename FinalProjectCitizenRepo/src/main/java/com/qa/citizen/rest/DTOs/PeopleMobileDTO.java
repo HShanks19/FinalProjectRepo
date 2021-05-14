@@ -4,7 +4,6 @@ import java.util.Set;
 
 public class PeopleMobileDTO {
 
-	
 	public PeopleMobileDTO(String phoneNumber, String network, Set<MobileCallRecordsDTO> mobileCallRecords) {
 		super();
 		this.phoneNumber = phoneNumber;
@@ -45,6 +44,7 @@ public class PeopleMobileDTO {
 	public void setMobileCallRecords(Set<MobileCallRecordsDTO> mobileCallRecords) {
 		this.mobileCallRecords = mobileCallRecords;
 	}
+
 
 	
 
