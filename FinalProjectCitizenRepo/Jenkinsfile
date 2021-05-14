@@ -9,6 +9,7 @@ pipeline{
                 	sh '''
                         cd FinalProjectCitizenRepo
                         mvn clean package -DskipTests
+                        mvn clean install
                     '''
                 }
             }
