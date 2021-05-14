@@ -1,0 +1,20 @@
+.CitizenPage {
+    height: 100vh;
+    width: 100vw;
+    background-image: linear-gradient(to right, #0D2545 , #A21F44);
+    text-align: center;
+}
+
+.container {
+    padding-top: 50px;
+    height: 450px;
+    width: 500px;
+    color: white;
+    text-align: left;
+    background: rgba(27, 17, 27, 0.3)
+}
+
+
+.buttons{
+    text-align: center;
+}
