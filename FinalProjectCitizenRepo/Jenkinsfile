@@ -20,5 +20,35 @@ pipeline{
                     '''
                 }
            }
+           stage("Deployment to Development EC2"){
+	            steps{
+	                withCredentials([file(credentialsId: 'SSHKey', variable: 'SSHKeyPair')]) {
+	                     sh '''
+	                        ssh -i ${SSHKeyPair} ubuntu@63.35.189.171 -oStrictHostKeyChecking=no  << EOF
+	                        sudo apt-get update
+				            rm -rf ./FinalProjectRepo
+	                        git clone --single-branch --branch Docker https://github.com/HShanks19/FinalProjectRepo
+	                        cd ~/FinalProjectRepo/FinalProjectCitizenRepo
+	                        docker-compose build --parallel
+	                        docker-compose up -d
+	                    '''
+	                }
+	            }
+        	}
+        	stage("Deployment to Production EC2"){
+	            steps{
+	                withCredentials([file(credentialsId: 'SSHKey', variable: 'SSHKeyPair')]) {
+	                     sh '''
+	                        ssh -i ${SSHKeyPair} ubuntu@34.245.231.159 -oStrictHostKeyChecking=no  << EOF
+	                        sudo apt-get update
+				            rm -rf ./FinalProjectRepo
+	                        git clone --single-branch --branch Docker https://github.com/HShanks19/FinalProjectRepo
+	                        cd ~/FinalProjectRepo/FinalProjectCitizenRepo
+	                        docker-compose build --parallel
+	                        docker-compose up -d
+	                    '''
+	                }
+	            }
+        	}
         }
 }
