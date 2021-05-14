@@ -8,14 +8,14 @@ pipeline{
                 steps{
                 	sh '''
                         cd FinalProjectCitizenRepo
-                        mvn clean install
+                        docker-compose build --parallel
                     '''
                 }
             }
-            stage('Deploy') { 
-                steps {
-                    sh 'java -jar /home/jenkins/.m2/repository/com/qa/FinalProjectCitizenRepo/0.0.1-SNAPSHOT/FinalProjectCitizenRepo-0.0.1-SNAPSHOT.jar -d'
-                }
-            }
+//            stage('Deploy') { 
+//                steps {
+//                    sh 'java -jar /home/jenkins/.m2/repository/com/qa/FinalProjectCitizenRepo/0.0.1-SNAPSHOT/FinalProjectCitizenRepo-0.0.1-SNAPSHOT.jar -d'
+//                }
+//            }
         }
 }
