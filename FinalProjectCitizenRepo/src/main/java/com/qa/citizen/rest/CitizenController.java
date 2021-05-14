@@ -30,8 +30,8 @@ public class CitizenController {
 	}
 
 	@PostMapping("/getAll/")
-	public ResponseEntity<List<Citizen>> sortAndFilterDucks(@RequestBody Citizen citizen) {
-		return ResponseEntity.ok(this.service.sortAndFilterDucks(citizen));
+	public ResponseEntity<List<Citizen>> sortAndFilterCitizens(@RequestBody Citizen citizen) {
+		return ResponseEntity.ok(this.service.sortAndFilterCitizens(citizen));
 	}
 
 }
