@@ -5,16 +5,17 @@ import com.qa.citizen.domain.Bankcard;
 
 public class AtmTransactionsDTO {
 
-//	public AtmTransactionsDTO(String timestamp, Bankcard bankCardNumber, String type, Double amount, String streetName, String postcode) {
-//		super();
-//		this.timestamp = timestamp;
-//		this.bankCardNumber = bankCardNumber;
-//		this.type = type;
-//		this.amount = amount;
-//		this.streetName = streetName;
-//		this.postcode = postcode;
-//	}
-	
+	public AtmTransactionsDTO(String timestamp, String type, Double amount, String operator, String streetName,
+			String postcode) {
+		super();
+		this.timestamp = timestamp;
+		this.type = type;
+		this.amount = amount;
+		this.operator = operator;
+		this.streetName = streetName;
+		this.postcode = postcode;
+	}
+
 	public AtmTransactionsDTO(String timestamp, String type, Double amount) {
 		super();
 		this.timestamp = timestamp;
@@ -27,14 +28,13 @@ public class AtmTransactionsDTO {
 	}
 	
 	private String timestamp;
-
-	private Bankcard bankCardNumber;
 	
 	private String type;
 	
 	private Double amount;
 	
-	private AtmPoint atmId;
+//	private AtmPoint atmId;
+	private String operator;
 	
 	private String streetName;
 	
@@ -46,14 +46,6 @@ public class AtmTransactionsDTO {
 
 	public void setTimestamp(String timestamp) {
 		this.timestamp = timestamp;
-	}
-
-	public Bankcard getBankCardNumber() {
-		return bankCardNumber;
-	}
-
-	public void setBankCardNumber(Bankcard bankCardNumber) {
-		this.bankCardNumber = bankCardNumber;
 	}
 
 	public String getType() {
@@ -72,13 +64,13 @@ public class AtmTransactionsDTO {
 		this.amount = amount;
 	}
 
-	public AtmPoint getAtmId() {
-		return atmId;
-	}
-
-	public void setAtmId(AtmPoint atmId) {
-		this.atmId = atmId;
-	}
+//	public AtmPoint getAtmId() {
+//		return atmId;
+//	}
+//
+//	public void setAtmId(AtmPoint atmId) {
+//		this.atmId = atmId;
+//	}
 
 	public String getStreetName() {
 		return streetName;
@@ -94,6 +86,14 @@ public class AtmTransactionsDTO {
 
 	public void setPostcode(String postcode) {
 		this.postcode = postcode;
+	}
+
+	public String getOperator() {
+		return operator;
+	}
+
+	public void setOperator(String operator) {
+		this.operator = operator;
 	}
 
 	
