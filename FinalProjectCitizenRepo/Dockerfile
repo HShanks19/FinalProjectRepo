@@ -5,6 +5,6 @@ RUN mvn package install
 
 FROM openjdk:11-slim as run-time
 WORKDIR /app
-COPY --from=build-stage /home/jenkins/.m2/repository/com/qa/FinalProjectCitizenRepo/0.0.1-SNAPSHOT/FinalProjectCitizenRepo-0.0.1-SNAPSHOT.jar
+COPY --from=build-stage /home/jenkins/.m2/repository/com/qa/FinalProjectCitizenRepo/0.0.1-SNAPSHOT/FinalProjectCitizenRepo-0.0.1-SNAPSHOT.jar /app/FinalProjectCitizenRepo.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "finalprojectcitizenrepo.jar"]
+ENTRYPOINT ["java", "-jar", "FinalProjectCitizenRepo.jar"]
