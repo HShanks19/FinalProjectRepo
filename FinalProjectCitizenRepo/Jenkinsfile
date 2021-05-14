@@ -4,7 +4,7 @@ pipeline{
 		    maven 'M3'
 		  }
         stages{
-            stage('Build'){
+            stage('Build (Spring)'){
                 steps{
                 	sh '''
                         cd FinalProjectCitizenRepo
@@ -12,7 +12,7 @@ pipeline{
                     '''
                 }
             }
-            stage('Deploy') { 
+            stage('Deploy (Spring)') { 
                 steps {
                     sh '''
                     	cd FinalProjectCitizenRepo
@@ -20,7 +20,7 @@ pipeline{
                     '''
                 }
            }
-           stage("Deployment to Development EC2"){
+           stage("Deployment to Development EC2 (Spring)"){
 	            steps{
 	                withCredentials([file(credentialsId: 'SSHKey', variable: 'SSHKeyPair')]) {
 	                     sh '''
@@ -35,7 +35,7 @@ pipeline{
 	                }
 	            }
         	}
-        	stage("Deployment to Production EC2"){
+        	stage("Deployment to Production EC2 (Spring)"){
 	            steps{
 	                withCredentials([file(credentialsId: 'SSHKey', variable: 'SSHKeyPair')]) {
 	                     sh '''
