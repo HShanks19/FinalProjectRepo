@@ -8,7 +8,7 @@ pipeline{
                 steps{
                 	sh '''
                         cd FinalProjectCitizenRepo
-                        mvn clean package
+                        mvn clean package -DskipTests
                     '''
                 }
             }
