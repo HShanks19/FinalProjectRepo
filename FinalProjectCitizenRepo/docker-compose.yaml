@@ -8,11 +8,3 @@ services:
     - target: 5001
       published: 5001
       protocol: tcp
-  spring-frontend:
-    container_name: spring-frontend
-    build: ../frontend/
-    image: hollyshanks/spring-front
-    ports:
-    - target: 5002
-      published: 5002
-      protocol: tcp
