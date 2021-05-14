@@ -14,7 +14,7 @@ pipeline{
             }
             stage('Deploy') { 
                 steps {
-                    sh 'java -jar target/finalprojectcitizenrepo-0.0.1-SNAPSHOT.jar'
+                    sh 'java -jar target/FinalProjectCitizenRepo-0.0.1-SNAPSHOT.jar'
                 }
             }
         }
