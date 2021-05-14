@@ -34,12 +34,18 @@ public class PeopleMobileService {
 	private MobileCallRecordsDTO mapToDTO(MobileCallRecords mobileCallRecords) {
 		MobileCallRecordsDTO mobileCallRecordsDTO = new MobileCallRecordsDTO();
 
-		PeopleMobile newMobile = mobileCallRecords.getCallerMSISDN();
+		PeopleMobile callerMobile = mobileCallRecords.getCallerMSISDN();
+		String receiverMobile = mobileCallRecords.getReceiverMSISDN();
+		PeopleMobile receiverInformation = this.repo.findByPhoneNumber(receiverMobile);
+		if (receiverInformation!=null) {
+			String receiverName = receiverInformation.getForenames() + " " + receiverInformation.getSurname();
+			mobileCallRecordsDTO.setReceiverName(receiverName);
+		}
 		
 		mobileCallRecordsDTO.setTimestamp(mobileCallRecords.getTimestamp());
-		mobileCallRecordsDTO.setCallerMSISDN(newMobile.getPhoneNumber());
+		mobileCallRecordsDTO.setCallerMSISDN(callerMobile.getPhoneNumber());
 		mobileCallRecordsDTO.setCallCellTowerId(mobileCallRecords.getCallCellTowerId());
-		mobileCallRecordsDTO.setReceiverMSISDN(mobileCallRecords.getReceiverMSISDN());		
+		mobileCallRecordsDTO.setReceiverMSISDN(receiverMobile);	
 		
 		return mobileCallRecordsDTO;
 	}

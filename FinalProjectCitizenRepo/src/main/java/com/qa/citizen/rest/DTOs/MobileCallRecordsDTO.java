@@ -2,6 +2,16 @@ package com.qa.citizen.rest.DTOs;
 
 public class MobileCallRecordsDTO {
 
+	public MobileCallRecordsDTO(String timestamp, String callerMSISDN, Long callCellTowerId, String receiverMSISDN,
+			String receiverName) {
+		super();
+		this.timestamp = timestamp;
+		this.callerMSISDN = callerMSISDN;
+		this.callCellTowerId = callCellTowerId;
+		this.receiverMSISDN = receiverMSISDN;
+		this.receiverName = receiverName;
+	}
+
 	public MobileCallRecordsDTO(String timestamp, String callerMSISDN, Long callCellTowerId, String receiverMSISDN) {
 		super();
 		this.timestamp = timestamp;
@@ -21,6 +31,8 @@ public class MobileCallRecordsDTO {
 	private Long callCellTowerId;
 	
 	private String receiverMSISDN;
+	
+	private String receiverName;
 
 	public String getTimestamp() {
 		return timestamp;
@@ -52,6 +64,14 @@ public class MobileCallRecordsDTO {
 
 	public void setReceiverMSISDN(String receiverMSISDN) {
 		this.receiverMSISDN = receiverMSISDN;
+	}
+
+	public String getReceiverName() {
+		return receiverName;
+	}
+
+	public void setReceiverName(String receiverName) {
+		this.receiverName = receiverName;
 	}
 
 }
