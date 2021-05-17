@@ -3,13 +3,14 @@ package com.qa.citizen.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class MobileCallRecords {
 
 	public MobileCallRecords(String callerMSISDN, Long callCellTowerId, String receiverMSISDN, Long receiverTowerId) {
 		super();
-		this.callerMSISDN = callerMSISDN;
 		this.callCellTowerId = callCellTowerId;
 		this.receiverMSISDN = receiverMSISDN;
 		this.receiverTowerId = receiverTowerId;
@@ -19,7 +20,6 @@ public class MobileCallRecords {
 			Long receiverTowerId) {
 		super();
 		this.timestamp = timestamp;
-		this.callerMSISDN = callerMSISDN;
 		this.callCellTowerId = callCellTowerId;
 		this.receiverMSISDN = receiverMSISDN;
 		this.receiverTowerId = receiverTowerId;
@@ -32,10 +32,11 @@ public class MobileCallRecords {
 	@Id
 	@Column(name = "timestamp")
 	private String timestamp;
-	
-	@Column(name = "caller_MSISDN")
-	private String callerMSISDN;
-	
+		
+	@ManyToOne
+	@JoinColumn(name="caller_MSISDN", nullable=false)
+	private PeopleMobile callerMSISDN;
+		
 	@Column(name = "call_cell_tower_id")
 	private Long callCellTowerId;
 	
@@ -51,14 +52,6 @@ public class MobileCallRecords {
 
 	public void setTimestamp(String timestamp) {
 		this.timestamp = timestamp;
-	}
-
-	public String getCallerMSISDN() {
-		return callerMSISDN;
-	}
-
-	public void setCallerMSISDN(String callerMSISDN) {
-		this.callerMSISDN = callerMSISDN;
 	}
 
 	public Long getCallCellTowerId() {
@@ -83,6 +76,14 @@ public class MobileCallRecords {
 
 	public void setReceiverTowerId(Long receiverTowerId) {
 		this.receiverTowerId = receiverTowerId;
+	}
+
+	public PeopleMobile getCallerMSISDN() {
+		return callerMSISDN;
+	}
+
+	public void setCallerMSISDN(PeopleMobile callerMSISDN) {
+		this.callerMSISDN = callerMSISDN;
 	}
 
 

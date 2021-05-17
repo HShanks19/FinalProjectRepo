@@ -2,18 +2,13 @@ package com.qa.citizen.rest.DTOs;
 
 public class EposTransactionsDTO {
 
-	public EposTransactionsDTO(String timestamp, Double amount, String streetName, String postcode) {
+	public EposTransactionsDTO(String timestamp, Double amount, String vendor, String streetName, String postcode) {
 		super();
 		this.timestamp = timestamp;
 		this.amount = amount;
+		this.vendor = vendor;
 		this.streetName = streetName;
 		this.postcode = postcode;
-	}
-
-	public EposTransactionsDTO(String timestamp, Double amount) {
-		super();
-		this.timestamp = timestamp;
-		this.amount = amount;
 	}
 
 	public EposTransactionsDTO() {
@@ -23,6 +18,8 @@ public class EposTransactionsDTO {
 	private String timestamp;
 	
 	private Double amount;
+	
+	private String vendor;
 	
 	private String streetName;
 	
@@ -58,6 +55,14 @@ public class EposTransactionsDTO {
 
 	public void setPostcode(String postcode) {
 		this.postcode = postcode;
+	}
+
+	public String getVendor() {
+		return vendor;
+	}
+
+	public void setVendor(String vendor) {
+		this.vendor = vendor;
 	}
 	
 

@@ -1,8 +1,11 @@
 package com.qa.citizen.domain;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class PeopleMobile {
@@ -48,6 +51,9 @@ public class PeopleMobile {
 	
 	@Column(name = "network")
 	private String network;
+	
+	@OneToMany(mappedBy = "callerMSISDN")
+	private Set<MobileCallRecords> mobileCallRecords;
 
 	public String getForenames() {
 		return forenames;
@@ -111,6 +117,14 @@ public class PeopleMobile {
 
 	public void setNetwork(String network) {
 		this.network = network;
+	}
+
+	public Set<MobileCallRecords> getMobileCallRecords() {
+		return mobileCallRecords;
+	}
+
+	public void setMobileCallRecords(Set<MobileCallRecords> mobileCallRecords) {
+		this.mobileCallRecords = mobileCallRecords;
 	}
 
 }
