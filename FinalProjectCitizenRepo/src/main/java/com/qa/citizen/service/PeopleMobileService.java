@@ -26,4 +26,8 @@ public class PeopleMobileService {
 		return this.repo.findAll(Example.of(peopleMobile));
 	}
 
+	public List<PeopleMobile> getMobileByCitizen(String forenames, String surname, String dob) {
+		return this.repo.findByForenamesAndSurnameAndDateOfBirth(forenames, surname, dob);
+	}
+
 }
