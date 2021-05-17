@@ -2,9 +2,17 @@ version: "3.8"
 services:
   spring-backend:
     container_name: spring-backend
-    build: ./
+    build: ./FinalProjectCitizenRepo
     image: hollyshanks/spring-backend
     ports:
     - target: 5001
       published: 5001
+      protocol: tcp
+  spring-backend:
+    container_name: react-frontend
+    build: ./frontend
+    image: hollyshanks/react-backend
+    ports:
+    - target: 5002
+      published: 5002
       protocol: tcp
