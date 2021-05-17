@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  spring-backend:
+    container_name: spring-backend
+    build: ./
+    image: hollyshanks/spring-backend
+    ports:
+    - target: 5001
+      published: 5001
+      protocol: tcp
