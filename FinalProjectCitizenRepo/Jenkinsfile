@@ -24,7 +24,7 @@ pipeline{
 	            steps{
 	                withCredentials([file(credentialsId: 'SSHKey', variable: 'SSHKeyPair')]) {
 	                     sh '''
-	                        ssh -i ${SSHKeyPair} ubuntu@63.35.189.171 -oStrictHostKeyChecking=no  << EOF
+	                        ssh -i ${SSHKeyPair} ubuntu@3.249.167.211 -oStrictHostKeyChecking=no  << EOF
 	                        sudo apt-get update
 				            rm -rf ./FinalProjectRepo
 	                        git clone --single-branch --branch Docker https://github.com/HShanks19/FinalProjectRepo
@@ -39,7 +39,7 @@ pipeline{
 	            steps{
 	                withCredentials([file(credentialsId: 'SSHKey', variable: 'SSHKeyPair')]) {
 	                     sh '''
-	                        ssh -i ${SSHKeyPair} ubuntu@34.245.231.159 -oStrictHostKeyChecking=no  << EOF
+	                        ssh -i ${SSHKeyPair} ubuntu@34.241.123.167 -oStrictHostKeyChecking=no  << EOF
 	                        sudo apt-get update
 				            rm -rf ./FinalProjectRepo
 	                        git clone --single-branch --branch Docker https://github.com/HShanks19/FinalProjectRepo
