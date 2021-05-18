@@ -1,7 +1,7 @@
 FROM maven:3.6.3-openjdk-11-slim AS build-stage
 COPY . /build
 WORKDIR /build
-RUN mvn package install
+RUN mvn clean package
 
 FROM openjdk:11-slim as run-time
 WORKDIR /app
