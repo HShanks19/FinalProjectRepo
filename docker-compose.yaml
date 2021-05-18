@@ -12,7 +12,7 @@ services:
       target: /etc/nginx/nginx.conf 
   spring-backend:
     container_name: spring-backend
-    build: FinalProjectCitizenRepo/.
+    build: backend/.
     image: hollyshanks/spring-backend
   spring-backend:
     container_name: react-frontend
