@@ -1,9 +1,9 @@
-import { BrowserRouter as Route, Router } from 'react-router-dom';
-import SearchForm from './SearchForm/SearchForm';
-import Footer from './Footer/Footer';
+/* eslint-disable react/jsx-no-comment-textnodes */
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Search from './Search/Search';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import './SearchForm/SearchForm.css';
+import './Search/Search.css';
 import './Footer/Footer.css';
 import redsearchText from './redsearchText.svg';
 import CitizenPage from './CitizenProfilePage/CitizenProfile';
@@ -16,28 +16,27 @@ function App() {
   return (
     <>
       <div className="App">
-        <img src={redsearchText} alt="Logo" style={{ height: 120, width: 900, margin: 50 }} />
         <Router>
-          <Route>
-            <SearchForm />
+          <Route exact path="/">
+            <img src={redsearchText} alt="Logo" style={{ height: 60, margin: 50 }} />
+            <Search />
           </Route>
           <Route>
             <CitizenPage />
-            <Route>
-              <Biography />
+          </Route>
+          <Route>
+            <Biography />
             </Route>
-            <Route>
-              <Associates />
-            </Route>
-            <Route>
-              <Finances />
-            </Route>
-            <Route>
-              <Whereabouts />
-            </Route>
+          <Route>
+            <Associates />
+          </Route>
+          <Route>
+            <Finances />
+          </Route>
+          <Route>
+            <Whereabouts />
           </Route>
         </Router>
-        <Footer />
       </div>
     </>
   );

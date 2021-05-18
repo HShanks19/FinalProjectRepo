@@ -1,21 +1,19 @@
 import {
   Button, Container, Row, Col,
 } from 'react-bootstrap';
-import { useState } from 'react';
+import Footer from '../Footer/Footer';
 
-const SearchForm = () => {
-  const [searchValue, setSearchValue] = useState({
-    firstName: '',
-    lastName: '',
-    dateOfBirth: '',
-    placeOfBirth: '',
-    address: '',
-  });
-
-  const handleChange = (event) => {
+const SearchForm = ({
+  formVisible, searchValue, setSearchValue, obtainData,
+}) => {
+  function handleChange(event) {
     const { value } = event.target;
     setSearchValue({ ...searchValue, [event.target.name]: value });
-  };
+  }
+
+  if (!formVisible) {
+    return null;
+  }
 
   return (
     <>
@@ -63,9 +61,10 @@ const SearchForm = () => {
         </Row>
         <br />
         <Row>
-          <Button variant="outline-danger" size="lg" className="wide-button">Search</Button>
+          <Button variant="outline-danger" size="lg" className="wide-button" onClick={obtainData}>Search</Button>
         </Row>
       </Container>
+      <Footer />
     </>
   );
 };
