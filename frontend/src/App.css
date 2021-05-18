@@ -1,8 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=KoHo:wght@200&family=Noto+Sans&display=swap');
+
 .App {
-  height: 100vh;
-  width: 100vw;
-  background-image: linear-gradient(to right, #0D2545 , #A21F44);
+  min-height: 100vh;
+  min-width: 100%;
+  max-width: 100%;
+  /* background-image: linear-gradient(to right, #0D2545 , #A21F44); */
+  background-image: url("main_background.svg");
+  background-size: cover;
   text-align: center;
+  padding-bottom: 20px;
+  font-family: 'Noto Sans';
 }
 
 .App-logo {

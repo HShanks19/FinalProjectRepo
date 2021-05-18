@@ -1,10 +1,17 @@
-import logo from '../logo.svg';
+import reactLogo from '../react_logo.svg';
+import springLogo from '../spring_logo.svg';
 
 const Footer = () => (
   <div className="footer">
     <p>
       An app made using
-      <img src={logo} style={{ height: 25, width: 30 }} alt="react-logo" />
+      <a href="https://reactjs.org/">
+        <img src={reactLogo} className="react-footer-logo" alt="react-logo" />
+      </a>
+      and
+      <a href="https://spring.io">
+        <img src={springLogo} className="spring-footer-logo" alt="react-logo" />
+      </a>
       by
       {' '}
       <a href="https://github.com/HShanks19">HShanks19</a>

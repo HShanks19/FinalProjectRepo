@@ -1,7 +1,21 @@
 package com.qa.citizen.rest.DTOs;
 
+import java.util.List;
 
 public class CitizenDTO {
+
+	public CitizenDTO(String forenames, String surname, String homeAddress, String dateOfBirth, String placeOfBirth,
+			String sex, List<PeopleMobileDTO> citizensMobileNumbers, List<VehicleRegistrationDTO> citizensVehicles) {
+		super();
+		this.forenames = forenames;
+		this.surname = surname;
+		this.homeAddress = homeAddress;
+		this.dateOfBirth = dateOfBirth;
+		this.placeOfBirth = placeOfBirth;
+		this.sex = sex;
+		this.citizensMobileNumbers = citizensMobileNumbers;
+		this.citizensVehicles = citizensVehicles;
+	}
 
 	public CitizenDTO(String forenames, String surname, String homeAddress, String dateOfBirth, String placeOfBirth,
 			String sex) {
@@ -17,11 +31,11 @@ public class CitizenDTO {
 	public CitizenDTO() {
 		super();
 	}
-	
+
 	private String forenames;
-	
+
 	private String surname;
-	
+
 	private String homeAddress;
 
 	private String dateOfBirth;
@@ -29,6 +43,10 @@ public class CitizenDTO {
 	private String placeOfBirth;
 
 	private String sex;
+
+	private List<PeopleMobileDTO> citizensMobileNumbers;
+
+	private List<VehicleRegistrationDTO> citizensVehicles;
 
 	public String getForenames() {
 		return forenames;
@@ -76,6 +94,22 @@ public class CitizenDTO {
 
 	public void setSex(String sex) {
 		this.sex = sex;
+	}
+
+	public List<PeopleMobileDTO> getCitizensMobileNumbers() {
+		return citizensMobileNumbers;
+	}
+
+	public void setCitizensMobileNumbers(List<PeopleMobileDTO> citizensMobileNumbers) {
+		this.citizensMobileNumbers = citizensMobileNumbers;
+	}
+
+	public List<VehicleRegistrationDTO> getCitizensVehicles() {
+		return citizensVehicles;
+	}
+
+	public void setCitizensVehicles(List<VehicleRegistrationDTO> citizensVehicles) {
+		this.citizensVehicles = citizensVehicles;
 	}
 
 }

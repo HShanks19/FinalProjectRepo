@@ -78,4 +78,8 @@ public class PeopleMobileService {
 		return returnList;
 	}
 
+	public List<PeopleMobile> getMobileByCitizen(String forenames, String surname, String dob) {
+		return this.repo.findByForenamesAndSurnameAndDateOfBirth(forenames, surname, dob);
+	}
+
 }
