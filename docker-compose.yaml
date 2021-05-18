@@ -17,4 +17,4 @@ services:
   spring-backend:
     container_name: react-frontend
     build: ./frontend
-    image: hollyshanks/react-backend
+    image: hollyshanks/react-frontend
