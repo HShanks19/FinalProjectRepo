@@ -1,6 +1,8 @@
 package com.qa.citizen.rest.DTOs;
 
+
 import java.util.List;
+
 
 public class CitizenDTO {
 
@@ -35,7 +37,11 @@ public class CitizenDTO {
 	private String forenames;
 
 	private String surname;
-
+	
+	private String forenames;
+	
+	private String surname;
+	
 	private String homeAddress;
 
 	private String dateOfBirth;
@@ -47,6 +53,10 @@ public class CitizenDTO {
 	private List<PeopleMobileDTO> citizensMobileNumbers;
 
 	private List<VehicleRegistrationDTO> citizensVehicles;
+
+	public String getForenames() {
+		return forenames;
+	}
 
 	public void setForenames(String forenames) {
 		this.forenames = forenames;
@@ -88,12 +98,25 @@ public class CitizenDTO {
 		return surname;
 	}
 
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
 	public String getHomeAddress() {
 		return homeAddress;
 	}
 
+
+	public void setHomeAddress(String homeAddress) {
+		this.homeAddress = homeAddress;
+	}
+
 	public String getDateOfBirth() {
 		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
 	public String getPlaceOfBirth() {
@@ -110,6 +133,17 @@ public class CitizenDTO {
 
 	public List<VehicleRegistrationDTO> getCitizensVehicles() {
 		return citizensVehicles;
+    
+	public void setPlaceOfBirth(String placeOfBirth) {
+		this.placeOfBirth = placeOfBirth;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 
 }

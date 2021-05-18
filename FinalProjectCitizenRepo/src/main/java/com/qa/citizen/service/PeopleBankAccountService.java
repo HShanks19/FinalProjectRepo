@@ -37,6 +37,7 @@ public class PeopleBankAccountService {
 		
 		AtmPoint atmPoint = atmTransaction.getAtmId();
 		
+		atmTransactionDTO.setOperator(atmPoint.getOperator());
 		atmTransactionDTO.setStreetName(atmPoint.getStreetName());
 		atmTransactionDTO.setPostcode(atmPoint.getPostcode());		
 		
@@ -51,6 +52,7 @@ public class PeopleBankAccountService {
 		
 		Epos epos = eposTransaction.getId();
 		
+		eposTransactionDTO.setVendor(epos.getVendor());
 		eposTransactionDTO.setStreetName(epos.getStreetName());
 		eposTransactionDTO.setPostcode(epos.getPostcode());		
 		

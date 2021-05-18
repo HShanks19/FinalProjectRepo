@@ -25,9 +25,5 @@ public class AtmPointController {
 		return this.service.getAtmPointById(id);
 	}
 	
-	@GetMapping("/getATMDTO/{id}")
-	public AtmPointDTO getDTO(@PathVariable Long id) {
-		return this.service.getDTO(id);
-	}
 
 }
