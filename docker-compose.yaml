@@ -10,11 +10,15 @@ services:
     - type: bind
       source: ./nginx/nginx.conf
       target: /etc/nginx/nginx.conf 
-  spring-backend:
-    container_name: spring-backend
-    build: FinalProjectCitizenRepo/.
-    image: hollyshanks/spring-backend
-  spring-backend:
-    container_name: react-frontend
-    build: frontend/.
-    image: hollyshanks/react-frontend
+  frontend:
+    container_name: frontend
+    image: hollyshanks/frontend
+    build: ./frontend
+    ports:
+    - target: 5000
+      published: 5000
+      protocol: tcp
+  backend:
+    container_name: backend
+    image: hollyshanks/backend
+    build: ./backend
