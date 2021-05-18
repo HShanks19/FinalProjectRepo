@@ -1,8 +1,6 @@
 package com.qa.citizen.rest.DTOs;
 
-
 import java.util.List;
-
 
 public class CitizenDTO {
 
@@ -37,11 +35,7 @@ public class CitizenDTO {
 	private String forenames;
 
 	private String surname;
-	
-	private String forenames;
-	
-	private String surname;
-	
+
 	private String homeAddress;
 
 	private String dateOfBirth;
@@ -62,38 +56,6 @@ public class CitizenDTO {
 		this.forenames = forenames;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	public void setHomeAddress(String homeAddress) {
-		this.homeAddress = homeAddress;
-	}
-
-	public void setDateOfBirth(String dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-
-	public void setPlaceOfBirth(String placeOfBirth) {
-		this.placeOfBirth = placeOfBirth;
-	}
-
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
-
-	public void setCitizensMobileNumbers(List<PeopleMobileDTO> peopleMobileDTOList) {
-		this.citizensMobileNumbers = peopleMobileDTOList;
-	}
-
-	public void setCitizensVehicles(List<VehicleRegistrationDTO> list) {
-		this.citizensVehicles = list;
-	}
-
-	public String getForenames() {
-		return forenames;
-	}
-
 	public String getSurname() {
 		return surname;
 	}
@@ -105,7 +67,6 @@ public class CitizenDTO {
 	public String getHomeAddress() {
 		return homeAddress;
 	}
-
 
 	public void setHomeAddress(String homeAddress) {
 		this.homeAddress = homeAddress;
@@ -123,17 +84,6 @@ public class CitizenDTO {
 		return placeOfBirth;
 	}
 
-	public String getSex() {
-		return sex;
-	}
-
-	public List<PeopleMobileDTO> getCitizensMobileNumbers() {
-		return citizensMobileNumbers;
-	}
-
-	public List<VehicleRegistrationDTO> getCitizensVehicles() {
-		return citizensVehicles;
-    
 	public void setPlaceOfBirth(String placeOfBirth) {
 		this.placeOfBirth = placeOfBirth;
 	}
@@ -144,6 +94,22 @@ public class CitizenDTO {
 
 	public void setSex(String sex) {
 		this.sex = sex;
+	}
+
+	public List<PeopleMobileDTO> getCitizensMobileNumbers() {
+		return citizensMobileNumbers;
+	}
+
+	public void setCitizensMobileNumbers(List<PeopleMobileDTO> citizensMobileNumbers) {
+		this.citizensMobileNumbers = citizensMobileNumbers;
+	}
+
+	public List<VehicleRegistrationDTO> getCitizensVehicles() {
+		return citizensVehicles;
+	}
+
+	public void setCitizensVehicles(List<VehicleRegistrationDTO> citizensVehicles) {
+		this.citizensVehicles = citizensVehicles;
 	}
 
 }
