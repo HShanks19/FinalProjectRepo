@@ -15,7 +15,7 @@ pipeline{
 	                        sudo apt-get update
 			        		rm -rf ./FinalProjectRepo
 	                        git clone --single-branch --branch dev https://github.com/HShanks19/FinalProjectRepo
-	                        cd ~/FinalProjectRepo/FinalProjectCitizenRepo
+	                        cd ~/FinalProjectRepo
 	                        docker-compose build --parallel
 	                        docker-compose up -d
 	                    '''
