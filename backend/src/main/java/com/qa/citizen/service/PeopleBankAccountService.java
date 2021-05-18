@@ -1,8 +1,11 @@
 package com.qa.citizen.service;
 
 import java.util.HashSet;
-import java.util.Optional;
+
+import java.util.List;
 import java.util.Set;
+
+import org.springframework.data.domain.Example;
 
 import org.springframework.stereotype.Service;
 
@@ -22,43 +25,43 @@ import com.qa.citizen.rest.DTOs.PeopleBankAccountDTO;
 public class PeopleBankAccountService {
 
 	private PeopleBankAccountRepo repo;
-	
+
 	public PeopleBankAccountService(PeopleBankAccountRepo repo) {
 		super();
 		this.repo = repo;
 	}
-		
+
 	private AtmTransactionsDTO mapToDTO(AtmTransaction atmTransaction) {
 		AtmTransactionsDTO atmTransactionDTO = new AtmTransactionsDTO();
 
 		atmTransactionDTO.setTimestamp(atmTransaction.getTimestamp());
 		atmTransactionDTO.setType(atmTransaction.getType());
 		atmTransactionDTO.setAmount(atmTransaction.getAmount());
-		
+
 		AtmPoint atmPoint = atmTransaction.getAtmId();
-		
+
 		atmTransactionDTO.setOperator(atmPoint.getOperator());
 		atmTransactionDTO.setStreetName(atmPoint.getStreetName());
-		atmTransactionDTO.setPostcode(atmPoint.getPostcode());		
-		
+		atmTransactionDTO.setPostcode(atmPoint.getPostcode());
+
 		return atmTransactionDTO;
 	}
-	
+
 	private EposTransactionsDTO mapToDTO(EposTransactions eposTransaction) {
 		EposTransactionsDTO eposTransactionDTO = new EposTransactionsDTO();
 
 		eposTransactionDTO.setTimestamp(eposTransaction.getTimestamp());
 		eposTransactionDTO.setAmount(eposTransaction.getAmount());
-		
+
 		Epos epos = eposTransaction.getId();
-		
+
 		eposTransactionDTO.setVendor(epos.getVendor());
 		eposTransactionDTO.setStreetName(epos.getStreetName());
-		eposTransactionDTO.setPostcode(epos.getPostcode());		
-		
+		eposTransactionDTO.setPostcode(epos.getPostcode());
+
 		return eposTransactionDTO;
 	}
-	
+
 	private BankcardDTO mapToDTO(Bankcard bankcard) {
 		BankcardDTO dto = new BankcardDTO();
 		dto.setSortCode(bankcard.getSortCode());
@@ -71,9 +74,9 @@ public class PeopleBankAccountService {
 		}
 
 		dto.setAtmTransactions(atmTransactionDTOs);
-		
+
 		Set<EposTransactionsDTO> eposTransactionDTOs = new HashSet<>();
-		
+
 		for (EposTransactions eposTransaction : bankcard.getEposTransactions()) {
 			EposTransactionsDTO eposTransactionDTO = this.mapToDTO(eposTransaction);
 			eposTransactionDTOs.add(eposTransactionDTO);
@@ -83,7 +86,7 @@ public class PeopleBankAccountService {
 
 		return dto;
 	}
-	
+
 	private PeopleBankAccountDTO mapToDTO(PeopleBankAccount peopleBankAccount) {
 		PeopleBankAccountDTO peopleDto = new PeopleBankAccountDTO();
 		peopleDto.setBank(peopleBankAccount.getBank());
@@ -99,15 +102,27 @@ public class PeopleBankAccountService {
 		}
 
 		peopleDto.setBankcardDTOs(bankcardDTOs);
-		
+
+
 		return peopleDto;
 	}
-	
+
 	public PeopleBankAccountDTO getDTO(Long id) {
 		PeopleBankAccount found = this.repo.findByAccountNumber(id);
 		PeopleBankAccountDTO dto = this.mapToDTO(found);
-		
+
 		return dto;
+	}
+
+	public List<PeopleBankAccount> sortAndFilterBankAccounts(PeopleBankAccount peopleBankAccount) {
+		// create new list
+
+		// add find all method to new list
+
+		// loop through new list and create dto for each bank account object
+
+		// return list of dtos
+		return this.repo.findAll(Example.of(peopleBankAccount));
 	}
 
 }
