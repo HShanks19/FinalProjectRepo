@@ -2,10 +2,12 @@ package com.qa.citizen.service;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+
 import java.util.List;
 import java.util.Set;
 
 import org.springframework.data.domain.Example;
+
 import org.springframework.stereotype.Service;
 
 import com.qa.citizen.domain.AtmPoint;
@@ -101,6 +103,7 @@ public class PeopleBankAccountService {
 		}
 
 		peopleDto.setBankcardDTOs(bankcardDTOs);
+
 
 		return peopleDto;
 	}
