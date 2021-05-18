@@ -1,5 +1,8 @@
 pipeline{
         agent any
+		environment {
+			SSHKEY = credentials("SSHKey")
+		}
         tools {
 		    maven 'M3'
 		  }
