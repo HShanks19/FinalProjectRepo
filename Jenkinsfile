@@ -14,7 +14,7 @@ pipeline{
 	                        ssh -i ${SSHKeyPair} ubuntu@54.74.6.120 -oStrictHostKeyChecking=no  << EOF
 	                        sudo apt-get update
 			        		rm -rf ./FinalProjectRepo
-	                        git clone --single-branch --branch dev https://github.com/HShanks19/FinalProjectRepo
+	                        git clone --single-branch --branch devDevOps https://github.com/HShanks19/FinalProjectRepo
 	                        cd ~/FinalProjectRepo
 	                        docker-compose build --parallel
 	                        docker-compose up -d
