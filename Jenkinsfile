@@ -4,30 +4,14 @@ pipeline{
 		    maven 'M3'
 		  }
         stages{
-            stage('Build (Spring)'){
-                steps{
-                	sh '''
-                        cd FinalProjectCitizenRepo
-                        docker-compose build --parallel
-                    '''
-                }
-            }
-            stage('Deploy (Spring)') { 
-                steps {
-                    sh '''
-                    	cd FinalProjectCitizenRepo
-                    	docker-compose up -d
-                    '''
-                }
-           }
            stage("Deployment to Development EC2 (Spring)"){
 	            steps{
 	                withCredentials([file(credentialsId: 'SSHKey', variable: 'SSHKeyPair')]) {
 	                     sh '''
-	                        ssh -i ${SSHKeyPair} ubuntu@63.35.189.171 -oStrictHostKeyChecking=no  << EOF
+	                        ssh -i ${SSHKeyPair} ubuntu@54.74.6.120 -oStrictHostKeyChecking=no  << EOF
 	                        sudo apt-get update
-				            rm -rf ./FinalProjectRepo
-	                        git clone --single-branch --branch Docker https://github.com/HShanks19/FinalProjectRepo
+			        		rm -rf ./FinalProjectRepo
+	                        git clone --single-branch --branch dev https://github.com/HShanks19/FinalProjectRepo
 	                        cd ~/FinalProjectRepo/FinalProjectCitizenRepo
 	                        docker-compose build --parallel
 	                        docker-compose up -d
@@ -39,10 +23,10 @@ pipeline{
 	            steps{
 	                withCredentials([file(credentialsId: 'SSHKey', variable: 'SSHKeyPair')]) {
 	                     sh '''
-	                        ssh -i ${SSHKeyPair} ubuntu@34.245.231.159 -oStrictHostKeyChecking=no  << EOF
+	                        ssh -i ${SSHKeyPair} ubuntu@3.249.136.77 -oStrictHostKeyChecking=no  << EOF
 	                        sudo apt-get update
-				            rm -rf ./FinalProjectRepo
-	                        git clone --single-branch --branch Docker https://github.com/HShanks19/FinalProjectRepo
+							rm -rf ./FinalProjectRepo
+	                        git clone --single-branch --branch main https://github.com/HShanks19/FinalProjectRepo
 	                        cd ~/FinalProjectRepo/FinalProjectCitizenRepo
 	                        docker-compose build --parallel
 	                        docker-compose up -d
