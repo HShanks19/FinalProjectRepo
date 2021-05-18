@@ -14,7 +14,6 @@ public class PeopleMobileDTO {
 	public PeopleMobileDTO() {
 		super();
 	}
-	
 	private String phoneNumber;
 	
 	private String network;
@@ -37,6 +36,7 @@ public class PeopleMobileDTO {
 		this.network = network;
 	}
 
+
 	public Set<MobileCallRecordsDTO> getMobileCallRecords() {
 		return mobileCallRecords;
 	}
@@ -44,10 +44,5 @@ public class PeopleMobileDTO {
 	public void setMobileCallRecords(Set<MobileCallRecordsDTO> mobileCallRecords) {
 		this.mobileCallRecords = mobileCallRecords;
 	}
-
-
-	
-
-	
 
 }

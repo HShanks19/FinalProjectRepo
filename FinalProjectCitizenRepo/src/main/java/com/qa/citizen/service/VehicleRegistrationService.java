@@ -28,4 +28,8 @@ public class VehicleRegistrationService {
 		return this.repo.findAll(Example.of(vehicleRegistration));
 	}
 
+	public List<VehicleRegistration> getVehicleByCitizen(String forenames, String surname, String dob) {
+		return this.repo.findByForenamesAndSurnameAndDateOfBirth(forenames, surname, dob);
+	}
+
 }
