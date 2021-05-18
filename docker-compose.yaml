@@ -1,18 +1,20 @@
 version: "3.8"
 services:
+  nginx:
+    image: nginx:alpine
+    ports:
+    - target: 80
+      published: 80
+      protocol: tcp
+    volumes:
+    - type: bind
+      source: ./nginx/nginx.conf
+      target: /etc/nginx/nginx.conf 
   spring-backend:
     container_name: spring-backend
     build: ./FinalProjectCitizenRepo
     image: hollyshanks/spring-backend
-    ports:
-    - target: 5001
-      published: 5001
-      protocol: tcp
   spring-backend:
     container_name: react-frontend
     build: ./frontend
     image: hollyshanks/react-backend
-    ports:
-    - target: 5002
-      published: 5002
-      protocol: tcp

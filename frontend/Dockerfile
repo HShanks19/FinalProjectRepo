@@ -4,5 +4,6 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json ./
 COPY package-lock.json ./
 RUN npm install
+EXPOSE 5002
 COPY . ./
 CMD ["npm", "start"]    
