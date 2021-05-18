@@ -1,20 +1,23 @@
 import {
   Button, Container, Row, Col,
 } from 'react-bootstrap';
+import Footer from '../Footer/Footer';
 
-const SearchForm = ({ searchValue, setSearchValue, obtainData }) => {
-  const handleChange = (event) => {
+const SearchForm = ({
+  formVisible, searchValue, setSearchValue, obtainData,
+}) => {
+  function handleChange(event) {
     const { value } = event.target;
     setSearchValue({ ...searchValue, [event.target.name]: value });
-  };
+  }
 
-  if (!searchValue.shouldShow) {
+  if (!formVisible) {
     return null;
   }
 
   return (
     <>
-      <Container className="container">
+      <Container>
         <Row>
           <Col>
             <h2>Search</h2>
@@ -61,6 +64,7 @@ const SearchForm = ({ searchValue, setSearchValue, obtainData }) => {
           <Button variant="outline-danger" size="lg" className="wide-button" onClick={obtainData}>Search</Button>
         </Row>
       </Container>
+      <Footer />
     </>
   );
 };

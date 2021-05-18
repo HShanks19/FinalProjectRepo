@@ -10,20 +10,22 @@ const Search = () => {
     dateOfBirth: '',
     placeOfBirth: '',
     address: '',
-    title: '',
-    shouldShow: true,
   });
 
-  const [citizens, setCitizens] = useState([]);
+  const [formVisible, setFormVisible] = useState(true);
 
-  const obtainData = () => {
+  const [searchResults, setSearchResults] = useState([]);
+
+  const [dataLimit, setDataLimit] = useState(9);
+
+  function obtainData() {
     axios.get('https://my-json-server.typicode.com/joshua-hs/fake-final-api/citizens')
       .then((response) => {
-        setCitizens(response.data);
-        setSearchValue({ shouldShow: false });
+        setSearchResults(response.data);
+        setFormVisible(false);
       })
       .catch((err) => console.log(err));
-  };
+  }
 
   return (
     <>
@@ -31,11 +33,15 @@ const Search = () => {
         searchValue={searchValue}
         setSearchValue={setSearchValue}
         obtainData={obtainData}
+        formVisible={formVisible}
       />
       <SearchContainer
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-        searchResults={citizens}
+        dataLimit={dataLimit}
+        setDataLimit={setDataLimit}
+        pages={Math.ceil(searchResults.length / dataLimit)}
+        searchResults={searchResults}
+        formVisible={formVisible}
+        setFormVisible={setFormVisible}
       />
     </>
   );

@@ -11,28 +11,28 @@ const SearchResult = ({
 }) => (
   <>
     <Card className="search-card">
-      <p>
-        Name:
-        {' '}
+      <b className="search-card-heading">
         {firstName}
         {' '}
         {lastName}
-      </p>
-      <p>
-        Date of birth:
-        {' '}
-        {dateOfBirth}
-      </p>
-      <p>
-        Place of birth:
-        {' '}
-        {placeOfBirth}
-      </p>
-      <p>
-        Address:
-        {' '}
-        {address}
-      </p>
+      </b>
+      <div className="search-card-subcontainer">
+        <p className="search-card-subtext">
+          Date of birth:
+          {' '}
+          <b>{dateOfBirth}</b>
+        </p>
+        <p>
+          Place of birth:
+          {' '}
+          <b>{placeOfBirth}</b>
+        </p>
+        <p>
+          Address:
+          {' '}
+          <b>{address}</b>
+        </p>
+      </div>
       <Button variant="danger" className="citizen-card-button">View profile</Button>
     </Card>
     <br />
