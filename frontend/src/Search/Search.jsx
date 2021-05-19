@@ -19,15 +19,36 @@ const Search = () => {
   const [dataLimit, setDataLimit] = useState(9);
 
   function testPostRequest() {
-    axios.post('http://backend:5001/getMatchingCitizens/', {
+    // axios.post('http://backend:5001/getMatchingCitizens/', {
+    //   forenames: 'Michael Shane',
+    //   surname: 'Cochrane',
+    // })
+    //   .then(((response) => {
+    //     setSearchValue(response.data);
+    //     setFormVisible(false);
+    //   }))
+    //   .catch((err) => console.log(err));
+
+    const URL = 'http://backend:5001/getMatchingCitizens/';
+    const testData = {
       forenames: 'Michael Shane',
       surname: 'Cochrane',
+    };
+    axios(URL, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      data: testData,
     })
-      .then(((response) => {
+      .then((response) => {
         setSearchValue(response.data);
         setFormVisible(false);
-      }))
-      .catch((err) => console.log(err));
+      })
+      .catch((error) => {
+        console.log(error);
+        throw error;
+      });
   }
 
   function obtainData() {
