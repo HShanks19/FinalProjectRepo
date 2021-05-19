@@ -4,7 +4,8 @@ import {
 import Footer from '../Footer/Footer';
 
 const SearchForm = ({
-  formVisible, searchValue, setSearchValue, obtainData,
+  // eslint-disable-next-line no-unused-vars
+  testPostRequest, formVisible, searchValue, setSearchValue, obtainData,
 }) => {
   function handleChange(event) {
     const { value } = event.target;
@@ -61,7 +62,7 @@ const SearchForm = ({
         </Row>
         <br />
         <Row>
-          <Button variant="outline-danger" size="lg" className="wide-button" onClick={obtainData}>Search</Button>
+          <Button variant="outline-danger" size="lg" className="wide-button" onClick={testPostRequest}>Search</Button>
         </Row>
       </Container>
       <Footer />
