@@ -18,6 +18,39 @@ const Search = () => {
 
   const [dataLimit, setDataLimit] = useState(9);
 
+  function testPostRequest() {
+    // axios.post('http://backend:5001/getMatchingCitizens/', {
+    //   forenames: 'Michael Shane',
+    //   surname: 'Cochrane',
+    // })
+    //   .then(((response) => {
+    //     setSearchValue(response.data);
+    //     setFormVisible(false);
+    //   }))
+    //   .catch((err) => console.log(err));
+
+    const URL = 'http://backend:5001/getMatchingCitizens/';
+    const testData = {
+      forenames: 'Michael Shane',
+      surname: 'Cochrane',
+    };
+    axios(URL, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      data: testData,
+    })
+      .then((response) => {
+        setSearchValue(response.data);
+        setFormVisible(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        throw error;
+      });
+  }
+
   function obtainData() {
     axios.get('https://my-json-server.typicode.com/joshua-hs/fake-final-api/citizens')
       .then((response) => {
@@ -30,6 +63,7 @@ const Search = () => {
   return (
     <>
       <SearchForm
+        testPostRequest={testPostRequest}
         searchValue={searchValue}
         setSearchValue={setSearchValue}
         obtainData={obtainData}
