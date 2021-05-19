@@ -25,11 +25,6 @@ public class CitizenController {
 		this.service = service;
 	}
 
-	@GetMapping("/getCitizen/{id}")
-	public Citizen getCitizenById(@PathVariable Long id) {
-		return this.service.getCitizenById(id);
-	}
-
 	@PostMapping("/getMatchingCitizens/")
 	public ResponseEntity<List<Citizen>> sortAndFilterCitizens(@RequestBody Citizen citizen) {
 		return ResponseEntity.ok(this.service.sortAndFilterCitizens(citizen));
