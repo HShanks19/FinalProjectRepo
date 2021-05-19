@@ -52,7 +52,7 @@ public class PeopleMobileService {
 		return mobileCallRecordsDTO;
 	}
 	
-	private PeopleMobileDTO mapToDTO(PeopleMobile peopleMobile) {
+	public PeopleMobileDTO mapToDTO(PeopleMobile peopleMobile) {
 		PeopleMobileDTO dto = new PeopleMobileDTO();
 		dto.setPhoneNumber(peopleMobile.getPhoneNumber());
 		dto.setNetwork(peopleMobile.getNetwork());
