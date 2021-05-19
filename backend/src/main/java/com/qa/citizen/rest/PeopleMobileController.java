@@ -24,10 +24,11 @@ public class PeopleMobileController {
 		this.service = service;
 	}
 
+	//broken
 	@GetMapping("/getByPhoneNumber/{phoneNumber}")
-	public PeopleMobileDTO getPersonDTO(String phoneNumber) {
+	public Set<PeopleMobileDTO> getPersonDTO(String phoneNumber) {
 		PeopleMobile foundCitizen = this.service.getCitizen(phoneNumber);
-		return this.service.mapToDTO(foundCitizen);
+		return this.service.getDTO(foundCitizen);
 	}
 	
 	@PostMapping("/getAllCitizenPhoneInformationDTO/")
