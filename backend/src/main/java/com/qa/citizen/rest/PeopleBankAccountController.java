@@ -34,7 +34,7 @@ public class PeopleBankAccountController {
 
 
 	@PostMapping("/getMatchingBankAccounts/")
-	public ResponseEntity<List<PeopleBankAccount>> sortAndFilterBankAccounts(
+	public ResponseEntity<List<PeopleBankAccountDTO>> sortAndFilterBankAccounts(
 			@RequestBody PeopleBankAccount peopleBankAccount) {
 		return ResponseEntity.ok(this.service.sortAndFilterBankAccounts(peopleBankAccount));
 	}

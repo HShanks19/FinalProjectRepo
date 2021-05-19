@@ -1,5 +1,6 @@
 package com.qa.citizen.service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import java.util.List;
@@ -114,15 +115,16 @@ public class PeopleBankAccountService {
 		return dto;
 	}
 
-	public List<PeopleBankAccount> sortAndFilterBankAccounts(PeopleBankAccount peopleBankAccount) {
-		// create new list
+	public List<PeopleBankAccountDTO> sortAndFilterBankAccounts(PeopleBankAccount peopleBankAccount) {
+		List<PeopleBankAccount> bankAccountList = this.repo.findAll(Example.of(peopleBankAccount));
+		List<PeopleBankAccountDTO> bankAccountDTOList = new ArrayList<>();
 
-		// add find all method to new list
+		for (PeopleBankAccount bankAccount : bankAccountList) {
+			PeopleBankAccountDTO dto = this.mapToDTO(bankAccount);
+			bankAccountDTOList.add(dto);
+		}
 
-		// loop through new list and create dto for each bank account object
-
-		// return list of dtos
-		return this.repo.findAll(Example.of(peopleBankAccount));
+		return bankAccountDTOList;
 	}
 
 }
