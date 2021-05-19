@@ -31,11 +31,12 @@ public class PeopleMobileController {
 		return this.service.getCitizen(phoneNumber);
 	}
 
+	// Potentially can be deleted
 	@PostMapping("/getAllCitizenPhoneInformation/")
 	public ResponseEntity<List<PeopleMobile>> sortAndFilterPeopleMobile(@RequestBody PeopleMobile peopleMobile) {
 		return ResponseEntity.ok(this.service.sortAndFilterPeopleMobile(peopleMobile));
 	}
-	
+
 	@PostMapping("/getAllCitizenPhoneInformationDTO/")
 	public ResponseEntity<Set<PeopleMobileDTO>> sortAndFilterPeopleMobileDTO(@RequestBody PeopleMobile peopleMobile) {
 		return ResponseEntity.ok(this.service.getDTO(peopleMobile));

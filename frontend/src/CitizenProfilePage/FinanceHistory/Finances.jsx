@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 const Finances = ({
   // eslint-disable-next-line max-len
   bank, sortCode, accountNumber, eposTimeStamp, eposAmount, eposAccountNumber, vendor, eposAddress, atmTimeStamps, atmAmount, operator, streetName, postCode,
-}) => {
+}) => (
   <>
     <div>
       Bank:
@@ -56,8 +56,8 @@ const Finances = ({
         </tr>
       </tbody>
     </table>
-  </>;
-};
+  </>
+);
 
 export default Finances;
 

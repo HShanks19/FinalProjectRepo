@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   ComposableMap,
   Geographies,
@@ -11,7 +10,7 @@ const geoUrl = 'https://raw.githubusercontent.com/zcreativelabs/react-simple-map
 
 const markers = (longitude, latitude, name) => [
 
-  { markerOffset: -15, name: { name }, coordinates: [longitude, latitude] },
+  { markerOffset: -15, name, coordinates: [longitude, latitude] },
 
 ];
 
@@ -35,7 +34,7 @@ const Whereabouts = () => (
           />
         ))}
     </Geographies>
-    {markers.map(({ name, coordinates, markerOffset }) => (
+    {markers().map(({ name, coordinates, markerOffset }) => (
       <Marker key={name} coordinates={coordinates}>
         <circle r={10} fill="#F00" stroke="#fff" strokeWidth={2} />
         <text
@@ -51,9 +50,3 @@ const Whereabouts = () => (
 );
 
 export default Whereabouts;
-
-Whereabouts.propTypes = {
-  longitude: PropTypes.string.isRequired,
-  latitude: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-};

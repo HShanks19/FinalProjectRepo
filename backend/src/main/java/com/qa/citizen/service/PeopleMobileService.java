@@ -17,10 +17,13 @@ import com.qa.citizen.rest.DTOs.PeopleMobileDTO;
 public class PeopleMobileService {
 
 	private PeopleMobileRepo repo;
+	
+	private MobileCallRecordsService service;
 
-	public PeopleMobileService(PeopleMobileRepo repo) {
+	public PeopleMobileService(PeopleMobileRepo repo, MobileCallRecordsService service) {
 		super();
 		this.repo = repo;
+		this.service = service;
 	}
 
 	public PeopleMobile getCitizen(String phoneNumber) {
@@ -34,16 +37,15 @@ public class PeopleMobileService {
 	private MobileCallRecordsDTO mapToDTO(MobileCallRecords mobileCallRecords) {
 		MobileCallRecordsDTO mobileCallRecordsDTO = new MobileCallRecordsDTO();
 
-		PeopleMobile callerMobile = mobileCallRecords.getCallerMSISDN();
+		String callerMobile = mobileCallRecords.getCallerMSISDN();
 		String receiverMobile = mobileCallRecords.getReceiverMSISDN();
 		PeopleMobile receiverInformation = this.repo.findByPhoneNumber(receiverMobile);
 		if (receiverInformation!=null) {
 			String receiverName = receiverInformation.getForenames() + " " + receiverInformation.getSurname();
 			mobileCallRecordsDTO.setReceiverName(receiverName);
 		}
-		
 		mobileCallRecordsDTO.setTimestamp(mobileCallRecords.getTimestamp());
-		mobileCallRecordsDTO.setCallerMSISDN(callerMobile.getPhoneNumber());
+		mobileCallRecordsDTO.setCallerMSISDN(callerMobile);
 		mobileCallRecordsDTO.setCallCellTowerId(mobileCallRecords.getCallCellTowerId());
 		mobileCallRecordsDTO.setReceiverMSISDN(receiverMobile);	
 		
@@ -56,8 +58,10 @@ public class PeopleMobileService {
 		dto.setNetwork(peopleMobile.getNetwork());
 
 		Set<MobileCallRecordsDTO> mobileCallRecordsDTOs = new HashSet<>();
+		
+		List<MobileCallRecords> mobileCallRecordsNew = this.service.getCallsByPhoneNumber(peopleMobile.getPhoneNumber());
 
-		for (MobileCallRecords mobileCallRecords : peopleMobile.getMobileCallRecords()) {
+		for (MobileCallRecords mobileCallRecords : mobileCallRecordsNew) {
 			MobileCallRecordsDTO mobileCallRecordsDTO = this.mapToDTO(mobileCallRecords);
 			mobileCallRecordsDTOs.add(mobileCallRecordsDTO);
 		}

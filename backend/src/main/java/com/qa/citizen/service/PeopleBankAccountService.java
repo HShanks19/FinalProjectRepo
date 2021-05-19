@@ -1,10 +1,13 @@
 package com.qa.citizen.service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+
 import java.util.List;
 import java.util.Set;
 
 import org.springframework.data.domain.Example;
+
 import org.springframework.stereotype.Service;
 
 import com.qa.citizen.domain.AtmPoint;
@@ -101,6 +104,7 @@ public class PeopleBankAccountService {
 
 		peopleDto.setBankcardDTOs(bankcardDTOs);
 
+
 		return peopleDto;
 	}
 
@@ -111,15 +115,16 @@ public class PeopleBankAccountService {
 		return dto;
 	}
 
-	public List<PeopleBankAccount> sortAndFilterBankAccounts(PeopleBankAccount peopleBankAccount) {
-		// create new list
+	public List<PeopleBankAccountDTO> sortAndFilterBankAccounts(PeopleBankAccount peopleBankAccount) {
+		List<PeopleBankAccount> bankAccountList = this.repo.findAll(Example.of(peopleBankAccount));
+		List<PeopleBankAccountDTO> bankAccountDTOList = new ArrayList<>();
 
-		// add find all method to new list
+		for (PeopleBankAccount bankAccount : bankAccountList) {
+			PeopleBankAccountDTO dto = this.mapToDTO(bankAccount);
+			bankAccountDTOList.add(dto);
+		}
 
-		// loop through new list and create dto for each bank account object
-
-		// return list of dtos
-		return this.repo.findAll(Example.of(peopleBankAccount));
+		return bankAccountDTOList;
 	}
 
 }

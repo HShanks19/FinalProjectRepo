@@ -21,19 +21,19 @@ function App() {
             <img src={redsearchText} alt="Logo" style={{ height: 60, margin: 50 }} />
             <Search />
           </Route>
-          <Route>
+          <Route exact path="/Citizen">
             <CitizenPage />
           </Route>
-          <Route>
+          <Route exact path="/Biography">
             <Biography />
-            </Route>
-          <Route>
+          </Route>
+          <Route exact path="/Associates">
             <Associates />
           </Route>
-          <Route>
+          <Route exact path="/Finances">
             <Finances />
           </Route>
-          <Route>
+          <Route exact path="/Whereabouts">
             <Whereabouts />
           </Route>
         </Router>
