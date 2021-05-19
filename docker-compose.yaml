@@ -15,8 +15,8 @@ services:
     image: hollyshanks/frontend
     build: ./frontend
     ports:
-    - target: 5000
-      published: 5000
+    - target: 3000
+      published: 3000
       protocol: tcp
   backend:
     container_name: backend
