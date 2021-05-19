@@ -24,7 +24,7 @@ public class PeopleMobileController {
 		this.service = service;
 	}
 
-	@GetMapping("getByPhoneNumber/{phoneNumber}")
+	@GetMapping("/getByPhoneNumber/{phoneNumber}")
 	public PeopleMobileDTO getPersonDTO(String phoneNumber) {
 		PeopleMobile foundCitizen = this.service.getCitizen(phoneNumber);
 		return this.service.mapToDTO(foundCitizen);
