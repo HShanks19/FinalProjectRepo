@@ -4,6 +4,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json ./
 COPY package-lock.json ./
 RUN npm install
-EXPOSE 5000
+RUN npm install react-scripts@4.0.3 -g
+EXPOSE 3000
 COPY . ./
-CMD ["npm", "start"]    
+CMD ["npm", "start"]
