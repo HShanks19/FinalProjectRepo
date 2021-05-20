@@ -7,10 +7,6 @@ import './Search/Search.css';
 import './Footer/Footer.css';
 import redsearchText from './redsearchText.svg';
 import CitizenPage from './CitizenProfilePage/CitizenProfile';
-import Biography from './CitizenProfilePage/Biography/Biography';
-import Associates from './CitizenProfilePage/Associates/Associates';
-import Finances from './CitizenProfilePage/FinanceHistory/Finances';
-import Whereabouts from './CitizenProfilePage/Whereabouts/Whereabouts';
 
 function App() {
   return (
@@ -21,20 +17,8 @@ function App() {
             <img src={redsearchText} alt="Logo" style={{ height: 60, margin: 50 }} />
             <Search />
           </Route>
-          <Route exact path="/Citizen">
+          <Route path="/Citizen">
             <CitizenPage />
-          </Route>
-          <Route exact path="/Biography">
-            <Biography />
-          </Route>
-          <Route exact path="/Associates">
-            <Associates />
-          </Route>
-          <Route exact path="/Finances">
-            <Finances />
-          </Route>
-          <Route exact path="/Whereabouts">
-            <Whereabouts />
           </Route>
         </Router>
       </div>
