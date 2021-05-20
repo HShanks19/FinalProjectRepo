@@ -4,58 +4,60 @@ const Biography = ({
   // eslint-disable-next-line max-len
   firstName, lastName, dateOfBirth, placeOfBirth, address, phoneNumber, vehicleRegistrationPlate, vehicleMake, vehicleModel, vehicleColour,
 }) => (
-  <div className="card">
-    <div className="card-body">
-      <h4 className="card-title">
-        Citizen Name:
-        {' '}
-        {firstName + lastName}
-      </h4>
-      <h5 className="card-text">
-        Date of Birth:
-        {' '}
-        {dateOfBirth}
-      </h5>
-      <h5 className="card-text">
-        Place of Birth:
-        {' '}
-        {placeOfBirth}
-      </h5>
-      <h5 className="card-text">
-        Address:
-        {' '}
-        {address}
-      </h5>
-      <h5 className="card-text">
-        Phone Number:
-        {' '}
-        {phoneNumber}
-      </h5>
-      <h5 className="card-text">
-        Vehicle:
-      </h5>
-      <h5 className="card-text">
-        Registration Plate:
-        {' '}
-        {vehicleRegistrationPlate}
-      </h5>
-      <h5 className="card-text">
-        Make:
-        {' '}
-        {vehicleMake}
-      </h5>
-      <h5 className="card-text">
-        Model:
-        {' '}
-        {vehicleModel}
-      </h5>
-      <h5 className="card-text">
-        Colour:
-        {' '}
-        {vehicleColour}
-      </h5>
+  <container>
+    <div className="card">
+      <div className="card-body">
+        <h4 className="card-title">
+          Citizen Name:
+          {' '}
+          {firstName + lastName}
+        </h4>
+        <h5 className="card-text">
+          Date of Birth:
+          {' '}
+          {dateOfBirth}
+        </h5>
+        <h5 className="card-text">
+          Place of Birth:
+          {' '}
+          {placeOfBirth}
+        </h5>
+        <h5 className="card-text">
+          Address:
+          {' '}
+          {address}
+        </h5>
+        <h5 className="card-text">
+          Phone Number:
+          {' '}
+          {phoneNumber}
+        </h5>
+        <h5 className="card-text">
+          Vehicle:
+        </h5>
+        <h5 className="card-text">
+          Registration Plate:
+          {' '}
+          {vehicleRegistrationPlate}
+        </h5>
+        <h5 className="card-text">
+          Make:
+          {' '}
+          {vehicleMake}
+        </h5>
+        <h5 className="card-text">
+          Model:
+          {' '}
+          {vehicleModel}
+        </h5>
+        <h5 className="card-text">
+          Colour:
+          {' '}
+          {vehicleColour}
+        </h5>
+      </div>
     </div>
-  </div>
+  </container>
 );
 
 export default Biography;
