@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.citizen.domain.Citizen;
+import com.qa.citizen.rest.DTOs.AssociatesDTO;
 import com.qa.citizen.rest.DTOs.CitizenDTO;
 import com.qa.citizen.service.CitizenService;
 
@@ -28,6 +29,11 @@ public class CitizenController {
 	@PostMapping("/getMatchingCitizens/")
 	public ResponseEntity<List<Citizen>> sortAndFilterCitizens(@RequestBody Citizen citizen) {
 		return ResponseEntity.ok(this.service.sortAndFilterCitizens(citizen));
+	}
+	
+	@PostMapping("/getCitizensAssociates/")
+	public ResponseEntity<List<AssociatesDTO>> sortAndFilterCitizensMapToAssociatesDTO(@RequestBody Citizen citizen) {
+		return ResponseEntity.ok(this.service.sortAndFilterCitizensMapToAssociatesDTO(citizen));
 	}
 
 	@GetMapping("/getBiographicalInfo/{id}")

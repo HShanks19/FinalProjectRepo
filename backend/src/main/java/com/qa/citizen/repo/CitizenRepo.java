@@ -22,4 +22,5 @@ public interface CitizenRepo extends JpaRepository<Citizen, Long> {
 
 	List<Citizen> findBySex(String sex);
 
+
 }
