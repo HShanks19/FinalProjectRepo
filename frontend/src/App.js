@@ -1,5 +1,6 @@
+/* eslint-disable max-len */
 /* eslint-disable react/jsx-no-comment-textnodes */
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import {
   Button, Row, Col,
 } from 'react-bootstrap';
@@ -10,6 +11,7 @@ import './Search/Search.css';
 import './Footer/Footer.css';
 import redsearchText from './redsearchText.svg';
 import CitizenPage from './CitizenProfilePage/CitizenProfile';
+import Biography from './CitizenProfilePage/Biography/Biography';
 
 function App() {
   return (
@@ -32,6 +34,9 @@ function App() {
               </Col>
             </Row>
             <CitizenPage />
+          </Route>
+          <Route path="/Biography">
+            <Biography />
           </Route>
         </Router>
       </div>

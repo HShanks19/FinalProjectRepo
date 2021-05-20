@@ -3,13 +3,14 @@ import {
   BrowserRouter as Route, Switch, useRouteMatch,
 } from 'react-router-dom';
 import Biography from './Biography/Biography';
-import Finances from './FinanceHistory/Finances';
 import Associates from './Associates/Associates';
-import './CitizenProfile.css';
+import Finances from './FinanceHistory/Finances';
 import Whereabouts from './Whereabouts/Whereabouts';
+import './CitizenProfile.css';
 
 const CitizenPage = () => {
   const { path } = useRouteMatch();
+
   return (
     <>
       <Switch>
