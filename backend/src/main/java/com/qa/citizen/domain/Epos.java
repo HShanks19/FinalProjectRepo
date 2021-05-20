@@ -32,26 +32,29 @@ public class Epos {
 	public Epos() {
 		super();
 	}
-	
+
 	@OneToMany(mappedBy = "id")
 	private Set<EposTransactions> eposTransactions;
-	
+
 	@Id
 	@Column(name = "id")
 	private Long id;
-	
+
 	@Column(name = "vendor")
 	private String vendor;
-	
+
 	@Column(name = "street_name")
 	private String streetName;
-	
+
 	@Column(name = "postcode")
 	private String postcode;
-	
+
 	@Column(name = "latitude")
 	private Double latitude;
-	
+
+	@Column(name = "longitude")
+	private Double longitude;
+
 	public Long getId() {
 		return id;
 	}
@@ -100,9 +103,6 @@ public class Epos {
 		this.longitude = longitude;
 	}
 
-	@Column(name = "longitude")
-	private Double longitude;
-
 	public Set<EposTransactions> getEposTransactions() {
 		return eposTransactions;
 	}
@@ -110,6 +110,5 @@ public class Epos {
 	public void setEposTransactions(Set<EposTransactions> eposTransactions) {
 		this.eposTransactions = eposTransactions;
 	}
-	
 
 }

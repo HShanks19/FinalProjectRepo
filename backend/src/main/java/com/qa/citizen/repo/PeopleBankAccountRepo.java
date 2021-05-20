@@ -9,5 +9,5 @@ import com.qa.citizen.domain.PeopleBankAccount;
 public interface PeopleBankAccountRepo extends JpaRepository<PeopleBankAccount, Long> {
 
 	PeopleBankAccount findByAccountNumber(Long accountNumber);
-	
+
 }
