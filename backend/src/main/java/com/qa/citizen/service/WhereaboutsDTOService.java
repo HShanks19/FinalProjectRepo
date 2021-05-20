@@ -62,7 +62,7 @@ public class WhereaboutsDTOService {
 			List<LocationEposDTO> locationEposDtoList = new ArrayList<>();
 			List<AtmTransaction> atmTransactionList = this.atmTransactionService.getAtmTransactionsByCard(bankCard);
 			List<EposTransactions> eposTransactionList = this.eposTransactionService
-					.getEposTransactionsByCard(bankCard.getCardNumber());
+					.getEposTransactionsByCard(bankCard);
 			locationAtmDtoList = this.locationAtmDtoService.getLocationAtmDTOList(atmTransactionList);
 			locationEposDtoList = this.locationEposDtoService.getLocationEposDTOList(eposTransactionList);
 
