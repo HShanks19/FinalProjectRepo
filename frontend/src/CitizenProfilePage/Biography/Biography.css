@@ -1,0 +1,13 @@
+.card-cntainer {
+  padding-top: 50px;
+  padding-left: 45px;
+  padding-right: 45px;
+  padding-bottom: 50px;
+  height: 800px;
+  width: 1500px;
+  max-width: 90%;
+  color: white;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.60);
+  border-radius: 10px;
+}

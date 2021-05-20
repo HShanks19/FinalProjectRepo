@@ -1,17 +1,18 @@
 import PropTypes from 'prop-types';
+import './Biography.css';
 
 const Biography = ({
   // eslint-disable-next-line max-len
   firstName, lastName, dateOfBirth, placeOfBirth, address, phoneNumber, vehicleRegistrationPlate, vehicleMake, vehicleModel, vehicleColour,
 }) => (
   <container>
-    <div className="card">
+    <div className="card-container">
+      <h4 className="card-title">
+        Citizen Name:
+        {' '}
+        {firstName + lastName}
+      </h4>
       <div className="card-body">
-        <h4 className="card-title">
-          Citizen Name:
-          {' '}
-          {firstName + lastName}
-        </h4>
         <h5 className="card-text">
           Date of Birth:
           {' '}
@@ -32,6 +33,7 @@ const Biography = ({
           {' '}
           {phoneNumber}
         </h5>
+        <br />
         <h5 className="card-text">
           Vehicle:
         </h5>

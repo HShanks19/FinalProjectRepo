@@ -20,17 +20,17 @@ function App() {
           <Route exact path="/">
             <Search />
           </Route>
-          <Row>
-            <Col>
-              <div className="d-grid d-md-block">
-                <Button type="button" id="button1" size="lg" variant="danger" className="citizen-card-button"><Link to="/Biography">Biography</Link></Button>
-                <Button type="button" id="button2" size="lg" variant="danger" className="citizen-card-button"><Link to="/Associates">Associates</Link></Button>
-                <Button type="button" id="button3" size="lg" variant="danger" className="citizen-card-button"><Link to="/Finances">Financial History</Link></Button>
-                <Button type="button" id="button4" size="lg" variant="danger" className="citizen-card-button"><Link to="/Whereabouts">Whereabouts</Link></Button>
-              </div>
-            </Col>
-          </Row>
           <Route path="/Citizen">
+            <Row>
+              <Col>
+                <div>
+                  <Button type="button" variant="outline-danger" size="lg" className="wide-button"><Link to="/Biography">Biography</Link></Button>
+                  <Button type="button" variant="outline-danger" size="lg" className="wide-button"><Link to="/Associates">Associates</Link></Button>
+                  <Button type="button" variant="outline-danger" size="lg" className="wide-button"><Link to="/Finances">Financial History</Link></Button>
+                  <Button type="button" variant="outline-danger" size="lg" className="wide-button"><Link to="/Whereabouts">Whereabouts</Link></Button>
+                </div>
+              </Col>
+            </Row>
             <CitizenPage />
           </Route>
         </Router>
