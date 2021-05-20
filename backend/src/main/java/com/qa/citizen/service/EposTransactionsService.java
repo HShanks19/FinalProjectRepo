@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.qa.citizen.domain.Bankcard;
 import com.qa.citizen.domain.EposTransactions;
 import com.qa.citizen.repo.EposTransactionsRepo;
 
@@ -11,13 +12,13 @@ import com.qa.citizen.repo.EposTransactionsRepo;
 public class EposTransactionsService {
 
 	private EposTransactionsRepo repo;
-	
+
 	public EposTransactionsService(EposTransactionsRepo repo) {
 		super();
 		this.repo = repo;
 	}
-	
-	public List<EposTransactions> getEposTransactionsByCard(Long bankCardNumber) {
+
+	public List<EposTransactions> getEposTransactionsByCard(Bankcard bankCardNumber) {
 		List<EposTransactions> cardTransactions = this.repo.findByBankCardNumber(bankCardNumber);
 		return cardTransactions;
 	}
