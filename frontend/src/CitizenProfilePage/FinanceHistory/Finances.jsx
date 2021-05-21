@@ -8,7 +8,7 @@ const Finances = ({
   const [financialHistory, setFinancialHistory] = useState([]);
 
   function findFinancialHistory() {
-    axios.post('http://54.74.6.120:5001/getMatchingBankAccounts/')
+    axios.post('http://52.211.82.10:5001/getMatchingBankAccounts/')
       .then((response) => {
         setFinancialHistory(response.data);
       })

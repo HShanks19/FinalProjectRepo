@@ -29,7 +29,7 @@ const Search = () => {
     //   }))
     //   .catch((err) => console.log(err));
 
-    const URL = 'http://backend:5001/getMatchingCitizens/';
+    const URL = 'http://54.74.6.120:5001/getMatchingCitizens/';
     const testData = {
       forenames: 'Michael Shane',
       surname: 'Cochrane',
@@ -52,7 +52,7 @@ const Search = () => {
   }
 
   function obtainData() {
-    axios.get('https://my-json-server.typicode.com/joshua-hs/fake-final-api/citizens')
+    axios.get('http://54.74.6.120:5001/getMatchingCitizens/')
       .then((response) => {
         setSearchResults(response.data);
         setFormVisible(false);

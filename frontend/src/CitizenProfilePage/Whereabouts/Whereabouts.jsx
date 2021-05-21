@@ -19,7 +19,7 @@ const Whereabouts = () => {
   const [findWhereabouts, setFindWhereabouts] = useState([]);
 
   function findCitizenWhereabouts() {
-    axios.post('http://54.74.6.120:5001/getWhereabouts/')
+    axios.post('http://52.211.82.10:5001/getWhereabouts/')
       .then((response) => {
         setFindWhereabouts(response.data);
       })

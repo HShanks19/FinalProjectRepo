@@ -9,7 +9,7 @@ const Biography = ({
   const [citizenBio, setCitizenBio] = useState([]);
 
   function collectBioData() {
-    axios.get('http://54.74.6.120:5001:5001/getBiographicalInfo/1118865837')
+    axios.get('http://52.211.82.10:5001:5001/getBiographicalInfo/{citizenId}')
       .then((response) => {
         setCitizenBio(response.data);
       })

@@ -10,14 +10,14 @@ const Associates = ({
   const [citizenBio, setCitizenBio] = useState([]);
 
   function findAssociates() {
-    axios.post('http://54.74.6.120:5001/getCitizensAssociates/')
+    axios.post('http://52.211.82.10:5001/getCitizensAssociates/')
       .then((response) => {
         setAssociatesRelated(response.data);
       })
       .catch((err) => console.log(err));
   }
   function getBiographicalInfo() {
-    axios.get('http://54.74.6.120:5001:5001/getBiographicalInfo/1118865837')
+    axios.get('http://52.211.82.10:5001:5001/getBiographicalInfo/1118865837')
       .then((response) => {
         setCitizenBio(response.data);
       })
