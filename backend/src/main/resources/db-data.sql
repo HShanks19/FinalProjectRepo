@@ -1,1 +1,0 @@
-INSERT INTO citizen (forenames, surname, homeAddress, dateOfBirth, placeOfBirth, sex) VALUES ('Michael Shane', 'Cochrane', '37 SPUR HILL AVENUE, POOLE, BH14 9PJ', '1955-09-25', 'LONDON', 'Male');

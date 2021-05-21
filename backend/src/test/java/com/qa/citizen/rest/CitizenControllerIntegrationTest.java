@@ -33,8 +33,8 @@ import com.qa.citizen.rest.DTOs.VehicleRegistrationDTO;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT) // loads the context
 @AutoConfigureMockMvc
-//@Sql(scripts = { "classpath:db-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
-@ActiveProfiles("prod")
+//@Sql(scripts = { "classpath:integration-test-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+@ActiveProfiles("test")
 public class CitizenControllerIntegrationTest {
 
 	@Autowired
@@ -133,7 +133,6 @@ public class CitizenControllerIntegrationTest {
 	@Test
 	public void testgetBiographicalInfo() throws Exception {
 		// passed a citizen id from controller
-//		id = 9171862863L;
 
 		// build a mock request
 		RequestBuilder mockRequest = get("/getBiographicalInfo/" + 9171862863L);
