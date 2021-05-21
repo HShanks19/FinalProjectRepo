@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/button-has-type */
 import { Button } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
@@ -5,8 +6,10 @@ import Select from 'react-select';
 import SearchResult from './SearchResult';
 
 const SearchContainer = ({
-  dataLimit, setDataLimit, pages, searchResults, formVisible, setFormVisible,
+  dataLimit, setDataLimit, pages, setSearchResults, searchResults, formVisible, setFormVisible,
+  initialSearchState, setSearchValue, setLoading,
 }) => {
+  const numberOfResults = searchResults.length;
   const pageLimit = 5;
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -42,7 +45,18 @@ const SearchContainer = ({
   };
 
   function makeFormVisible() {
+    setSearchValue(initialSearchState);
     setFormVisible(true);
+    setCurrentPage(1);
+    setLoading(false);
+  }
+
+  // eslint-disable-next-line no-unused-vars
+  function sortResultsBy(array, criteria) {
+    if (criteria === 'surname') {
+      return array.sort((a, b) => a.surname.localeCompare(b.surname));
+    }
+    return array.sort((a, b) => a.forenames.localeCompare(b.forenames));
   }
 
   const dataLimitOptions = [
@@ -52,8 +66,24 @@ const SearchContainer = ({
     { value: '30', label: '30' },
   ];
 
+  const sortingOptions = [
+    { value: 'surname', label: 'Surname (A-Z)' },
+    { value: 'forenames', label: 'Forenames (A-Z)' },
+  ];
+
   if (formVisible) {
     return null;
+  } if (numberOfResults === 0) {
+    return (
+      <>
+        <h1 className="results-found-text">Sorry... your search found no results.</h1>
+        <br />
+        <h2 className="results-found-text">Please create a new search using the button below.</h2>
+        <br />
+        <Button variant="outline-info" onClick={makeFormVisible} className="create-new-search-button"><b>Create new search</b></Button>
+      </>
+
+    );
   }
 
   return (
@@ -61,6 +91,21 @@ const SearchContainer = ({
       <div className="results-container">
         <span className="search-container-top-row-buttons">
           <Button variant="outline-info" onClick={makeFormVisible} className="create-new-search-button"><b>Create new search</b></Button>
+          <p className="results-found-text">
+            {numberOfResults}
+            {' '}
+            result(s) found
+          </p>
+          <Select
+            defaultValue="Set sort"
+            className="search-container-sort-select"
+            options={sortingOptions}
+            onChange={(event) => {
+              console.log(event.value);
+              setSearchResults(sortResultsBy(searchResults, event.value.toString()));
+              setCurrentPage(1);
+            }}
+          />
           <Select
             defaultValue="9"
             className="search-container-data-limit-select"
@@ -76,11 +121,11 @@ const SearchContainer = ({
           <div className="row">
             {getPaginatedData().map((result) => (
               <SearchResult
-                firstName={result.firstName}
-                lastName={result.lastName}
+                firstName={result.forenames}
+                lastName={result.surname}
                 dateOfBirth={result.dateOfBirth}
                 placeOfBirth={result.placeOfBirth}
-                address={result.address}
+                address={result.homeAddress}
                 className="search-card"
               />
             ))}

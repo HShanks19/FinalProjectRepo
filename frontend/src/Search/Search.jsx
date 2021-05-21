@@ -1,16 +1,19 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable max-len */
 import { useState } from 'react';
 import axios from 'axios';
 import SearchForm from './SearchForm';
 import SearchContainer from './SearchContainer';
 
 const Search = () => {
-  const [searchValue, setSearchValue] = useState({
-    firstName: '',
-    lastName: '',
+  const initialSearchState = {
+    forenames: '',
+    surname: '',
     dateOfBirth: '',
     placeOfBirth: '',
-    address: '',
-  });
+    homeAddress: '',
+  };
+  const [searchValue, setSearchValue] = useState(initialSearchState);
 
   const [formVisible, setFormVisible] = useState(true);
 
@@ -18,37 +21,20 @@ const Search = () => {
 
   const [dataLimit, setDataLimit] = useState(9);
 
-  function testPostRequest() {
-    // axios.post('http://backend:5001/getMatchingCitizens/', {
-    //   forenames: 'Michael Shane',
-    //   surname: 'Cochrane',
-    // })
-    //   .then(((response) => {
-    //     setSearchValue(response.data);
-    //     setFormVisible(false);
-    //   }))
-    //   .catch((err) => console.log(err));
+  const [loading, setLoading] = useState(false);
 
-    const URL = 'http://backend:5001/getMatchingCitizens/';
-    const testData = {
-      forenames: 'Michael Shane',
-      surname: 'Cochrane',
-    };
-    axios(URL, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
-      data: testData,
-    })
+  function testPostRequest() {
+    const postObject = Object.fromEntries(Object.entries(searchValue).filter(([_, value]) => value !== ''));
+    console.log(postObject);
+    console.log(searchValue);
+
+    axios.post('http://3.249.136.77:5001/getMatchingCitizens/', postObject)
       .then((response) => {
-        setSearchValue(response.data);
+        console.log(response.data);
+        setSearchResults(response.data.sort((a, b) => a.surname.localeCompare(b.surname)));
         setFormVisible(false);
       })
-      .catch((error) => {
-        console.log(error);
-        throw error;
-      });
+      .catch((err) => console.log(err));
   }
 
   function obtainData() {
@@ -68,14 +54,21 @@ const Search = () => {
         setSearchValue={setSearchValue}
         obtainData={obtainData}
         formVisible={formVisible}
+        initialSearchState={initialSearchState}
+        loading={loading}
+        setLoading={setLoading}
       />
       <SearchContainer
         dataLimit={dataLimit}
         setDataLimit={setDataLimit}
         pages={Math.ceil(searchResults.length / dataLimit)}
+        setSearchResults={setSearchResults}
         searchResults={searchResults}
         formVisible={formVisible}
         setFormVisible={setFormVisible}
+        setSearchValue={setSearchValue}
+        initialSearchState={initialSearchState}
+        setLoading={setLoading}
       />
     </>
   );
