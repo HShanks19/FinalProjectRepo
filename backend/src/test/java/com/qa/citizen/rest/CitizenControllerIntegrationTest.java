@@ -95,22 +95,24 @@ public class CitizenControllerIntegrationTest {
 				.content(passedCitizenAsJSON);
 
 		// return a list of AssociatesDTO objects that match the citizen object passed
-		MobileCallRecordsDTO mobileCallRecordsDTO = new MobileCallRecordsDTO("2015-05-02T15:31:13.335", "07700 098484",
-				0L, "07700 192766", "Mathew Terry James");
+
 		Set<MobileCallRecordsDTO> mobileCallRecords = new HashSet<MobileCallRecordsDTO>();
-		mobileCallRecords.add(mobileCallRecordsDTO);
 
 		List<PeopleMobileDTO> peopleMobileDTOList = new ArrayList<>();
 		PeopleMobileDTO peopleMobileDTO = new PeopleMobileDTO("07700 098484", "O2", mobileCallRecords);
 		peopleMobileDTOList.add(peopleMobileDTO);
 
 		List<ColleaguesDTO> colleguesDtoList = new ArrayList<>();
-		ColleaguesDTO colleaguesDTO = new ColleaguesDTO("Linda Lynda Anderson", "1959-05-06");
-		colleguesDtoList.add(colleaguesDTO);
+		ColleaguesDTO colleaguesDTO1 = new ColleaguesDTO("Michael Shane Cochrane", "1955-09-25");
+		ColleaguesDTO colleaguesDTO2 = new ColleaguesDTO("Linda Lynda Anderson", "1959-05-06");
+		colleguesDtoList.add(colleaguesDTO1);
+		colleguesDtoList.add(colleaguesDTO2);
 
 		List<HouseholdDTO> householdDtoList = new ArrayList<>();
-		HouseholdDTO householdDTO = new HouseholdDTO("ColinParsons", "1994-01-19");
-		householdDtoList.add(householdDTO);
+		HouseholdDTO householdDTO1 = new HouseholdDTO("ColinParsons", "1994-01-19");
+		HouseholdDTO householdDTO2 = new HouseholdDTO("Michael ShaneCochrane", "1955-09-25");
+		householdDtoList.add(householdDTO1);
+		householdDtoList.add(householdDTO2);
 
 		AssociatesDTO returnedAssociatesDto = new AssociatesDTO(peopleMobileDTOList, "Wash and Dry",
 				"Seamoor Road, BH4 9AE", colleguesDtoList, householdDtoList);
