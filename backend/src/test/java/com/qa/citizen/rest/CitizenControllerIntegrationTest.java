@@ -1,11 +1,14 @@
 package com.qa.citizen.rest;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +23,17 @@ import org.springframework.test.web.servlet.ResultMatcher;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qa.citizen.domain.Citizen;
+import com.qa.citizen.rest.DTOs.AssociatesDTO;
+import com.qa.citizen.rest.DTOs.CitizenDTO;
+import com.qa.citizen.rest.DTOs.ColleaguesDTO;
+import com.qa.citizen.rest.DTOs.HouseholdDTO;
+import com.qa.citizen.rest.DTOs.MobileCallRecordsDTO;
+import com.qa.citizen.rest.DTOs.PeopleMobileDTO;
+import com.qa.citizen.rest.DTOs.VehicleRegistrationDTO;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT) // loads the context
 @AutoConfigureMockMvc
+//@Sql(scripts = { "classpath:db-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 @ActiveProfiles("prod")
 public class CitizenControllerIntegrationTest {
 
@@ -33,7 +44,7 @@ public class CitizenControllerIntegrationTest {
 	private ObjectMapper mapper;
 
 	@Test
-	void testGetMatchingCitizens() throws Exception {
+	public void testGetMatchingCitizens() throws Exception {
 
 		// get passed something close to a citizen object
 		// create passed Citizen
@@ -61,6 +72,100 @@ public class CitizenControllerIntegrationTest {
 		ResultMatcher matchStatus = status().isOk();
 
 		// check that response body is correct User
+		ResultMatcher matchBody = content().json(returnedListAsJSON);
+
+		this.mockMVC.perform(mockRequest).andExpect(matchStatus).andExpect(matchBody);
+
+	}
+
+	@Test
+	public void testGetCitizensAssociates() throws Exception {
+
+		// get passed something close to a citizen object
+		// create passed Citizen
+		Citizen passedCitizen = new Citizen();
+		passedCitizen.setForenames("Michael Shane");
+		passedCitizen.setSurname("Cochrane");
+
+		// convert passed citizen object to json string
+		String passedCitizenAsJSON = this.mapper.writeValueAsString(passedCitizen);
+
+		// build a mock request
+		RequestBuilder mockRequest = post("/getCitizensAssociates/").contentType(MediaType.APPLICATION_JSON)
+				.content(passedCitizenAsJSON);
+
+		// return a list of AssociatesDTO objects that match the citizen object passed
+		MobileCallRecordsDTO mobileCallRecordsDTO = new MobileCallRecordsDTO("2015-05-02T15:31:13.335", "07700 098484",
+				0L, "07700 192766", "Mathew Terry James");
+		Set<MobileCallRecordsDTO> mobileCallRecords = new HashSet<MobileCallRecordsDTO>();
+		mobileCallRecords.add(mobileCallRecordsDTO);
+
+		List<PeopleMobileDTO> peopleMobileDTOList = new ArrayList<>();
+		PeopleMobileDTO peopleMobileDTO = new PeopleMobileDTO("07700 098484", "O2", mobileCallRecords);
+		peopleMobileDTOList.add(peopleMobileDTO);
+
+		List<ColleaguesDTO> colleguesDtoList = new ArrayList<>();
+		ColleaguesDTO colleaguesDTO = new ColleaguesDTO("Linda Lynda Anderson", "1959-05-06");
+		colleguesDtoList.add(colleaguesDTO);
+
+		List<HouseholdDTO> householdDtoList = new ArrayList<>();
+		HouseholdDTO householdDTO = new HouseholdDTO("ColinParsons", "1994-01-19");
+		householdDtoList.add(householdDTO);
+
+		AssociatesDTO returnedAssociatesDto = new AssociatesDTO(peopleMobileDTOList, "Wash and Dry",
+				"Seamoor Road, BH4 9AE", colleguesDtoList, householdDtoList);
+		List<AssociatesDTO> returnedAssociatesDTOs = new ArrayList<>();
+		returnedAssociatesDTOs.add(returnedAssociatesDto);
+
+		// convert returned list to json
+		String returnedListAsJSON = this.mapper.writeValueAsString(returnedAssociatesDTOs);
+
+		// check status is 200 - OK
+		ResultMatcher matchStatus = status().isOk();
+
+		// check that response body is correct
+		ResultMatcher matchBody = content().json(returnedListAsJSON);
+
+		this.mockMVC.perform(mockRequest).andExpect(matchStatus).andExpect(matchBody);
+
+	}
+
+	@Test
+	public void testgetBiographicalInfo() throws Exception {
+		// passed a citizen id from controller
+//		id = 9171862863L;
+
+		// build a mock request
+		RequestBuilder mockRequest = get("/getBiographicalInfo/" + 9171862863L);
+
+		// expects a list of citizen DTOs
+		List<CitizenDTO> citizenDTOList = new ArrayList<CitizenDTO>();
+
+		// citizenDTO expects list of people mobile dto
+		List<PeopleMobileDTO> peopleMobileDtoList = new ArrayList<PeopleMobileDTO>();
+		Set<MobileCallRecordsDTO> mobileCallRecordsDTOSet = null;
+		PeopleMobileDTO peopleMobileDTO = new PeopleMobileDTO("07700 098484", "O2", mobileCallRecordsDTOSet);
+		peopleMobileDtoList.add(peopleMobileDTO);
+
+		// citizenDTO expects list of VehicleRegistrationDTOs
+		List<VehicleRegistrationDTO> VehicleRegistrationDTOList = new ArrayList<VehicleRegistrationDTO>();
+		VehicleRegistrationDTO vehicleRegistrationDTO = new VehicleRegistrationDTO("1999-01-16", "UN28 EIN", "Toyota",
+				"Yaris", "red");
+		VehicleRegistrationDTOList.add(vehicleRegistrationDTO);
+
+		CitizenDTO expectedCitizenDTO = new CitizenDTO("Michael Shane", "Cochrane",
+				"37 SPUR HILL AVENUE, POOLE, BH14 9PJ", "1955-09-25", "LONDON", "Male", peopleMobileDtoList,
+				VehicleRegistrationDTOList);
+
+		citizenDTOList.add(expectedCitizenDTO);
+
+		// convert returned list to json
+		String returnedListAsJSON = this.mapper.writeValueAsString(citizenDTOList);
+
+		// check status is 200 - OK
+		ResultMatcher matchStatus = status().isOk();
+
+		// check that response body is correct
 		ResultMatcher matchBody = content().json(returnedListAsJSON);
 
 		this.mockMVC.perform(mockRequest).andExpect(matchStatus).andExpect(matchBody);
