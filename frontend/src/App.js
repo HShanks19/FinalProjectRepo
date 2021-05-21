@@ -12,6 +12,9 @@ import './Footer/Footer.css';
 import redsearchText from './redsearchText.svg';
 import CitizenPage from './CitizenProfilePage/CitizenProfile';
 import Biography from './CitizenProfilePage/Biography/Biography';
+import Associates from './CitizenProfilePage/Associates/Associates';
+import Finances from './CitizenProfilePage/FinanceHistory/Finances';
+import Whereabouts from './CitizenProfilePage/Whereabouts/Whereabouts';
 
 function App() {
   return (
@@ -37,6 +40,15 @@ function App() {
           </Route>
           <Route path="/Biography">
             <Biography />
+          </Route>
+          <Route path="/Associates">
+            <Associates />
+          </Route>
+          <Route path="/Finances">
+            <Finances />
+          </Route>
+          <Route path="/Whereabouts">
+            <Whereabouts />
           </Route>
         </Router>
       </div>

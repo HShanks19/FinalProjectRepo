@@ -16,8 +16,10 @@ const Finances = ({
   }
   return (
     <>
-      {findFinancialHistory}
-      {financialHistory}
+      <Finances
+        findFinancialHistory={findFinancialHistory}
+        financialHistory={financialHistory}
+      />
       <container>
         <div>
           Bank:

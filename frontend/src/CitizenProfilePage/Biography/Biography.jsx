@@ -9,7 +9,7 @@ const Biography = ({
   const [citizenBio, setCitizenBio] = useState([]);
 
   function collectBioData() {
-    axios.get('http://54.74.6.120:5001/getBiographicalInfo/{citizenId}')
+    axios.get('http://54.74.6.120:5001:5001/getBiographicalInfo/1118865837')
       .then((response) => {
         setCitizenBio(response.data);
       })
@@ -17,8 +17,10 @@ const Biography = ({
   }
   return (
     <>
-      {collectBioData}
-      {citizenBio}
+      <Biography
+        collectBioData={collectBioData}
+        citizenBio={citizenBio}
+      />
       <container>
         <div className="card-container">
           <h4 className="card-title">

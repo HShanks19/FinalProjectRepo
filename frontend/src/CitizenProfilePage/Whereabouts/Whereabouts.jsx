@@ -38,7 +38,7 @@ const Whereabouts = () => {
       >
         <Geographies geography={geoUrl}>
           {({ geographies }) => geographies
-            .filter((d) => d.properties.REGION_UN === 'England')
+            .filter((d) => d.properties.REGION_UN === 'unitedKingdom')
             .map((geo) => (
               <Geography
                 key={geo.rsmKey}
