@@ -24,23 +24,15 @@ import org.springframework.test.web.servlet.ResultMatcher;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qa.citizen.domain.Citizen;
 import com.qa.citizen.rest.DTOs.AssociatesDTO;
-import com.qa.citizen.rest.DTOs.AtmTransactionsDTO;
-import com.qa.citizen.rest.DTOs.BankcardDTO;
 import com.qa.citizen.rest.DTOs.CitizenDTO;
 import com.qa.citizen.rest.DTOs.ColleaguesDTO;
-import com.qa.citizen.rest.DTOs.EposTransactionsDTO;
 import com.qa.citizen.rest.DTOs.HouseholdDTO;
-import com.qa.citizen.rest.DTOs.LocationAtmDTO;
-import com.qa.citizen.rest.DTOs.LocationEposDTO;
 import com.qa.citizen.rest.DTOs.MobileCallRecordsDTO;
-import com.qa.citizen.rest.DTOs.PeopleBankAccountDTO;
 import com.qa.citizen.rest.DTOs.PeopleMobileDTO;
 import com.qa.citizen.rest.DTOs.VehicleRegistrationDTO;
-import com.qa.citizen.rest.DTOs.WhereaboutsDTO;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT) // loads the context
 @AutoConfigureMockMvc
-//@Sql(scripts = { "classpath:integration-test-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 @ActiveProfiles("test")
 public class CitizenControllerIntegrationTest {
 
@@ -169,120 +161,6 @@ public class CitizenControllerIntegrationTest {
 
 		// convert returned list to json
 		String returnedListAsJSON = this.mapper.writeValueAsString(citizenDTOList);
-
-		// check status is 200 - OK
-		ResultMatcher matchStatus = status().isOk();
-
-		// check that response body is correct
-		ResultMatcher matchBody = content().json(returnedListAsJSON);
-
-		this.mockMVC.perform(mockRequest).andExpect(matchStatus).andExpect(matchBody);
-
-	}
-
-	// WhereaboutsDTOControllerIntegrationTest
-	@Test
-	public void testGetWhereabouts() throws Exception {
-
-		// build a mock request
-		RequestBuilder mockRequest = post("/getWhereabouts/").contentType(MediaType.APPLICATION_JSON)
-				.content(createReceivedCitizenAsJSON());
-
-		// return a list of WhereaboutsDTO objects that match the citizen object
-		List<WhereaboutsDTO> whereaboutsDTOList = new ArrayList<>();
-
-		List<LocationAtmDTO> locationATMDTOList = new ArrayList<>();
-		LocationAtmDTO returnedLocationAtmDto = new LocationAtmDTO("2015-05-03T17:36:59.673", 889L, "Barclays Bank",
-				"Poole Road", "BH4 9BB", 50.7230678360432, -1.90339316505373);
-		locationATMDTOList.add(returnedLocationAtmDto);
-
-		List<LocationEposDTO> locationEposDTOList = new ArrayList<>();
-		LocationEposDTO returnedLocationEposDTO = new LocationEposDTO("2015-05-01T18:00:53.615Z", 13657L,
-				"Wash and Dry", "Seamoor Road", "BH4 9AE", 50.7224925556361, -1.90384768381408);
-		locationEposDTOList.add(returnedLocationEposDTO);
-
-		WhereaboutsDTO whereaboutsDTO = new WhereaboutsDTO(225907L, 2139399399319671L, locationATMDTOList,
-				locationEposDTOList);
-
-		whereaboutsDTOList.add(whereaboutsDTO);
-
-		// convert returned list to json
-		String returnedListAsJSON = this.mapper.writeValueAsString(whereaboutsDTOList);
-
-		// check status is 200 - OK
-		ResultMatcher matchStatus = status().isOk();
-
-		// check that response body is correct
-		ResultMatcher matchBody = content().json(returnedListAsJSON);
-
-		this.mockMVC.perform(mockRequest).andExpect(matchStatus).andExpect(matchBody);
-
-	}
-
-	// PeopleMobileControllerIntegrationTest
-	@Test
-	public void testGetAllCitizenPhoneInformationDTO() throws Exception {
-
-		// build a mock request
-		RequestBuilder mockRequest = post("/getMatchingBankAccounts/").contentType(MediaType.APPLICATION_JSON)
-				.content(createReceivedCitizenAsJSON());
-
-		// return a list of PeopleMobileDTO objects that match the citizen object
-		List<PeopleMobileDTO> peopleMobileDTOList = new ArrayList<PeopleMobileDTO>();
-
-		Set<MobileCallRecordsDTO> mobileCallRecords = new HashSet<MobileCallRecordsDTO>();
-		MobileCallRecordsDTO returnedMobileCallRecordsDTO = new MobileCallRecordsDTO("2015-05-02T15:31:13.335",
-				"07700 098484", 0L, "07700 192766", "Mathew Terry James");
-		mobileCallRecords.add(returnedMobileCallRecordsDTO);
-
-		PeopleMobileDTO returnedPeopleMobileDTO = new PeopleMobileDTO("07700 098484", "O2", mobileCallRecords);
-		peopleMobileDTOList.add(returnedPeopleMobileDTO);
-
-		// convert returned list to json
-		String returnedListAsJSON = this.mapper.writeValueAsString(peopleMobileDTOList);
-
-		// check status is 200 - OK
-		ResultMatcher matchStatus = status().isOk();
-
-		// check that response body is correct
-		ResultMatcher matchBody = content().json(returnedListAsJSON);
-
-		this.mockMVC.perform(mockRequest).andExpect(matchStatus).andExpect(matchBody);
-
-	}
-
-	// PeopleBankAccountControllerIntegrationTest
-	@Test
-	public void testGetMatchingBankAccounts() throws Exception {
-
-		// build a mock request
-		RequestBuilder mockRequest = post("/getMatchingBankAccounts/").contentType(MediaType.APPLICATION_JSON)
-				.content(createReceivedCitizenAsJSON());
-
-		// return a list of PeopleBankAccountDTO objects that match the citizen object
-		// passed
-		List<PeopleBankAccountDTO> peopleBankAccountDTOList = new ArrayList<>();
-		Set<BankcardDTO> bankCardDTOSet = new HashSet<>();
-
-		Set<AtmTransactionsDTO> atmTransactionsDTOSet = new HashSet<>();
-		AtmTransactionsDTO returnedAtmTransactionsDto = new AtmTransactionsDTO("2015-05-03T17:36:59.673",
-				"Cash Withdrawal", 50.0, "Barclays Bank", "Poole Road", "BH4 9BB");
-		atmTransactionsDTOSet.add(returnedAtmTransactionsDto);
-
-		Set<EposTransactionsDTO> eposTransactionsDTOSet = new HashSet<>();
-		EposTransactionsDTO returnedEposTransactionsDto = new EposTransactionsDTO("2015-05-01T18:00:53.615Z", 26.02,
-				"Wash and Dry", "Seamoor Road", "BH4 9AE");
-		eposTransactionsDTOSet.add(returnedEposTransactionsDto);
-
-		BankcardDTO returnedBankCardDTO = new BankcardDTO("31-01-93", atmTransactionsDTOSet, eposTransactionsDTOSet);
-		bankCardDTOSet.add(returnedBankCardDTO);
-		PeopleBankAccountDTO returnedPeopleBankAccountDTO = new PeopleBankAccountDTO(bankCardDTOSet,
-				"The Royal Bank of Scotland", 67875272L, "Michael Shane", "Cochrane");
-
-		peopleBankAccountDTOList.add(returnedPeopleBankAccountDTO);
-
-		// convert returned list to json
-		String returnedListAsJSON = this.mapper.writeValueAsString(peopleBankAccountDTOList);
 
 		// check status is 200 - OK
 		ResultMatcher matchStatus = status().isOk();
