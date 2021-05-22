@@ -21,9 +21,9 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qa.citizen.domain.Citizen;
 import com.qa.citizen.rest.DTOs.MobileCallRecordsDTO;
 import com.qa.citizen.rest.DTOs.PeopleMobileDTO;
+import com.qa.citizen.service.IntegrationTestService;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT) // loads the context
 @AutoConfigureMockMvc
@@ -36,28 +36,16 @@ public class PeopleMobileControllerIntegrationTest {
 	@Autowired
 	private ObjectMapper mapper;
 
-	public String createReceivedCitizenAsJSON() throws Exception {
-
-		// get passed something close to a citizen object
-		// create passed Citizen
-		Citizen passedCitizen = new Citizen();
-		passedCitizen.setForenames("Michael Shane");
-		passedCitizen.setSurname("Cochrane");
-
-		// convert passed citizen object to json string
-		String passedCitizenAsJSON = this.mapper.writeValueAsString(passedCitizen);
-
-		return passedCitizenAsJSON;
-
-	}
+	@Autowired
+	private IntegrationTestService service;
 
 	// PeopleMobileControllerIntegrationTest
 	@Test
 	public void testGetAllCitizenPhoneInformationDTO() throws Exception {
 
 		// build a mock request
-		RequestBuilder mockRequest = post("/getMatchingBankAccounts/").contentType(MediaType.APPLICATION_JSON)
-				.content(createReceivedCitizenAsJSON());
+		RequestBuilder mockRequest = post("/getAllCitizenPhoneInformationDTO/").contentType(MediaType.APPLICATION_JSON)
+				.content(service.createReceivedCitizenAsJSON());
 
 		// return a list of PeopleMobileDTO objects that match the citizen object
 		List<PeopleMobileDTO> peopleMobileDTOList = new ArrayList<PeopleMobileDTO>();

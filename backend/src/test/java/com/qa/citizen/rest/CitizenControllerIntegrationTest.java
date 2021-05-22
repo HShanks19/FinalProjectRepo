@@ -30,6 +30,7 @@ import com.qa.citizen.rest.DTOs.HouseholdDTO;
 import com.qa.citizen.rest.DTOs.MobileCallRecordsDTO;
 import com.qa.citizen.rest.DTOs.PeopleMobileDTO;
 import com.qa.citizen.rest.DTOs.VehicleRegistrationDTO;
+import com.qa.citizen.service.IntegrationTestService;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT) // loads the context
 @AutoConfigureMockMvc
@@ -42,27 +43,15 @@ public class CitizenControllerIntegrationTest {
 	@Autowired
 	private ObjectMapper mapper;
 
-	public String createReceivedCitizenAsJSON() throws Exception {
-
-		// get passed something close to a citizen object
-		// create passed Citizen
-		Citizen passedCitizen = new Citizen();
-		passedCitizen.setForenames("Michael Shane");
-		passedCitizen.setSurname("Cochrane");
-
-		// convert passed citizen object to json string
-		String passedCitizenAsJSON = this.mapper.writeValueAsString(passedCitizen);
-
-		return passedCitizenAsJSON;
-
-	}
+	@Autowired
+	private IntegrationTestService service;
 
 	@Test
 	public void testGetMatchingCitizens() throws Exception {
 
 		// build a mock request
 		RequestBuilder mockRequest = post("/getMatchingCitizens/").contentType(MediaType.APPLICATION_JSON)
-				.content(createReceivedCitizenAsJSON());
+				.content(service.createReceivedCitizenAsJSON());
 
 		// return a list of citizen objects that match the citizen object passed
 		Citizen returnedCitizen = new Citizen(9171862863L, "Michael Shane", "Cochrane",
@@ -88,7 +77,7 @@ public class CitizenControllerIntegrationTest {
 
 		// build a mock request
 		RequestBuilder mockRequest = post("/getCitizensAssociates/").contentType(MediaType.APPLICATION_JSON)
-				.content(createReceivedCitizenAsJSON());
+				.content(service.createReceivedCitizenAsJSON());
 
 		// return a list of AssociatesDTO objects that match the citizen object passed
 

@@ -21,11 +21,11 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qa.citizen.domain.Citizen;
 import com.qa.citizen.rest.DTOs.AtmTransactionsDTO;
 import com.qa.citizen.rest.DTOs.BankcardDTO;
 import com.qa.citizen.rest.DTOs.EposTransactionsDTO;
 import com.qa.citizen.rest.DTOs.PeopleBankAccountDTO;
+import com.qa.citizen.service.IntegrationTestService;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT) // loads the context
 @AutoConfigureMockMvc
@@ -38,20 +38,8 @@ public class PeopleBankAccountControllerIntegrationTest {
 	@Autowired
 	private ObjectMapper mapper;
 
-	public String createReceivedCitizenAsJSON() throws Exception {
-
-		// get passed something close to a citizen object
-		// create passed Citizen
-		Citizen passedCitizen = new Citizen();
-		passedCitizen.setForenames("Michael Shane");
-		passedCitizen.setSurname("Cochrane");
-
-		// convert passed citizen object to json string
-		String passedCitizenAsJSON = this.mapper.writeValueAsString(passedCitizen);
-
-		return passedCitizenAsJSON;
-
-	}
+	@Autowired
+	private IntegrationTestService service;
 
 	// PeopleBankAccountControllerIntegrationTest
 	@Test
@@ -59,7 +47,7 @@ public class PeopleBankAccountControllerIntegrationTest {
 
 		// build a mock request
 		RequestBuilder mockRequest = post("/getMatchingBankAccounts/").contentType(MediaType.APPLICATION_JSON)
-				.content(createReceivedCitizenAsJSON());
+				.content(service.createReceivedCitizenAsJSON());
 
 		// return a list of PeopleBankAccountDTO objects that match the citizen object
 		// passed
