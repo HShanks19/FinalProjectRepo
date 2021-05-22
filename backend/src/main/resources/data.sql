@@ -34,3 +34,6 @@ VALUES (13657, 'Wash and Dry', 'Seamoor Road', 'BH4 9AE', 50.7224925556361, -1.9
 INSERT INTO EPOS_TRANSACTIONS (timestamp, epos_id, bank_card_number, payee_account, amount)
 VALUES ('2015-05-01T18:00:53.615Z', 13657, 2139399399319671, 37234419, 26.02);
 
+INSERT INTO MOBILE_CALL_RECORDS (timestamp, caller_MSISDN, call_cell_tower_id, receiver_MSISDN, receiver_tower_id)
+VALUES ('2015-05-02T15:31:13.335', '07700 098484', 0, '07700 192766', 'Mathew Terry James');
+
