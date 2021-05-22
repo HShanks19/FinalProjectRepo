@@ -30,10 +30,13 @@ import com.qa.citizen.rest.DTOs.CitizenDTO;
 import com.qa.citizen.rest.DTOs.ColleaguesDTO;
 import com.qa.citizen.rest.DTOs.EposTransactionsDTO;
 import com.qa.citizen.rest.DTOs.HouseholdDTO;
+import com.qa.citizen.rest.DTOs.LocationAtmDTO;
+import com.qa.citizen.rest.DTOs.LocationEposDTO;
 import com.qa.citizen.rest.DTOs.MobileCallRecordsDTO;
 import com.qa.citizen.rest.DTOs.PeopleBankAccountDTO;
 import com.qa.citizen.rest.DTOs.PeopleMobileDTO;
 import com.qa.citizen.rest.DTOs.VehicleRegistrationDTO;
+import com.qa.citizen.rest.DTOs.WhereaboutsDTO;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT) // loads the context
 @AutoConfigureMockMvc
@@ -177,6 +180,7 @@ public class CitizenControllerIntegrationTest {
 
 	}
 
+	// WhereaboutsDTOControllerIntegrationTest
 	@Test
 	public void testGetWhereabouts() throws Exception {
 
@@ -190,10 +194,37 @@ public class CitizenControllerIntegrationTest {
 		String passedCitizenAsJSON = this.mapper.writeValueAsString(passedCitizen);
 
 		// build a mock request
-		RequestBuilder mockRequest = post("/getMatchingBankAccounts/").contentType(MediaType.APPLICATION_JSON)
+		RequestBuilder mockRequest = post("/getWhereabouts/").contentType(MediaType.APPLICATION_JSON)
 				.content(passedCitizenAsJSON);
 
-		// return a list of PeopleBankAccountDTO objects that match the citizen object
+		// return a list of WhereaboutsDTO objects that match the citizen object
+		List<WhereaboutsDTO> whereaboutsDTOList = new ArrayList<>();
+
+		List<LocationAtmDTO> locationATMDTOList = new ArrayList<>();
+		LocationAtmDTO returnedLocationAtmDto = new LocationAtmDTO("2015-05-03T17:36:59.673", 889L, "Barclays Bank",
+				"Poole Road", "BH4 9BB", 50.7230678360432, -1.90339316505373);
+		locationATMDTOList.add(returnedLocationAtmDto);
+
+		List<LocationEposDTO> locationEposDTOList = new ArrayList<>();
+		LocationEposDTO returnedLocationEposDTO = new LocationEposDTO("2015-05-01T18:00:53.615Z", 13657L,
+				"Wash and Dry", "Seamoor Road", "BH4 9AE", 50.7224925556361, -1.90384768381408);
+		locationEposDTOList.add(returnedLocationEposDTO);
+
+		WhereaboutsDTO whereaboutsDTO = new WhereaboutsDTO(225907L, 2139399399319671L, locationATMDTOList,
+				locationEposDTOList);
+
+		whereaboutsDTOList.add(whereaboutsDTO);
+
+		// convert returned list to json
+		String returnedListAsJSON = this.mapper.writeValueAsString(whereaboutsDTOList);
+
+		// check status is 200 - OK
+		ResultMatcher matchStatus = status().isOk();
+
+		// check that response body is correct
+		ResultMatcher matchBody = content().json(returnedListAsJSON);
+
+		this.mockMVC.perform(mockRequest).andExpect(matchStatus).andExpect(matchBody);
 
 	}
 
