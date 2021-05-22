@@ -104,6 +104,9 @@ public class CitizenControllerIntegrationTest {
 		// return a list of AssociatesDTO objects that match the citizen object passed
 
 		Set<MobileCallRecordsDTO> mobileCallRecords = new HashSet<MobileCallRecordsDTO>();
+		MobileCallRecordsDTO returnedMobileCallRecordsDTO = new MobileCallRecordsDTO("2015-05-02T15:31:13.335",
+				"07700 098484", 0L, "07700 192766", "Mathew Terry James");
+		mobileCallRecords.add(returnedMobileCallRecordsDTO);
 
 		List<PeopleMobileDTO> peopleMobileDTOList = new ArrayList<>();
 		PeopleMobileDTO peopleMobileDTO = new PeopleMobileDTO("07700 098484", "O2", mobileCallRecords);
@@ -248,7 +251,7 @@ public class CitizenControllerIntegrationTest {
 		// return a list of PeopleMobileDTO objects that match the citizen object
 		List<PeopleMobileDTO> peopleMobileDTOList = new ArrayList<PeopleMobileDTO>();
 
-		Set<MobileCallRecordsDTO> mobileCallRecords = new HashSet<>();
+		Set<MobileCallRecordsDTO> mobileCallRecords = new HashSet<MobileCallRecordsDTO>();
 		MobileCallRecordsDTO returnedMobileCallRecordsDTO = new MobileCallRecordsDTO("2015-05-02T15:31:13.335",
 				"07700 098484", 0L, "07700 192766", "Mathew Terry James");
 		mobileCallRecords.add(returnedMobileCallRecordsDTO);
