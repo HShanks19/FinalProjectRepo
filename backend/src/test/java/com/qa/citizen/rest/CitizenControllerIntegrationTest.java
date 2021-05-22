@@ -24,10 +24,14 @@ import org.springframework.test.web.servlet.ResultMatcher;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qa.citizen.domain.Citizen;
 import com.qa.citizen.rest.DTOs.AssociatesDTO;
+import com.qa.citizen.rest.DTOs.AtmTransactionsDTO;
+import com.qa.citizen.rest.DTOs.BankcardDTO;
 import com.qa.citizen.rest.DTOs.CitizenDTO;
 import com.qa.citizen.rest.DTOs.ColleaguesDTO;
+import com.qa.citizen.rest.DTOs.EposTransactionsDTO;
 import com.qa.citizen.rest.DTOs.HouseholdDTO;
 import com.qa.citizen.rest.DTOs.MobileCallRecordsDTO;
+import com.qa.citizen.rest.DTOs.PeopleBankAccountDTO;
 import com.qa.citizen.rest.DTOs.PeopleMobileDTO;
 import com.qa.citizen.rest.DTOs.VehicleRegistrationDTO;
 
@@ -162,6 +166,83 @@ public class CitizenControllerIntegrationTest {
 
 		// convert returned list to json
 		String returnedListAsJSON = this.mapper.writeValueAsString(citizenDTOList);
+
+		// check status is 200 - OK
+		ResultMatcher matchStatus = status().isOk();
+
+		// check that response body is correct
+		ResultMatcher matchBody = content().json(returnedListAsJSON);
+
+		this.mockMVC.perform(mockRequest).andExpect(matchStatus).andExpect(matchBody);
+
+	}
+
+	@Test
+	public void testGetWhereabouts() throws Exception {
+
+		// get passed something close to a citizen object
+		// create passed Citizen
+		Citizen passedCitizen = new Citizen();
+		passedCitizen.setForenames("Michael Shane");
+		passedCitizen.setSurname("Cochrane");
+
+		// convert passed citizen object to json string
+		String passedCitizenAsJSON = this.mapper.writeValueAsString(passedCitizen);
+
+		// build a mock request
+		RequestBuilder mockRequest = post("/getMatchingBankAccounts/").contentType(MediaType.APPLICATION_JSON)
+				.content(passedCitizenAsJSON);
+
+		// return a list of PeopleBankAccountDTO objects that match the citizen object
+
+	}
+
+	@Test
+	public void testGetAllCitizenPhoneInformationDTO() {
+
+	}
+
+	// PeopleBankAccountControllerIntegrationTest
+	@Test
+	public void testGetMatchingBankAccounts() throws Exception {
+
+		// get passed something close to a citizen object
+		// create passed Citizen
+		Citizen passedCitizen = new Citizen();
+		passedCitizen.setForenames("Michael Shane");
+		passedCitizen.setSurname("Cochrane");
+
+		// convert passed citizen object to json string
+		String passedCitizenAsJSON = this.mapper.writeValueAsString(passedCitizen);
+
+		// build a mock request
+		RequestBuilder mockRequest = post("/getMatchingBankAccounts/").contentType(MediaType.APPLICATION_JSON)
+				.content(passedCitizenAsJSON);
+
+		// return a list of PeopleBankAccountDTO objects that match the citizen object
+		// passed
+		List<PeopleBankAccountDTO> peopleBankAccountDTOList = new ArrayList<>();
+		Set<BankcardDTO> bankCardDTOSet = new HashSet<>();
+
+		Set<AtmTransactionsDTO> atmTransactionsDTOSet = new HashSet<>();
+		AtmTransactionsDTO returnedAtmTransactionsDto = new AtmTransactionsDTO("2015-05-03T17:36:59.673",
+				"Cash Withdrawal", 50.0, "Barclays Bank", "Poole Road", "BH4 9BB");
+		atmTransactionsDTOSet.add(returnedAtmTransactionsDto);
+
+		Set<EposTransactionsDTO> eposTransactionsDTOSet = new HashSet<>();
+		EposTransactionsDTO returnedEposTransactionsDto = new EposTransactionsDTO("2015-05-01T18:00:53.615Z", 26.02,
+				"Wash and Dry", "Seamoor Road", "BH4 9AE");
+		eposTransactionsDTOSet.add(returnedEposTransactionsDto);
+
+		BankcardDTO returnedBankCardDTO = new BankcardDTO("31-01-93", atmTransactionsDTOSet, eposTransactionsDTOSet);
+		bankCardDTOSet.add(returnedBankCardDTO);
+		PeopleBankAccountDTO returnedPeopleBankAccountDTO = new PeopleBankAccountDTO(bankCardDTOSet,
+				"The Royal Bank of Scotland", 67875272L, "Michael Shane", "Cochrane");
+
+		peopleBankAccountDTOList.add(returnedPeopleBankAccountDTO);
+
+		// convert returned list to json
+		String returnedListAsJSON = this.mapper.writeValueAsString(peopleBankAccountDTOList);
 
 		// check status is 200 - OK
 		ResultMatcher matchStatus = status().isOk();
