@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Biography.css';
 
@@ -6,22 +6,23 @@ const Biography = ({
   // eslint-disable-next-line max-len
   forenames, surname, dateOfBirth, placeOfBirth, address, phoneNumber, vehicleRegistrationPlate, vehicleMake, vehicleModel, vehicleColour,
 }) => {
-  const [citizenBio, setCitizenBio] = useState([]);
+  const [citizenBioData, setCitizenBioData] = useState([]);
+  const [fetchData, setFetch] = useState(false);
 
-  function collectBioData() {
-    axios.get('http://52.211.82.10:5001:5001/getBiographicalInfo/{citizenId}')
-      .then((response) => {
-        setCitizenBio(response.data);
-      })
-      .catch((err) => console.log(err));
-  }
+  useEffect(() => {
+    if (fetchData) {
+      axios.get('http://52.211.82.10:5001/getBiographicalInfo/1118865837')
+        .then((res) => setCitizenBioData(res.data));
+    }
+  }, [fetchData]);
+
   return (
     <>
-      <Biography
-        collectBioData={collectBioData}
-        citizenBio={citizenBio}
-      />
       <container>
+        <Biography
+          citizenBioData={citizenBioData}
+          setFetch={setFetch(true)}
+        />
         <div className="card-container">
           <h4 className="card-title">
             Citizen Name:

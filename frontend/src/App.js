@@ -1,6 +1,8 @@
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-no-comment-textnodes */
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router, Link, Route, useRouteMatch,
+} from 'react-router-dom';
 import {
   Button, Row, Col,
 } from 'react-bootstrap';
@@ -17,6 +19,8 @@ import Finances from './CitizenProfilePage/FinanceHistory/Finances';
 import Whereabouts from './CitizenProfilePage/Whereabouts/Whereabouts';
 
 function App() {
+  const { path } = useRouteMatch();
+
   return (
     <>
       <div className="App">
@@ -38,16 +42,16 @@ function App() {
             </Row>
             <CitizenPage />
           </Route>
-          <Route path="/Biography">
+          <Route path={`${path}/Biography`}>
             <Biography />
           </Route>
-          <Route path="/Associates">
+          <Route path={`${path}/Associates`}>
             <Associates />
           </Route>
-          <Route path="/Finances">
+          <Route path={`${path}/Finances`}>
             <Finances />
           </Route>
-          <Route path="/Whereabouts">
+          <Route path={`${path}/Whereabouts`}>
             <Whereabouts />
           </Route>
         </Router>

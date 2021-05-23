@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Biography from '../Biography/Biography';
 
@@ -7,26 +7,26 @@ const Associates = ({
   receiver, receiverPhoneNumber, timeStamp, forenames, surname, dateOfBirth, placeOfBirth, address,
 }) => {
   const [associatesRelated, setAssociatesRelated] = useState([]);
-  const [citizenBio, setCitizenBio] = useState([]);
+  const [citizenBio, setCitizenBioData] = useState([]);
+  const [fetchData, setFetch] = useState(false);
 
-  function findAssociates() {
-    axios.post('http://52.211.82.10:5001/getCitizensAssociates/')
-      .then((response) => {
-        setAssociatesRelated(response.data);
-      })
-      .catch((err) => console.log(err));
-  }
-  function getBiographicalInfo() {
-    axios.get('http://52.211.82.10:5001:5001/getBiographicalInfo/1118865837')
-      .then((response) => {
-        setCitizenBio(response.data);
-      })
-      .catch((err) => console.log(err));
-  }
+  useEffect(() => {
+    if (fetchData) {
+      axios.post('http://52.211.82.10:5001/getCitizensAssociates/')
+        .then((res) => setAssociatesRelated(res.data));
+    }
+  }, [fetchData]);
+
+  useEffect(() => {
+    if (fetchData) {
+      axios.get('http://52.211.82.10:5001/getBiographicalInfo/1118865837')
+        .then((res) => setCitizenBioData(res.data));
+    }
+  }, [fetchData]);
+
   return (
     <>
       <Associates
-        findAssociates={findAssociates}
         associatesRelated={associatesRelated}
       />
 
@@ -44,14 +44,13 @@ const Associates = ({
             <th scope="row">{timeStamp}</th>
             <td>{receiver}</td>
             <td>{receiverPhoneNumber}</td>
-            <button type="button" onClick={getBiographicalInfo}>View Profile</button>
+            <button type="button" onClick={setFetch(true)}>View Profile</button>
           </tr>
         </tbody>
       </table>
       <div>
         <Biography
           citizenBio={citizenBio}
-          getBiographicalInfo={getBiographicalInfo}
         />
         <div className="modal" tabIndex="-1">
           <div className="modal-dialog">
