@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-no-comment-textnodes */
 import {
-  BrowserRouter as Router, Link, Route, useRouteMatch,
+  BrowserRouter as Router, Route, useRouteMatch,
 } from 'react-router-dom';
 import {
   Button, Row, Col,
@@ -33,10 +33,10 @@ function App() {
             <Row>
               <Col>
                 <div>
-                  <Button type="button" variant="outline-danger" size="lg" className="wide-button"><Link to="/Biography">Biography</Link></Button>
-                  <Button type="button" variant="outline-danger" size="lg" className="wide-button"><Link to="/Associates">Associates</Link></Button>
-                  <Button type="button" variant="outline-danger" size="lg" className="wide-button"><Link to="/Finances">Financial History</Link></Button>
-                  <Button type="button" variant="outline-danger" size="lg" className="wide-button"><Link to="/Whereabouts">Whereabouts</Link></Button>
+                  <Button type="button" variant="outline-danger" size="lg" className="wide-button">Biography</Button>
+                  <Button type="button" variant="outline-danger" size="lg" className="wide-button">Associates</Button>
+                  <Button type="button" variant="outline-danger" size="lg" className="wide-button">Financial History</Button>
+                  <Button type="button" variant="outline-danger" size="lg" className="wide-button">Whereabouts</Button>
                 </div>
               </Col>
             </Row>

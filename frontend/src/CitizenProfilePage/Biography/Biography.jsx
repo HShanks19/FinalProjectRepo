@@ -13,6 +13,7 @@ const Biography = ({
     if (fetchData) {
       axios.get('http://52.211.82.10:5001/getBiographicalInfo/1118865837')
         .then((res) => setCitizenBioData(res.data));
+      console.log(citizenBioData);
     }
   }, [fetchData]);
 

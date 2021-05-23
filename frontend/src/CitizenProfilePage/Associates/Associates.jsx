@@ -7,13 +7,14 @@ const Associates = ({
   receiver, receiverPhoneNumber, timeStamp, forenames, surname, dateOfBirth, placeOfBirth, address,
 }) => {
   const [associatesRelated, setAssociatesRelated] = useState([]);
-  const [citizenBio, setCitizenBioData] = useState([]);
+  const [citizenBioData, setCitizenBioData] = useState([]);
   const [fetchData, setFetch] = useState(false);
 
   useEffect(() => {
     if (fetchData) {
       axios.post('http://52.211.82.10:5001/getCitizensAssociates/')
         .then((res) => setAssociatesRelated(res.data));
+      console.log(associatesRelated);
     }
   }, [fetchData]);
 
@@ -21,6 +22,7 @@ const Associates = ({
     if (fetchData) {
       axios.get('http://52.211.82.10:5001/getBiographicalInfo/1118865837')
         .then((res) => setCitizenBioData(res.data));
+      console.log(citizenBioData);
     }
   }, [fetchData]);
 
@@ -50,7 +52,7 @@ const Associates = ({
       </table>
       <div>
         <Biography
-          citizenBio={citizenBio}
+          citizenBioData={citizenBioData}
         />
         <div className="modal" tabIndex="-1">
           <div className="modal-dialog">
