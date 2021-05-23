@@ -28,7 +28,7 @@ const Search = () => {
     console.log(postObject);
     console.log(searchValue);
 
-    axios.post('http://3.249.136.77:5001/getMatchingCitizens/', postObject)
+    axios.post('http://54.74.11.52:5001/getMatchingCitizens/', postObject)
       .then((response) => {
         console.log(response.data);
         setSearchResults(response.data.sort((a, b) => a.surname.localeCompare(b.surname)));
