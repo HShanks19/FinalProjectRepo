@@ -185,7 +185,8 @@ public class CitizenService {
 
 		for (Citizen foundCitizen : householdMembers) {
 			HouseholdDTO householdDTO = new HouseholdDTO();
-			householdDTO.setPersonName(foundCitizen.getForenames() + " " + foundCitizen.getSurname());
+			householdDTO.setForenames(foundCitizen.getForenames());
+			householdDTO.setSurname(foundCitizen.getSurname());
 			householdDTO.setDateOfBirth(foundCitizen.getDateOfBirth());
 			householdDTOList.add(householdDTO);
 
