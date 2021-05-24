@@ -132,6 +132,7 @@ const SearchContainer = ({
                 dateOfBirth={result.dateOfBirth}
                 placeOfBirth={result.placeOfBirth}
                 address={result.homeAddress}
+                citizenId={result.citizenID}
                 className="search-card"
               />
             ))}

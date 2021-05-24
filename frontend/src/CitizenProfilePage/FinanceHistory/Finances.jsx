@@ -1,19 +1,27 @@
 import axios from 'axios';
-import { useState, componentDidMount } from 'react';
+import { useState, useEffect } from 'react';
 import FinancesRender from './FinancesRender';
 
 const Finances = () => {
-  const [data, setData] = useState([]);
+  const [financialHistory, setFinancialHistory] = useState([]);
 
-  const makePostRequest = () => {
-    axios.get('http://54.74.11.52:5001/getMatchingBankAccounts/')
-      .then((response) => {
-        setData(response.data);
-        console.log(data);
-      }).catch((err) => console.log(err));
+  const postObject = {
+    forenames: 'Julie',
+    surname: 'Willis',
+    homeAddress: '4 THISTLECROFT ROAD, WALTON-ON-THAMES, KT12 5QZ',
   };
-  componentDidMount(() => { makePostRequest(); }, [data]);
-  const RenderFinancesInformation = data.map((d) => <FinancesRender data={d} />);
+
+  function findFinancialHistory() {
+    axios.post('http://52.211.82.10:5001/getMatchingBankAccounts/', postObject)
+      .then((response) => {
+        setFinancialHistory(response.data);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  useEffect(() => { findFinancialHistory(); }, [financialHistory]);
+
+  const RenderFinancesInformation = financialHistory.map((d) => <FinancesRender data={d} />);
   return (
     <>
       {RenderFinancesInformation}

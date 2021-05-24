@@ -1,6 +1,7 @@
 import {
   Card, Button,
 } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const SearchResult = ({
   firstName,
@@ -8,6 +9,7 @@ const SearchResult = ({
   dateOfBirth,
   placeOfBirth,
   address,
+  citizenId,
 }) => (
   <>
     <Card className="search-card">
@@ -33,7 +35,12 @@ const SearchResult = ({
           <b>{address}</b>
         </p>
       </div>
-      <Button variant="danger" className="citizen-card-button">View profile</Button>
+      <Link to={{
+        pathname: `/Biography/${citizenId}`,
+      }}
+      >
+        <Button variant="danger" className="citizen-card-button">View profile</Button>
+      </Link>
     </Card>
     <br />
   </>

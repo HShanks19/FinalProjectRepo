@@ -7,7 +7,7 @@ import Footer from '../Footer/Footer';
 
 const SearchForm = ({
   // eslint-disable-next-line no-unused-vars
-  testPostRequest, formVisible, searchValue, setSearchValue, obtainData,
+  testPostRequest, formVisible, searchValue, setSearchValue,
   initialSearchState, loading, setLoading,
 }) => {
   const [userInputPrompt, setUserInputPrompt] = useState(false);
