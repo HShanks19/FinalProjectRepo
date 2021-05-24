@@ -36,7 +36,11 @@ pipeline{
                     post {
                         always {
                             withCredentials([file(credentialsId: 'SSHKey', variable: 'SSHKeyPair')]) {
-                                junit 'target/surefire-reports/*.xml'
+				sh '''
+					ssh -i ${SSHKeyPair} ubuntu@54.74.11.52 -oStrictHostKeyChecking=no  << EOF
+					cd ~/FinalProjectRepo/backend
+					junit 'target/surefire-reports/*.xml'
+				'''
                             }
                         }
                     }
