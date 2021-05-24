@@ -1,9 +1,13 @@
 .card-container {
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
   padding-top: 50px;
   padding-left: 40px;
   padding-right: 45px;
   padding-bottom: 50px;
-  height: 70%;
+  height: 50%;
+  width: 600px;
   max-width: 80%;
   color: white;
   text-align: left;
