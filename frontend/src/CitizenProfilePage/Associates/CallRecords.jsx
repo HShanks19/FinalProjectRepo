@@ -1,13 +1,11 @@
 const CallRecords = ({ data }) => (
   <>
-    <tbody>
-      <tr>
-        <th scope="row">{data.callRecords.mobileCallRecords.timeStamp}</th>
-        <td>{data.callRecords.mobileCallRecords.receiver}</td>
-        <td>{data.callRecords.mobileCallRecords.receiverPhoneNumber}</td>
-        <button type="button">View Profile</button>
-      </tr>
-    </tbody>
+    <tr>
+      <th scope="row">{data.timestamp}</th>
+      <td>{data.receiverName}</td>
+      <td>{data.receiverMSISDN}</td>
+      <button type="button">View Profile</button>
+    </tr>
 
     <div>
       <div className="modal" tabIndex="-1">

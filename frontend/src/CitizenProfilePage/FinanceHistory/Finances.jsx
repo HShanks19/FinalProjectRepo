@@ -15,11 +15,12 @@ const Finances = () => {
     axios.post('http://52.211.82.10:5001/getMatchingBankAccounts/', postObject)
       .then((response) => {
         setFinancialHistory(response.data);
+        console.log(financialHistory);
       })
       .catch((err) => console.log(err));
   }
 
-  useEffect(() => { findFinancialHistory(); }, [financialHistory]);
+  useEffect(() => { findFinancialHistory(); }, []);
 
   const RenderFinancesInformation = financialHistory.map((d) => <FinancesRender data={d} />);
   return (

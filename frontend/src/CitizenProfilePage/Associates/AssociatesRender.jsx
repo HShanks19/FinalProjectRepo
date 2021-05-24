@@ -1,21 +1,16 @@
-import CallRecords from './CallRecords';
-import Colleagues from './colleagues';
+import CallRecordsTable from './CallRecordsTable';
+import Colleagues from './Colleagues';
 
 const AssociatesRender = ({ data }) => {
-  const RenderColleagues = data.map((d) => <Colleagues data={d} />);
-  const RenderCallRecords = data.map((d) => <CallRecords data={d} />);
+  const { colleagues } = data;
+  const called = data.callRecords;
+  const RenderColleagues = colleagues.map((d) => <Colleagues data={d} />);
+  const RenderCallRecords = called.map((d) => <CallRecordsTable data={d} />);
 
   return (
     <>
       <div>
-        Business Name:
-        {' '}
-        {data.businessName}
-        <br />
-        Business Address:
-        {' '}
-        {data.businessAddress}
-        <br />
+        Recent Call History
       </div>
       <table className="table" id="callRecordsTable">
         <thead>
@@ -29,6 +24,16 @@ const AssociatesRender = ({ data }) => {
         { RenderCallRecords }
       </table>
       <br />
+      <div>
+        Business Name:
+        {' '}
+        {data.businessName}
+        <br />
+        Business Address:
+        {' '}
+        {data.businessAddress}
+        <br />
+      </div>
       <table className="table" id="colleaguesTable">
         <thead>
           <tr>
