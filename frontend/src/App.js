@@ -8,7 +8,6 @@ import './App.css';
 import './Search/Search.css';
 import './Footer/Footer.css';
 import redsearchText from './redsearchText.svg';
-import CitizenPage from './CitizenProfilePage/CitizenProfile';
 import Biography from './CitizenProfilePage/Biography/Biography';
 import Associates from './CitizenProfilePage/Associates/Associates';
 import Finances from './CitizenProfilePage/FinanceHistory/Finances';
@@ -23,26 +22,26 @@ function App() {
           <Route exact path="/">
             <Search />
           </Route>
-          <Route path="/Citizen">
+          <Route path="/">
             <Row>
               <Col>
                 <div>
-                  <Link to="/Citizen/Biography">
+                  <Link to="/Biography">
                     <Button type="button" variant="outline-danger" size="lg">
                       <span>Biography</span>
                     </Button>
                   </Link>
-                  <Link to="/Citizen/Associates">
+                  <Link to="/Associates">
                     <Button type="button" variant="outline-danger" size="lg">
                       <span>Associates</span>
                     </Button>
                   </Link>
-                  <Link to="/Citizen/FinanceHistory">
+                  <Link to="/FinanceHistory">
                     <Button type="button" variant="outline-danger" size="lg">
                       <span>Financial History</span>
                     </Button>
                   </Link>
-                  <Link to="/Citizen/Whereabouts">
+                  <Link to="/Whereabouts">
                     <Button type="button" variant="outline-danger" size="lg">
                       <span>Whereabouts</span>
                     </Button>
@@ -50,18 +49,17 @@ function App() {
                 </div>
               </Col>
             </Row>
-            <CitizenPage />
           </Route>
-          <Route path="/Citizen/Biography">
+          <Route path="/Biography">
             <Biography />
           </Route>
-          <Route path="/Citizen/Associates">
+          <Route path="/Associates">
             <Associates />
           </Route>
-          <Route path="/Citizen/Finances">
+          <Route path="/Finances">
             <Finances />
           </Route>
-          <Route path="/Citizen/Whereabouts">
+          <Route path="/Whereabouts">
             <Whereabouts />
           </Route>
         </Router>
