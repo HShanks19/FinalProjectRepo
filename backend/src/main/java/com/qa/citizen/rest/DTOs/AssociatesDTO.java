@@ -5,7 +5,7 @@ import java.util.List;
 public class AssociatesDTO {
 
 	public AssociatesDTO(List<PeopleMobileDTO> callRecords, String businessName, String businessAddress,
-			List<ColleaguesDTO> ccolleagues, List<HouseholdDTO> household) {
+			List<ColleaguesDTO> colleagues, List<HouseholdDTO> household) {
 		super();
 		this.callRecords = callRecords;
 		this.businessName = businessName;
