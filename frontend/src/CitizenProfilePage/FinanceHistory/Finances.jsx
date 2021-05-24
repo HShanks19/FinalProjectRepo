@@ -1,8 +1,6 @@
 import axios from 'axios';
-<<<<<<< HEAD
 import { useState, useEffect } from 'react';
-import eposTransactions from './eposTransactions';
-import atmTransactions from './atmTransactions';
+import FinancesRender from './FinancesRender';
 
 const Finances = () => {
   const [financialHistory, setFinancialHistory] = useState([]);
@@ -23,15 +21,10 @@ const Finances = () => {
 
   useEffect(() => { findFinancialHistory(); }, [financialHistory]);
 
-  const RenderATMInformation = financialHistory.map((d) => <atmTransactions data={d} />);
-
-  const RenderEPOSInformation = financialHistory.map((d) => <eposTransactions data={d} />);
-=======
   const RenderFinancesInformation = financialHistory.map((d) => <FinancesRender data={d} />);
   return (
     <>
       {RenderFinancesInformation}
->>>>>>> 162b9b4031c750e74c6d6e65cb587320b08c7f20
     </>
   );
 };
