@@ -38,7 +38,7 @@ const Colleagues = ({ data }) => {
       <>
         <Modal show={show}>
           <Modal.Header>
-            <Modal.Title>Receiver Information</Modal.Title>
+            <Modal.Title>Colleague Information</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <h4>
