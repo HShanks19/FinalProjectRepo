@@ -1,10 +1,8 @@
 package com.qa.citizen.domain;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
 
 @Entity
 public class PeopleMobile {
@@ -25,32 +23,32 @@ public class PeopleMobile {
 	public PeopleMobile() {
 		super();
 	}
-	
+
 	@Column(name = "forenames")
 	private String forenames;
-	
+
 	@Column(name = "surname")
 	private String surname;
-	
+
 	@Column(name = "date_of_birth")
 	private String dateOfBirth;
-	
+
 	@Column(name = "address")
 	private String address;
-	
+
 	@Column(name = "town")
 	private String town;
-	
+
 	@Column(name = "postcode")
 	private String postcode;
-	
+
 	@Id
 	@Column(name = "phone_number")
 	private String phoneNumber;
-	
+
 	@Column(name = "network")
 	private String network;
-	
+
 	public String getForenames() {
 		return forenames;
 	}
@@ -115,5 +113,71 @@ public class PeopleMobile {
 		this.network = network;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((dateOfBirth == null) ? 0 : dateOfBirth.hashCode());
+		result = prime * result + ((forenames == null) ? 0 : forenames.hashCode());
+		result = prime * result + ((network == null) ? 0 : network.hashCode());
+		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
+		result = prime * result + ((postcode == null) ? 0 : postcode.hashCode());
+		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
+		result = prime * result + ((town == null) ? 0 : town.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PeopleMobile other = (PeopleMobile) obj;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (dateOfBirth == null) {
+			if (other.dateOfBirth != null)
+				return false;
+		} else if (!dateOfBirth.equals(other.dateOfBirth))
+			return false;
+		if (forenames == null) {
+			if (other.forenames != null)
+				return false;
+		} else if (!forenames.equals(other.forenames))
+			return false;
+		if (network == null) {
+			if (other.network != null)
+				return false;
+		} else if (!network.equals(other.network))
+			return false;
+		if (phoneNumber == null) {
+			if (other.phoneNumber != null)
+				return false;
+		} else if (!phoneNumber.equals(other.phoneNumber))
+			return false;
+		if (postcode == null) {
+			if (other.postcode != null)
+				return false;
+		} else if (!postcode.equals(other.postcode))
+			return false;
+		if (surname == null) {
+			if (other.surname != null)
+				return false;
+		} else if (!surname.equals(other.surname))
+			return false;
+		if (town == null) {
+			if (other.town != null)
+				return false;
+		} else if (!town.equals(other.town))
+			return false;
+		return true;
+	}
 
 }

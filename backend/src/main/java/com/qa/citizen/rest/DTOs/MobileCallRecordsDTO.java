@@ -23,15 +23,15 @@ public class MobileCallRecordsDTO {
 	public MobileCallRecordsDTO() {
 		super();
 	}
-	
+
 	private String timestamp;
-		
+
 	private String callerMSISDN;
-		
+
 	private Long callCellTowerId;
-	
+
 	private String receiverMSISDN;
-	
+
 	private String receiverName;
 
 	public String getTimestamp() {
@@ -72,6 +72,55 @@ public class MobileCallRecordsDTO {
 
 	public void setReceiverName(String receiverName) {
 		this.receiverName = receiverName;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((callCellTowerId == null) ? 0 : callCellTowerId.hashCode());
+		result = prime * result + ((callerMSISDN == null) ? 0 : callerMSISDN.hashCode());
+		result = prime * result + ((receiverMSISDN == null) ? 0 : receiverMSISDN.hashCode());
+		result = prime * result + ((receiverName == null) ? 0 : receiverName.hashCode());
+		result = prime * result + ((timestamp == null) ? 0 : timestamp.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MobileCallRecordsDTO other = (MobileCallRecordsDTO) obj;
+		if (callCellTowerId == null) {
+			if (other.callCellTowerId != null)
+				return false;
+		} else if (!callCellTowerId.equals(other.callCellTowerId))
+			return false;
+		if (callerMSISDN == null) {
+			if (other.callerMSISDN != null)
+				return false;
+		} else if (!callerMSISDN.equals(other.callerMSISDN))
+			return false;
+		if (receiverMSISDN == null) {
+			if (other.receiverMSISDN != null)
+				return false;
+		} else if (!receiverMSISDN.equals(other.receiverMSISDN))
+			return false;
+		if (receiverName == null) {
+			if (other.receiverName != null)
+				return false;
+		} else if (!receiverName.equals(other.receiverName))
+			return false;
+		if (timestamp == null) {
+			if (other.timestamp != null)
+				return false;
+		} else if (!timestamp.equals(other.timestamp))
+			return false;
+		return true;
 	}
 
 }

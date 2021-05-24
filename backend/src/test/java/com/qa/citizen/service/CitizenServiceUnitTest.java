@@ -3,8 +3,10 @@ package com.qa.citizen.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -15,8 +17,11 @@ import org.springframework.data.domain.Example;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.qa.citizen.domain.Citizen;
+import com.qa.citizen.domain.PeopleMobile;
 import com.qa.citizen.domain.VehicleRegistration;
 import com.qa.citizen.repo.CitizenRepo;
+import com.qa.citizen.rest.DTOs.MobileCallRecordsDTO;
+import com.qa.citizen.rest.DTOs.PeopleMobileDTO;
 import com.qa.citizen.rest.DTOs.VehicleRegistrationDTO;
 
 @SpringBootTest
@@ -131,42 +136,35 @@ public class CitizenServiceUnitTest {
 
 	}
 
-//	public List<VehicleRegistrationDTO> mapToVehicleRegistrationDTO(List<VehicleRegistration> vehicleRegistration) {
-//
-//		List<VehicleRegistrationDTO> vehicleRegistrationDTOList = new ArrayList<>();
-//
-//		for (VehicleRegistration foundvehicle : vehicleRegistration) {
-//			VehicleRegistrationDTO vehicleRegistrationDTO = new VehicleRegistrationDTO();
-//			vehicleRegistrationDTO.setColour(foundvehicle.getColour());
-//			vehicleRegistrationDTO.setMake(foundvehicle.getMake());
-//			vehicleRegistrationDTO.setModel(foundvehicle.getModel());
-//			vehicleRegistrationDTO.setRegistrationDate(foundvehicle.getRegistrationDate());
-//			vehicleRegistrationDTO.setVehicleRegistrationNo(foundvehicle.getVehicleRegistrationNo());
-//
-//			vehicleRegistrationDTOList.add(vehicleRegistrationDTO);
-//
-//		}
-//
-//		return vehicleRegistrationDTOList;
-//
-//	}
-//
-//	public List<PeopleMobileDTO> mapToPeopleMobileDTO(List<PeopleMobile> peopleMobile) {
-//
-//		List<PeopleMobileDTO> peopleMobileDTOList = new ArrayList<>();
-//
-//		for (PeopleMobile foundMobile : peopleMobile) {
-//			PeopleMobileDTO peopleMobileDTO = new PeopleMobileDTO();
-//			peopleMobileDTO.setPhoneNumber(foundMobile.getPhoneNumber());
-//			peopleMobileDTO.setNetwork(foundMobile.getNetwork());
-//			peopleMobileDTOList.add(peopleMobileDTO);
-//
-//		}
-//
-//		return peopleMobileDTOList;
-//
-//	}
-//
+	@Test
+	public void testMapToPeopleMobileDTO() {
+		List<PeopleMobile> passedPeopleMobileList = new ArrayList<>();
+		PeopleMobile peopleMobile1 = new PeopleMobile("Michael Shane", "Cochrane", "1955-09-25", "37 SPUR HILL AVENUE",
+				"POOLE", "BH14 9PJ", "07700 098484", "O2");
+		passedPeopleMobileList.add(peopleMobile1);
+
+		Set<MobileCallRecordsDTO> mobileCallRecords = new HashSet<MobileCallRecordsDTO>();
+		MobileCallRecordsDTO returnedMobileCallRecordsDTO1 = new MobileCallRecordsDTO("2015-05-02T15:31:13.335",
+				"07700 098484", 0L, "07700 192766");
+		mobileCallRecords.add(returnedMobileCallRecordsDTO1);
+
+		List<PeopleMobileDTO> returnedPeopleMobileDTOList = new ArrayList<>();
+		PeopleMobileDTO returnedPeopleMobileDTO1 = new PeopleMobileDTO();
+		returnedPeopleMobileDTO1.setPhoneNumber("07700 098484");
+		returnedPeopleMobileDTO1.setNetwork("O2");
+		returnedPeopleMobileDTOList.add(returnedPeopleMobileDTO1);
+
+		assertThat(returnedPeopleMobileDTOList)
+				.isEqualTo(this.citizenService.mapToPeopleMobileDTO(passedPeopleMobileList))
+				.containsExactly(returnedPeopleMobileDTO1);
+
+	}
+
+	@Test
+	public void testMapToCitizenDTO() {
+
+	}
+
 //	public List<CitizenDTO> mapToCitizenDTO(List<Citizen> citizenList) {
 //		List<CitizenDTO> foundCitizens = new ArrayList<>();
 //
