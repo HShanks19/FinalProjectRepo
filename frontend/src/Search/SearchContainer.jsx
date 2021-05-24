@@ -53,10 +53,14 @@ const SearchContainer = ({
 
   // eslint-disable-next-line no-unused-vars
   function sortResultsBy(array, criteria) {
-    if (criteria === 'surname') {
+    if (criteria === 'forenames_az') {
+      return array.sort((a, b) => a.forenames.localeCompare(b.forenames));
+    } if (criteria === 'forenames_za') {
+      return array.sort((a, b) => b.forenames.localeCompare(a.forenames));
+    } if (criteria === 'surname_az') {
       return array.sort((a, b) => a.surname.localeCompare(b.surname));
     }
-    return array.sort((a, b) => a.forenames.localeCompare(b.forenames));
+    return array.sort((a, b) => b.surname.localeCompare(a.surname));
   }
 
   const dataLimitOptions = [
@@ -67,8 +71,10 @@ const SearchContainer = ({
   ];
 
   const sortingOptions = [
-    { value: 'surname', label: 'Surname (A-Z)' },
-    { value: 'forenames', label: 'Forenames (A-Z)' },
+    { value: 'forenames_az', label: 'Forenames (A-Z)' },
+    { value: 'forenames_za', label: 'Forenames (Z-A)' },
+    { value: 'surname_az', label: 'Surname (A-Z)' },
+    { value: 'surname_za', label: 'Surname (Z-A)' },
   ];
 
   if (formVisible) {
