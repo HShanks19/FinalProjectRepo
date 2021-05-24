@@ -156,9 +156,9 @@ public class CitizenService {
 
 			associatesDTO.setHousehold(this.mapToHouseholdDTO(householdMembers));
 			
-			List<PeopleBusinessAddress> collegues = this.peopleBusinessAddressService.getByBusinessAddress(workplace.getBusinessAddress());
+			List<PeopleBusinessAddress> colleagues = this.peopleBusinessAddressService.getByBusinessAddress(workplace.getBusinessAddress());
 
-			associatesDTO.setCollegues(this.mapToColleguesDTO(collegues));
+			associatesDTO.setColleagues(this.mapToColleaguesDTO(colleagues));
 			
 			foundAssociates.add(associatesDTO);
 		}
@@ -166,18 +166,18 @@ public class CitizenService {
 		return foundAssociates;
 	}
 	
-	private List<ColleaguesDTO> mapToColleguesDTO(List<PeopleBusinessAddress> collegues) {
-		List<ColleaguesDTO> colleguesDTOList = new ArrayList<>();
+	private List<ColleaguesDTO> mapToColleaguesDTO(List<PeopleBusinessAddress> colleagues) {
+		List<ColleaguesDTO> colleaguesDTOList = new ArrayList<>();
 
-		for (PeopleBusinessAddress foundCollegue : collegues) {
-			ColleaguesDTO collegueDTO = new ColleaguesDTO();
-			collegueDTO.setPersonName(foundCollegue.getPersonName());
-			collegueDTO.setDateOfBirth(foundCollegue.getDateOfBirth());
-			colleguesDTOList.add(collegueDTO);
+		for (PeopleBusinessAddress foundColleague : colleagues) {
+			ColleaguesDTO colleagueDTO = new ColleaguesDTO();
+			colleagueDTO.setPersonName(foundColleague.getPersonName());
+			colleagueDTO.setDateOfBirth(foundColleague.getDateOfBirth());
+			colleaguesDTOList.add(colleagueDTO);
 
 		}
 
-		return colleguesDTOList;
+		return colleaguesDTOList;
 	}
 
 	private List<HouseholdDTO> mapToHouseholdDTO(List<Citizen> householdMembers) {
