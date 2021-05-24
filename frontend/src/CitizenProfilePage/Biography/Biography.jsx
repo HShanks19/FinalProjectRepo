@@ -25,22 +25,34 @@ const Biography = () => {
       <Row>
         <Col>
           <div>
-            <Link to="/Biography">
+            <Link to={{
+              pathname: `/Biography/${citizenId}`,
+            }}
+            >
               <Button type="button" variant="outline-danger" size="lg">
                 <span>Biography</span>
               </Button>
             </Link>
-            <Link to="/Associates">
+            <Link to={{
+              pathname: `/Associates/${citizenId}`,
+            }}
+            >
               <Button type="button" variant="outline-danger" size="lg">
                 <span>Associates</span>
               </Button>
             </Link>
-            <Link to="/FinanceHistory">
+            <Link to={{
+              pathname: `/FinanceHistory/${citizenId}`,
+            }}
+            >
               <Button type="button" variant="outline-danger" size="lg">
                 <span>Financial History</span>
               </Button>
             </Link>
-            <Link to="/Whereabouts">
+            <Link to={{
+              pathname: `/Whereabouts/${citizenId}`,
+            }}
+            >
               <Button type="button" variant="outline-danger" size="lg">
                 <span>Whereabouts</span>
               </Button>
