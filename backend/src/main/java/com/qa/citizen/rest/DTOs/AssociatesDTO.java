@@ -5,12 +5,12 @@ import java.util.List;
 public class AssociatesDTO {
 
 	public AssociatesDTO(List<PeopleMobileDTO> callRecords, String businessName, String businessAddress,
-			List<ColleaguesDTO> collegues, List<HouseholdDTO> household) {
+			List<ColleaguesDTO> ccolleagues, List<HouseholdDTO> household) {
 		super();
 		this.callRecords = callRecords;
 		this.businessName = businessName;
 		this.businessAddress = businessAddress;
-		this.collegues = collegues;
+		this.colleagues = colleagues;
 		this.household = household;
 	}
 
@@ -25,7 +25,7 @@ public class AssociatesDTO {
 	private String businessAddress; 
 	
 	//name and DOB
-	private List<ColleaguesDTO> collegues;
+	private List<ColleaguesDTO> colleagues;
 		
 	////name and DOB
 	private List<HouseholdDTO> household;
@@ -47,12 +47,12 @@ public class AssociatesDTO {
 		this.businessAddress = businessAddress;
 	}
 
-	public List<ColleaguesDTO> getCollegues() {
-		return collegues;
+	public List<ColleaguesDTO> getColleagues() {
+		return colleagues;
 	}
 
-	public void setCollegues(List<ColleaguesDTO> collegues) {
-		this.collegues = collegues;
+	public void setColleagues(List<ColleaguesDTO> colleagues) {
+		this.colleagues = colleagues;
 	}
 
 	public List<HouseholdDTO> getHousehold() {
