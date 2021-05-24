@@ -2,9 +2,9 @@ const CallRecords = ({ data }) => (
   <>
     <tbody>
       <tr>
-        <th scope="row">{data.callRecords.mobileCallRecords.timeStamp}</th>
-        <td>{data.callRecords.mobileCallRecords.receiver}</td>
-        <td>{data.callRecords.mobileCallRecords.receiverPhoneNumber}</td>
+        <th scope="row">{data.mobileCallRecords.timestamp}</th>
+        <td>{data.mobileCallRecords.receiverName}</td>
+        <td>{data.mobileCallRecords.receiverMSISDN}</td>
         <button type="button">View Profile</button>
       </tr>
     </tbody>

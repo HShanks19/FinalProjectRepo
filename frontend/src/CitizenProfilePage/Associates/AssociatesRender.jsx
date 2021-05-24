@@ -1,9 +1,11 @@
 import CallRecords from './CallRecords';
-import Colleagues from './colleagues';
+import Colleagues from './Colleagues';
 
 const AssociatesRender = ({ data }) => {
-  const RenderColleagues = data.map((d) => <Colleagues data={d} />);
-  const RenderCallRecords = data.map((d) => <CallRecords data={d} />);
+  const { colleagues } = data;
+  const called = data.callRecords;
+  const RenderColleagues = colleagues.map((d) => <Colleagues data={d} />);
+  const RenderCallRecords = called.map((d) => <CallRecords data={d} />);
 
   return (
     <>
