@@ -1,85 +1,22 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 import './Biography.css';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import BiographyRender from './BiographyRender';
 
-const Biography = ({
-  // eslint-disable-next-line max-len
-  forenames, surname, dateOfBirth, placeOfBirth, address, phoneNumber, vehicleRegistrationPlate, vehicleMake, vehicleModel, vehicleColour,
-}) => {
-  const [citizenBioData, setCitizenBioData] = useState([]);
-  const [fetchData, setFetch] = useState(false);
+const Biography = () => {
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    if (fetchData) {
-      axios.get('http://52.211.82.10:5001/getBiographicalInfo/1118865837')
-        .then((res) => setCitizenBioData(res.data));
-      console.log(citizenBioData);
-    }
-  }, [fetchData]);
-
+    axios.get('http://54.74.11.52:5001/getBiographicalInfo/3913177474')
+      .then((response) => {
+        setData(response.data);
+        console.log(data);
+      }).catch((err) => console.log(err));
+  }, []);
+  const RenderInformation = data.map((d) => <BiographyRender data={d} />);
   return (
     <>
-      <container>
-        <Biography
-          citizenBioData={citizenBioData}
-          setFetch={setFetch(true)}
-        />
-        <div className="card-container">
-          <h4 className="card-title">
-            Citizen Name:
-            {' '}
-            {forenames}
-            {' '}
-            {surname}
-          </h4>
-          <div className="card-body">
-            <h5 className="card-text">
-              Date of Birth:
-              {' '}
-              {dateOfBirth}
-            </h5>
-            <h5 className="card-text">
-              Place of Birth:
-              {' '}
-              {placeOfBirth}
-            </h5>
-            <h5 className="card-text">
-              Address:
-              {' '}
-              {address}
-            </h5>
-            <h5 className="card-text">
-              Phone Number:
-              {' '}
-              {phoneNumber}
-            </h5>
-            <br />
-            <h5 className="card-text">
-              Vehicle:
-            </h5>
-            <h5 className="card-text">
-              Registration Plate:
-              {' '}
-              {vehicleRegistrationPlate}
-            </h5>
-            <h5 className="card-text">
-              Make:
-              {' '}
-              {vehicleMake}
-            </h5>
-            <h5 className="card-text">
-              Model:
-              {' '}
-              {vehicleModel}
-            </h5>
-            <h5 className="card-text">
-              Colour:
-              {' '}
-              {vehicleColour}
-            </h5>
-          </div>
-        </div>
-      </container>
+      {RenderInformation}
     </>
   );
 };
