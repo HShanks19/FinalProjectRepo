@@ -1,4 +1,4 @@
-const AssociatesRender = ({ data }) => (
+const Business = ({ data }) => (
   <div>
     Business Name:
     {' '}
@@ -10,4 +10,4 @@ const AssociatesRender = ({ data }) => (
   </div>
 );
 
-export default AssociatesRender;
+export default Business;
