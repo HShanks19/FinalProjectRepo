@@ -22,13 +22,13 @@ function App() {
           <Route path="/Biography/:citizenId">
             <Biography />
           </Route>
-          <Route path="/Associates">
+          <Route path="/Associates/:citizenId">
             <Associates />
           </Route>
-          <Route path="/Finances">
+          <Route path="/Finances/:citizenId">
             <Finances />
           </Route>
-          <Route path="/Whereabouts">
+          <Route path="/Whereabouts/:citizenId">
             <Whereabouts />
           </Route>
         </Router>
