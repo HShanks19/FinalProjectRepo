@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable react/jsx-no-comment-textnodes */
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import {
   Button, Row, Col,
