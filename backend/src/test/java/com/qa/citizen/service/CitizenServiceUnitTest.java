@@ -15,7 +15,9 @@ import org.springframework.data.domain.Example;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.qa.citizen.domain.Citizen;
+import com.qa.citizen.domain.VehicleRegistration;
 import com.qa.citizen.repo.CitizenRepo;
+import com.qa.citizen.rest.DTOs.VehicleRegistrationDTO;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -45,7 +47,8 @@ public class CitizenServiceUnitTest {
 
 		Mockito.when(this.citizenRepo.findAll()).thenReturn(returnedCitizenList);
 
-		assertThat(this.citizenService.getCitizen()).isEqualTo(returnedCitizenList);
+		assertThat(this.citizenService.getCitizen()).isEqualTo(returnedCitizenList).containsExactly(michael, mathew,
+				colin);
 
 	}
 
@@ -67,7 +70,8 @@ public class CitizenServiceUnitTest {
 				.thenReturn(listOfCitizenMatchingAddressedPassed);
 
 		assertThat(this.citizenService.getByAddress(representAddressParamPassed))
-				.isEqualTo(listOfCitizenMatchingAddressedPassed);
+				.isEqualTo(listOfCitizenMatchingAddressedPassed).containsExactly(michael, colin);
+		;
 
 	}
 
@@ -103,15 +107,30 @@ public class CitizenServiceUnitTest {
 
 		Mockito.when(this.citizenRepo.findAll(Example.of(citizenSentByUser))).thenReturn(returnedCitizens);
 
-		assertThat(this.citizenService.sortAndFilterCitizens(citizenSentByUser)).isEqualTo(returnedCitizens);
+		assertThat(this.citizenService.sortAndFilterCitizens(citizenSentByUser)).isEqualTo(returnedCitizens)
+				.containsExactly(michael, colin);
 
 	}
 
-//	public List<Citizen> sortAndFilterCitizens(Citizen citizen) {
-//		return this.repo.findAll(Example.of(citizen));
-//	}
-//
-//
+	@Test
+	public void testMapToVehicleRegistrationDTO() {
+
+		List<VehicleRegistration> passedVehicleRegistrationList = new ArrayList<>();
+		VehicleRegistration vehicleReg = new VehicleRegistration(131240L, "1999-01-16", "UN28 EIN", "Toyota", "Yaris",
+				"red", "Michael Shane", "Cochrane", "37 SPUR HILL AVENUE, POOLE, BH14 9PJ", "1955-09-25",
+				"COCHR509255MS9RM 41");
+		passedVehicleRegistrationList.add(vehicleReg);
+
+		List<VehicleRegistrationDTO> returnedVehicleRegistrationDTOList = new ArrayList<VehicleRegistrationDTO>();
+		VehicleRegistrationDTO returnedVehicleRegistrationDTO = new VehicleRegistrationDTO("1999-01-16", "UN28 EIN",
+				"Toyota", "Yaris", "red");
+		returnedVehicleRegistrationDTOList.add(returnedVehicleRegistrationDTO);
+
+		assertThat(returnedVehicleRegistrationDTOList)
+				.isEqualTo(this.citizenService.mapToVehicleRegistrationDTO(passedVehicleRegistrationList));
+
+	}
+
 //	public List<VehicleRegistrationDTO> mapToVehicleRegistrationDTO(List<VehicleRegistration> vehicleRegistration) {
 //
 //		List<VehicleRegistrationDTO> vehicleRegistrationDTOList = new ArrayList<>();
