@@ -1,11 +1,14 @@
 import CallRecordsTable from './CallRecordsTable';
 import Colleagues from './Colleagues';
+import Household from './Household';
 
 const AssociatesRender = ({ data }) => {
   const { colleagues } = data;
   const called = data.callRecords;
+  const { household } = data;
   const RenderColleagues = colleagues.map((d) => <Colleagues data={d} />);
   const RenderCallRecords = called.map((d) => <CallRecordsTable data={d} />);
+  const RenderHousehold = household.map((d) => <Household data={d} />);
 
   return (
     <>
@@ -42,6 +45,17 @@ const AssociatesRender = ({ data }) => {
           </tr>
         </thead>
         { RenderColleagues }
+      </table>
+      <table className="table" id="householdTable">
+        <thead>
+          <tr>
+            <th scope="col">Household Member</th>
+            <th scope="col">Date of Birth</th>
+          </tr>
+        </thead>
+        <tbody>
+          { RenderHousehold }
+        </tbody>
       </table>
     </>
   );
