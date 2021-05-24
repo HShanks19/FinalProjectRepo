@@ -82,4 +82,10 @@ public class PeopleMobileDTO {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "PeopleMobileDTO [phoneNumber=" + phoneNumber + ", network=" + network + ", mobileCallRecords="
+				+ mobileCallRecords + "]";
+	}
+
 }

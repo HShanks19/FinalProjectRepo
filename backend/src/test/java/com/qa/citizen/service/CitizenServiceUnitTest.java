@@ -20,6 +20,7 @@ import com.qa.citizen.domain.Citizen;
 import com.qa.citizen.domain.PeopleMobile;
 import com.qa.citizen.domain.VehicleRegistration;
 import com.qa.citizen.repo.CitizenRepo;
+import com.qa.citizen.rest.DTOs.CitizenDTO;
 import com.qa.citizen.rest.DTOs.MobileCallRecordsDTO;
 import com.qa.citizen.rest.DTOs.PeopleMobileDTO;
 import com.qa.citizen.rest.DTOs.VehicleRegistrationDTO;
@@ -163,35 +164,34 @@ public class CitizenServiceUnitTest {
 	@Test
 	public void testMapToCitizenDTO() {
 
+		List<Citizen> passedCitizenList = new ArrayList<>();
+		Citizen michael = new Citizen(9171862863L, "Michael Shane", "Cochrane", "37 SPUR HILL AVENUE, POOLE, BH14 9PJ",
+				"1955-09-25", "LONDON", "Male");
+		passedCitizenList.add(michael);
+
+		List<CitizenDTO> returnedCitizenDTOList = new ArrayList<>();
+		CitizenDTO returnedCitizenDTO = new CitizenDTO("Michael Shane", "Cochrane",
+				"37 SPUR HILL AVENUE, POOLE, BH14 9PJ", "1955-09-25", "LONDON", "Male");
+
+		List<PeopleMobileDTO> citizensMobileNumbers = new ArrayList<PeopleMobileDTO>();
+		PeopleMobileDTO returnedPeopleMobileDTO = new PeopleMobileDTO();
+		returnedPeopleMobileDTO.setPhoneNumber("07700 098484");
+		returnedPeopleMobileDTO.setNetwork("O2");
+		citizensMobileNumbers.add(returnedPeopleMobileDTO);
+		returnedCitizenDTO.setCitizensMobileNumbers(citizensMobileNumbers);
+
+		List<VehicleRegistrationDTO> returnedVehicleRegistrationDTOList = new ArrayList<VehicleRegistrationDTO>();
+		VehicleRegistrationDTO returnedVehicleRegistrationDTO = new VehicleRegistrationDTO("1999-01-16", "UN28 EIN",
+				"Toyota", "Yaris", "red");
+		returnedVehicleRegistrationDTOList.add(returnedVehicleRegistrationDTO);
+		returnedCitizenDTO.setCitizensVehicles(returnedVehicleRegistrationDTOList);
+
+		returnedCitizenDTOList.add(returnedCitizenDTO);
+
+		assertThat(returnedCitizenDTOList).isEqualTo(this.citizenService.mapToCitizenDTO(passedCitizenList));
+
 	}
 
-//	public List<CitizenDTO> mapToCitizenDTO(List<Citizen> citizenList) {
-//		List<CitizenDTO> foundCitizens = new ArrayList<>();
-//
-//		for (Citizen foundCitizen : citizenList) {
-//			CitizenDTO citizenDTO = new CitizenDTO();
-//			citizenDTO.setForenames(foundCitizen.getForenames());
-//			citizenDTO.setSurname(foundCitizen.getSurname());
-//			citizenDTO.setHomeAddress(foundCitizen.getHomeAddress());
-//			citizenDTO.setDateOfBirth(foundCitizen.getDateOfBirth());
-//			citizenDTO.setPlaceOfBirth(foundCitizen.getPlaceOfBirth());
-//			citizenDTO.setSex(foundCitizen.getSex());
-//
-//			List<PeopleMobile> peopleMobile = this.peopleMobileService.getMobileByCitizen(foundCitizen.getForenames(),
-//					foundCitizen.getSurname(), foundCitizen.getDateOfBirth());
-//
-//			List<VehicleRegistration> vehicleRegistration = this.vehicleRegistrationService.getVehicleByCitizen(
-//					foundCitizen.getForenames(), foundCitizen.getSurname(), foundCitizen.getDateOfBirth());
-//
-//			citizenDTO.setCitizensMobileNumbers(this.mapToPeopleMobileDTO(peopleMobile));
-//			citizenDTO.setCitizensVehicles(this.mapToVehicleRegistrationDTO(vehicleRegistration));
-//
-//			foundCitizens.add(citizenDTO);
-//		}
-//
-//		return foundCitizens;
-//	}
-//
 //	public List<CitizenDTO> sortAndFilterCitizensMapToDTO(Citizen citizen) {
 //		List<Citizen> citizenList = this.repo.findAll(Example.of(citizen));
 //		return this.mapToCitizenDTO(citizenList);

@@ -115,4 +115,10 @@ public class VehicleRegistrationDTO {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "VehicleRegistrationDTO [registrationDate=" + registrationDate + ", vehicleRegistrationNo="
+				+ vehicleRegistrationNo + ", make=" + make + ", model=" + model + ", colour=" + colour + "]";
+	}
+
 }

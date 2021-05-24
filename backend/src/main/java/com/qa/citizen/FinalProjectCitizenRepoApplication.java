@@ -8,6 +8,7 @@ public class FinalProjectCitizenRepoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FinalProjectCitizenRepoApplication.class, args);
+
 	}
 
 }
