@@ -1,7 +1,4 @@
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import {
-  Button, Row, Col,
-} from 'react-bootstrap';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Search from './Search/Search';
 import './App.css';
@@ -22,35 +19,7 @@ function App() {
           <Route exact path="/">
             <Search />
           </Route>
-          <Route path="/">
-            <Row>
-              <Col>
-                <div>
-                  <Link to="/Biography">
-                    <Button type="button" variant="outline-danger" size="lg">
-                      <span>Biography</span>
-                    </Button>
-                  </Link>
-                  <Link to="/Associates">
-                    <Button type="button" variant="outline-danger" size="lg">
-                      <span>Associates</span>
-                    </Button>
-                  </Link>
-                  <Link to="/FinanceHistory">
-                    <Button type="button" variant="outline-danger" size="lg">
-                      <span>Financial History</span>
-                    </Button>
-                  </Link>
-                  <Link to="/Whereabouts">
-                    <Button type="button" variant="outline-danger" size="lg">
-                      <span>Whereabouts</span>
-                    </Button>
-                  </Link>
-                </div>
-              </Col>
-            </Row>
-          </Route>
-          <Route path="/Biography">
+          <Route path="/Biography/:citizenId">
             <Biography />
           </Route>
           <Route path="/Associates">

@@ -37,22 +37,12 @@ const Search = () => {
       .catch((err) => console.log(err));
   }
 
-  function obtainData() {
-    axios.get('http://54.74.6.120:5001/getMatchingCitizens/')
-      .then((response) => {
-        setSearchResults(response.data);
-        setFormVisible(false);
-      })
-      .catch((err) => console.log(err));
-  }
-
   return (
     <>
       <SearchForm
         testPostRequest={testPostRequest}
         searchValue={searchValue}
         setSearchValue={setSearchValue}
-        obtainData={obtainData}
         formVisible={formVisible}
         initialSearchState={initialSearchState}
         loading={loading}
