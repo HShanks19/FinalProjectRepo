@@ -1,78 +1,24 @@
-import PropTypes from 'prop-types';
 import './Biography.css';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import BiographyRender from './BiographyRender';
 
-const Biography = ({
-  // eslint-disable-next-line max-len
-  firstName, lastName, dateOfBirth, placeOfBirth, address, phoneNumber, vehicleRegistrationPlate, vehicleMake, vehicleModel, vehicleColour,
-}) => (
-  <container>
-    <div className="card-container">
-      <h4 className="card-title">
-        Citizen Name:
-        {' '}
-        {firstName + lastName}
-      </h4>
-      <div className="card-body">
-        <h5 className="card-text">
-          Date of Birth:
-          {' '}
-          {dateOfBirth}
-        </h5>
-        <h5 className="card-text">
-          Place of Birth:
-          {' '}
-          {placeOfBirth}
-        </h5>
-        <h5 className="card-text">
-          Address:
-          {' '}
-          {address}
-        </h5>
-        <h5 className="card-text">
-          Phone Number:
-          {' '}
-          {phoneNumber}
-        </h5>
-        <br />
-        <h5 className="card-text">
-          Vehicle:
-        </h5>
-        <h5 className="card-text">
-          Registration Plate:
-          {' '}
-          {vehicleRegistrationPlate}
-        </h5>
-        <h5 className="card-text">
-          Make:
-          {' '}
-          {vehicleMake}
-        </h5>
-        <h5 className="card-text">
-          Model:
-          {' '}
-          {vehicleModel}
-        </h5>
-        <h5 className="card-text">
-          Colour:
-          {' '}
-          {vehicleColour}
-        </h5>
-      </div>
-    </div>
-  </container>
-);
+const Biography = () => {
+  const [data, setData] = useState([]);
+  const makeRequest = () => {
+    axios.get('http://54.74.11.52:5001/getBiographicalInfo/4989925828')
+      .then((response) => {
+        setData(response.data);
+        console.log(data);
+      }).catch((err) => console.log(err));
+  };
+  useEffect(() => { makeRequest(); }, []);
+  const RenderInformation = data.map((d) => <BiographyRender data={d} />);
+  return (
+    <>
+      {RenderInformation}
+    </>
+  );
+};
 
 export default Biography;
-
-Biography.propTypes = {
-  firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired,
-  dateOfBirth: PropTypes.string.isRequired,
-  placeOfBirth: PropTypes.string.isRequired,
-  address: PropTypes.string.isRequired,
-  phoneNumber: PropTypes.string.isRequired,
-  vehicleRegistrationPlate: PropTypes.string.isRequired,
-  vehicleMake: PropTypes.string.isRequired,
-  vehicleModel: PropTypes.string.isRequired,
-  vehicleColour: PropTypes.string.isRequired,
-};
