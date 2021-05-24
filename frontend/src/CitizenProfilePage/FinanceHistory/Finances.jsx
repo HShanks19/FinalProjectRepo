@@ -1,4 +1,5 @@
 import axios from 'axios';
+<<<<<<< HEAD
 import { useState, useEffect } from 'react';
 import eposTransactions from './eposTransactions';
 import atmTransactions from './atmTransactions';
@@ -25,49 +26,12 @@ const Finances = () => {
   const RenderATMInformation = financialHistory.map((d) => <atmTransactions data={d} />);
 
   const RenderEPOSInformation = financialHistory.map((d) => <eposTransactions data={d} />);
+=======
+  const RenderFinancesInformation = financialHistory.map((d) => <FinancesRender data={d} />);
   return (
     <>
-      <Finances
-        findFinancialHistory={findFinancialHistory}
-        financialHistory={financialHistory}
-      />
-      <container>
-        <div>
-          Bank:
-          {' '}
-          {financialHistory.bank}
-          sortCode:
-          {' '}
-          {financialHistory.bankcardDTOs.sortCode}
-          accountNumber:
-          {' '}
-          {financialHistory.accountNumber}
-        </div>
-        <table className="table" id="eposTable">
-          <thead>
-            <tr>
-              <th scope="col">Time Stamp</th>
-              <th scope="col">Amount</th>
-              <th scope="col">Account</th>
-              <th scope="col">Vendor</th>
-              <th scope="col">Address</th>
-            </tr>
-          </thead>
-          { RenderEPOSInformation }
-        </table>
-        <table className="table" id="atmTable">
-          <thead>
-            <tr>
-              <th scope="col">Time Stamp</th>
-              <th scope="col">Amount</th>
-              <th scope="col">Operator</th>
-              <th scope="col">Street Name</th>
-              <th scope="col">Post Code</th>
-            </tr>
-          </thead>
-          { RenderATMInformation }
-        </table>
-      </container>
+      {RenderFinancesInformation}
+>>>>>>> 162b9b4031c750e74c6d6e65cb587320b08c7f20
     </>
   );
 };
