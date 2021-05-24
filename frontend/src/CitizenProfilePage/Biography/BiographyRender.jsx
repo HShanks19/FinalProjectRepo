@@ -22,12 +22,12 @@ const BiographyRender = ({ data }) => (
         <h5 className="card-text">
           Address:
           {' '}
-          {data.address}
+          {data.homeAddress}
         </h5>
         <h5 className="card-text">
           Phone Number:
           {' '}
-          {data.phoneNumber}
+          {data.citizensMobileNumbers[0].phoneNumber}
         </h5>
         <h5 className="card-text">
           Vehicle:
@@ -35,22 +35,22 @@ const BiographyRender = ({ data }) => (
         <h5 className="card-text">
           Registration Plate:
           {' '}
-          {data.vehicleRegistrationPlate}
+          {data.citizensVehicles[0].vehicleRegistrationNo}
         </h5>
         <h5 className="card-text">
           Make:
           {' '}
-          {data.vehicleMake}
+          {data.citizensVehicles[0].make}
         </h5>
         <h5 className="card-text">
           Model:
           {' '}
-          {data.vehicleModel}
+          {data.citizensVehicles[0].model}
         </h5>
         <h5 className="card-text">
           Colour:
           {' '}
-          {data.vehicleColour}
+          {data.citizensVehicles[0].colour}
         </h5>
       </div>
     </div>
