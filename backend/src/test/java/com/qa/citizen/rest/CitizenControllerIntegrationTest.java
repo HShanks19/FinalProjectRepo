@@ -96,8 +96,8 @@ public class CitizenControllerIntegrationTest {
 		colleaguesDtoList.add(colleaguesDTO2);
 
 		List<HouseholdDTO> householdDtoList = new ArrayList<>();
-		HouseholdDTO householdDTO1 = new HouseholdDTO("Colin Parsons", "1994-01-19");
-		HouseholdDTO householdDTO2 = new HouseholdDTO("Michael Shane Cochrane", "1955-09-25");
+		HouseholdDTO householdDTO1 = new HouseholdDTO("Colin", "Parsons", "1994-01-19");
+		HouseholdDTO householdDTO2 = new HouseholdDTO("Michael Shane", "Cochrane", "1955-09-25");
 		householdDtoList.add(householdDTO1);
 		householdDtoList.add(householdDTO2);
 
