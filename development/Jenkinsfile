@@ -27,7 +27,7 @@ pipeline{
                         withCredentials([file(credentialsId: 'SSHKey', variable: 'SSHKeyPair')]) {
                             sh '''
                                 ssh -i ${SSHKeyPair} ubuntu@54.74.11.52 -oStrictHostKeyChecking=no  << EOF
-                                cd ~/FinalProjectRepo
+                                cd ~/FinalProjectRepo/backend
                                 mvn test
                             '''
                         }
