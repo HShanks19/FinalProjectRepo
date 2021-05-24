@@ -6,13 +6,13 @@ import BiographyRender from './BiographyRender';
 const Biography = () => {
   const [data, setData] = useState([]);
   const makeRequest = () => {
-    axios.get('http://54.74.11.52:5001/getBiographicalInfo/4989925828')
+    axios.get('http://54.74.11.52:5001/getBiographicalInfo/8951968176')
       .then((response) => {
         setData(response.data);
         console.log(data);
       }).catch((err) => console.log(err));
   };
-  useEffect(() => { makeRequest(); }, []);
+  useEffect(() => { makeRequest(); }, [data]);
   const RenderInformation = data.map((d) => <BiographyRender data={d} />);
   return (
     <>

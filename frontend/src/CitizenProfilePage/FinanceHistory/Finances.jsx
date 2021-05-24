@@ -1,19 +1,30 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import eposTransactions from './eposTransactions';
+import atmTransactions from './atmTransactions';
 
-const Finances = ({
-  // eslint-disable-next-line max-len
-  bank, sortCode, accountNumber, eposTimeStamp, eposAmount, eposAccountNumber, vendor, eposAddress, atmTimeStamps, atmAmount, operator, streetName, postCode,
-}) => {
+const Finances = () => {
   const [financialHistory, setFinancialHistory] = useState([]);
 
+  const postObject = {
+    forenames: 'Julie',
+    surname: 'Willis',
+    homeAddress: '4 THISTLECROFT ROAD, WALTON-ON-THAMES, KT12 5QZ',
+  };
+
   function findFinancialHistory() {
-    axios.post('http://52.211.82.10:5001/getMatchingBankAccounts/')
+    axios.post('http://52.211.82.10:5001/getMatchingBankAccounts/', postObject)
       .then((response) => {
         setFinancialHistory(response.data);
       })
       .catch((err) => console.log(err));
   }
+
+  useEffect(() => { findFinancialHistory(); }, [financialHistory]);
+
+  const RenderATMInformation = financialHistory.map((d) => <atmTransactions data={d} />);
+
+  const RenderEPOSInformation = financialHistory.map((d) => <eposTransactions data={d} />);
   return (
     <>
       <Finances
@@ -24,13 +35,13 @@ const Finances = ({
         <div>
           Bank:
           {' '}
-          {bank}
+          {financialHistory.bank}
           sortCode:
           {' '}
-          {sortCode}
+          {financialHistory.bankcardDTOs.sortCode}
           accountNumber:
           {' '}
-          {accountNumber}
+          {financialHistory.accountNumber}
         </div>
         <table className="table" id="eposTable">
           <thead>
@@ -42,15 +53,7 @@ const Finances = ({
               <th scope="col">Address</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">{eposTimeStamp}</th>
-              <td>{eposAmount}</td>
-              <td>{eposAccountNumber}</td>
-              <td>{vendor}</td>
-              <td>{eposAddress}</td>
-            </tr>
-          </tbody>
+          { RenderEPOSInformation }
         </table>
         <table className="table" id="atmTable">
           <thead>
@@ -62,15 +65,7 @@ const Finances = ({
               <th scope="col">Post Code</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">{atmTimeStamps}</th>
-              <td>{atmAmount}</td>
-              <td>{operator}</td>
-              <td>{streetName}</td>
-              <td>{postCode}</td>
-            </tr>
-          </tbody>
+          { RenderATMInformation }
         </table>
       </container>
     </>
