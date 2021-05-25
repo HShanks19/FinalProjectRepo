@@ -3,21 +3,13 @@ resource "aws_instance" "docker_instance" {
   instance_type     = var.instance_type 
   availability_zone = var.av_zone 
   key_name          = var.key_name
-   user_data = <<-EOF
-                #!/bin/bash
-                echo "export DB_PWD="password"">>~/.bashrc
-                echo "DB_PWD="password"">>~/.profile
-                echo "DB_PWD="password"">>/etc/environment
-                source ~/.bashrc
-                source ~/.profile
-                EOF
   
   network_interface {
     device_index         = 0
     network_interface_id = var.net_id_prod
   }
   tags = {
-    Name = "deploy"
+    Name = "production"
   }
 }
 resource "aws_instance" "docker_instance_test" {
@@ -25,21 +17,13 @@ resource "aws_instance" "docker_instance_test" {
   instance_type     = var.instance_type 
   availability_zone = var.av_zone 
   key_name          = var.key_name
-  user_data = <<-EOF
-                #!/bin/bash
-                echo "export DB_PWD="password"">>~/.bashrc
-                echo "DB_PWD="password"">>~/.profile
-                echo "DB_PWD="password"">>/etc/environment
-                source ~/.bashrc
-                source ~/.profile
-                EOF
   
   network_interface {
     device_index         = 0
     network_interface_id = var.net_id_test
   }
   tags = {
-    Name = "test"
+    Name = "development"
   }
 }
 
@@ -71,6 +55,27 @@ resource "aws_instance" "bastion" {
   }
   tags = {
     Name = "bastion"
+  }
+
+}
+
+resource "aws_db_parameter_group" "default" {
+  name   = "rds-pg"
+  family = "mysql5.7"
+
+  parameter {
+    name  = "character_set_server"
+    value = "utf8"
+  }
+
+  parameter {
+    name  = "character_set_client"
+    value = "utf8"
+  }
+
+  parameter {
+    name  = "log_bin_trust_function_creators"
+    value = "1"
   }
 
 }
