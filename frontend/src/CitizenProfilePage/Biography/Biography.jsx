@@ -5,17 +5,21 @@ import axios from 'axios';
 import {
   Button, Row, Col,
 } from 'react-bootstrap';
+import { ThreeDots } from '@agney/react-loading';
 import BiographyRender from './BiographyRender';
 
 const Biography = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { citizenId } = useParams();
   console.log('citizenId ', citizenId);
   const makeRequest = () => {
+    setLoading(true);
     axios.get(`http://54.74.11.52:5001/getBiographicalInfo/${citizenId}`)
       .then((response) => {
         setData(response.data);
         console.log(data);
+        setLoading(false);
       }).catch((err) => console.log(err));
   };
   useEffect(() => { makeRequest(); }, []);
@@ -69,6 +73,10 @@ const Biography = () => {
         </Col>
       </Row>
       {RenderInformation}
+      { loading === true
+        && (
+          <ThreeDots className="loading-icon" />
+        )}
     </>
   );
 };
