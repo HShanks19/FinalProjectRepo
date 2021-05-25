@@ -5,18 +5,16 @@ const FinancesRender = ({ data }) => {
   const RenderBankcardDTOs = bankcardDTOs.map((d) => <BankcardDTOsContainer data={d} />);
   return (
     <>
-      <container>
-        <div>
-          Bank:
-          {' '}
-          {data.bank}
-          {' '}
-          Account Number:
-          {' '}
-          {data.accountNumber}
-        </div>
-        { RenderBankcardDTOs }
-      </container>
+      <div>
+        Bank:
+        {' '}
+        {data.bank}
+        {' '}
+        Account Number:
+        {' '}
+        {data.accountNumber}
+      </div>
+      { RenderBankcardDTOs }
     </>
   );
 };
