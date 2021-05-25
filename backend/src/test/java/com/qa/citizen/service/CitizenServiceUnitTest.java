@@ -22,6 +22,7 @@ import com.qa.citizen.domain.VehicleRegistration;
 import com.qa.citizen.repo.CitizenRepo;
 import com.qa.citizen.rest.DTOs.AssociatesDTO;
 import com.qa.citizen.rest.DTOs.CitizenDTO;
+import com.qa.citizen.rest.DTOs.ColleaguesDTO;
 import com.qa.citizen.rest.DTOs.MobileCallRecordsDTO;
 import com.qa.citizen.rest.DTOs.PeopleMobileDTO;
 import com.qa.citizen.rest.DTOs.VehicleRegistrationDTO;
@@ -223,8 +224,6 @@ public class CitizenServiceUnitTest {
 
 		List<AssociatesDTO> returnedAssociatesDTOList = new ArrayList<AssociatesDTO>();
 
-		Mockito.when(this.citizenService.mapToAssociatesDTO(citizenList)).thenReturn(returnedAssociatesDTOList);
-
 		AssociatesDTO returnedAssociatesDTO = new AssociatesDTO();
 		returnedAssociatesDTO.setBusinessAddress("Seamoor Road, BH4 9AE");
 		returnedAssociatesDTO.setBusinessName("Wash and Dry");
@@ -232,44 +231,27 @@ public class CitizenServiceUnitTest {
 		Set<MobileCallRecordsDTO> mobileCallRecords = new HashSet<MobileCallRecordsDTO>();
 		MobileCallRecordsDTO mobileCallRecordsDTO = new MobileCallRecordsDTO("2015-05-02T15:31:13.335", "07700 098484",
 				0L, "07700 192766");
+		mobileCallRecordsDTO.setReceiverName("Mathew Terry James");
 		mobileCallRecords.add(mobileCallRecordsDTO);
 		PeopleMobileDTO peopleMobile = new PeopleMobileDTO("07700 098484", "O2", mobileCallRecords);
 		callRecords.add(peopleMobile);
 
 		returnedAssociatesDTO.setCallRecords(callRecords);
 
-		assertThat(this.citizenService.mapToAssociatesDTO(citizenList)).contains(returnedAssociatesDTO);
+		List<ColleaguesDTO> colleaguesDTOList = new ArrayList<ColleaguesDTO>();
+		ColleaguesDTO colleaguesDTOMichael = new ColleaguesDTO("Michael Shane Cochrane", "1955-09-25");
+		ColleaguesDTO colleaguesDTOLynda = new ColleaguesDTO("Lynda Anderson", "1959-05-06");
+		colleaguesDTOList.add(colleaguesDTOMichael);
+		colleaguesDTOList.add(colleaguesDTOLynda);
+
+		returnedAssociatesDTO.setCollegues(colleaguesDTOList);
+		returnedAssociatesDTO.setHousehold(null);
+
+		returnedAssociatesDTOList.add(returnedAssociatesDTO);
+
+		Mockito.when(this.citizenService.mapToAssociatesDTO(citizenList)).thenReturn(returnedAssociatesDTOList);
 	}
 
-//	public List<AssociatesDTO> mapToAssociatesDTO(List<Citizen> citizenList) {
-//		List<AssociatesDTO> foundAssociates = new ArrayList<>();
-//
-//		for (Citizen foundCitizen : citizenList) {
-//			AssociatesDTO associatesDTO = new AssociatesDTO();
-//			PeopleBusinessAddress workplace = this.peopleBusinessAddressService.getWorkplaceByName(foundCitizen.getForenames() + " " + foundCitizen.getSurname());
-//			associatesDTO.setBusinessName(workplace.getBusinessName());
-//			associatesDTO.setBusinessAddress(workplace.getBusinessAddress());
-//			String householdAddress = foundCitizen.getHomeAddress();
-//			
-//			List<PeopleMobile> peopleMobile = this.peopleMobileService.getMobileByCitizen(foundCitizen.getForenames(),
-//					foundCitizen.getSurname(), foundCitizen.getDateOfBirth());
-//			
-//			associatesDTO.setCallRecords(this.mapToPeopleDTO(peopleMobile));
-//			
-//			List<Citizen> householdMembers = getByAddress(householdAddress);
-//
-//			associatesDTO.setHousehold(this.mapToHouseholdDTO(householdMembers));
-//			
-//			List<PeopleBusinessAddress> collegues = this.peopleBusinessAddressService.getByBusinessAddress(workplace.getBusinessAddress());
-//
-//			associatesDTO.setCollegues(this.mapToColleguesDTO(collegues));
-//			
-//			foundAssociates.add(associatesDTO);
-//		}
-//
-//		return foundAssociates;
-//	}
-//	
 //	private List<ColleaguesDTO> mapToColleguesDTO(List<PeopleBusinessAddress> collegues) {
 //		List<ColleaguesDTO> colleguesDTOList = new ArrayList<>();
 //
