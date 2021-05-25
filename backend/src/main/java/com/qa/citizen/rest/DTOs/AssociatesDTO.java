@@ -21,13 +21,13 @@ public class AssociatesDTO {
 	private List<PeopleMobileDTO> callRecords;
 
 	private String businessName;
-	
-	private String businessAddress; 
-	
-	//name and DOB
+
+	private String businessAddress;
+
+	// name and DOB
 	private List<ColleaguesDTO> colleagues;
-		
-	////name and DOB
+
+	//// name and DOB
 	private List<HouseholdDTO> household;
 
 	public String getBusinessName() {
@@ -77,7 +77,7 @@ public class AssociatesDTO {
 		result = prime * result + ((businessAddress == null) ? 0 : businessAddress.hashCode());
 		result = prime * result + ((businessName == null) ? 0 : businessName.hashCode());
 		result = prime * result + ((callRecords == null) ? 0 : callRecords.hashCode());
-		result = prime * result + ((collegues == null) ? 0 : collegues.hashCode());
+		result = prime * result + ((colleagues == null) ? 0 : colleagues.hashCode());
 		result = prime * result + ((household == null) ? 0 : household.hashCode());
 		return result;
 	}
@@ -106,10 +106,10 @@ public class AssociatesDTO {
 				return false;
 		} else if (!callRecords.equals(other.callRecords))
 			return false;
-		if (collegues == null) {
-			if (other.collegues != null)
+		if (colleagues == null) {
+			if (other.colleagues != null)
 				return false;
-		} else if (!collegues.equals(other.collegues))
+		} else if (!colleagues.equals(other.colleagues))
 			return false;
 		if (household == null) {
 			if (other.household != null)
@@ -122,7 +122,7 @@ public class AssociatesDTO {
 	@Override
 	public String toString() {
 		return "AssociatesDTO [callRecords=" + callRecords + ", businessName=" + businessName + ", businessAddress="
-				+ businessAddress + ", collegues=" + collegues + ", household=" + household + "]";
+				+ businessAddress + ", colleagues=" + colleagues + ", household=" + household + "]";
 	}
 
 }
