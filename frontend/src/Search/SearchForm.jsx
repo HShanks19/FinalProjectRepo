@@ -105,7 +105,13 @@ const SearchForm = ({
         <Row>
           { loading === true
         && (
-          <ThreeDots className="loading-icon" />
+          <>
+            <br />
+            <br />
+            <br />
+            <br />
+            <ThreeDots className="loading-icon" />
+          </>
         )}
           { userInputPrompt === true
         && (

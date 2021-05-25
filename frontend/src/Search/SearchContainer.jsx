@@ -31,6 +31,7 @@ const SearchContainer = ({
   }
 
   const getPaginatedData = () => {
+    debugger;
     const startIndex = currentPage * dataLimit - dataLimit;
     const endIndex = startIndex + dataLimit;
     return searchResults.slice(startIndex, endIndex);
@@ -53,14 +54,15 @@ const SearchContainer = ({
 
   // eslint-disable-next-line no-unused-vars
   function sortResultsBy(array, criteria) {
+    const cloneArray = JSON.parse(JSON.stringify(array));
     if (criteria === 'forenames_az') {
-      return array.sort((a, b) => a.forenames.localeCompare(b.forenames));
+      return cloneArray.sort((a, b) => a.forenames.localeCompare(b.forenames));
     } if (criteria === 'forenames_za') {
-      return array.sort((a, b) => b.forenames.localeCompare(a.forenames));
+      return cloneArray.sort((a, b) => b.forenames.localeCompare(a.forenames));
     } if (criteria === 'surname_az') {
-      return array.sort((a, b) => a.surname.localeCompare(b.surname));
+      return cloneArray.sort((a, b) => a.surname.localeCompare(b.surname));
     }
-    return array.sort((a, b) => b.surname.localeCompare(a.surname));
+    return cloneArray.sort((a, b) => b.surname.localeCompare(a.surname));
   }
 
   const dataLimitOptions = [
@@ -109,7 +111,7 @@ const SearchContainer = ({
             onChange={(event) => {
               console.log(event.value);
               setSearchResults(sortResultsBy(searchResults, event.value.toString()));
-              setCurrentPage(1);
+              // setCurrentPage(1);
             }}
           />
           <Select
@@ -117,7 +119,7 @@ const SearchContainer = ({
             className="search-container-data-limit-select"
             options={dataLimitOptions}
             onChange={(event) => {
-              setDataLimit(event.value);
+              setDataLimit(Number.parseInt(event.value, 10));
               setCurrentPage(1);
             }}
           />

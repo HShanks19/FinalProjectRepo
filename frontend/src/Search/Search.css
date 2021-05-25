@@ -1,14 +1,14 @@
-.container {
+div.container {
   padding-top: 50px;
+  height: 450px;
+  width: 500px;
+  color: white;
+  text-align: left;
+  background: rgba(27, 17, 27, 0.3);
   padding-left: 45px;
   padding-right: 45px;
   padding-bottom: 50px;
-  height: 50%;
-  width: 600px;
   max-width: 80%;
-  color: white;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.60);
   border-radius: 10px;
 }
 
@@ -43,7 +43,7 @@
   width: 100vw;
 }
 
-.search-card {
+div.search-card {
   font-size: 15px;
   width: 30rem;
   color: rgb(255, 255, 255);
@@ -130,12 +130,12 @@
   margin-right: auto;
 }
 
-.loading-icon {
+svg.loading-icon {
   height: 10px;
   width: 80px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
+  margin-top: 13px;
 }
 
 .user-prompt-text {
