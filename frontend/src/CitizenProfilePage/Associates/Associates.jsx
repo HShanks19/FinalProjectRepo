@@ -1,74 +1,86 @@
-import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useParams, Link } from 'react-router-dom';
+import {
+  Button, Row, Col,
+} from 'react-bootstrap';
+import { ThreeDots } from '@agney/react-loading';
+import AssociatesRender from './AssociatesRender';
 
-const Associates = ({
-  receiver, receiverPhoneNumber, timeStamp, firstName, lastName, dateOfBirth, placeOfBirth, address,
-}) => {
-  <table className="table">
-    <thead>
-      <tr>
-        <th scope="col">Time Stamp</th>
-        <th scope="col">Receiver</th>
-        <th scope="col">Receiver Phone Number</th>
-        <th scope="col">View Receiver Bio</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">{timeStamp}</th>
-        <td>{receiver}</td>
-        <td>{receiverPhoneNumber}</td>
-        <button type="button" onClick="handleClick">View</button>
-      </tr>
-    </tbody>
-  </table>;
+const Associates = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const { citizenId } = useParams();
+  console.log(citizenId);
+  const postObject = { citizenID: `${citizenId}` };
+  console.log(postObject);
+  const makeRequest = () => {
+    setLoading(true);
+    axios.post('http://54.74.11.52:5001/getCitizensAssociates/', postObject)
+      .then((response) => {
+        setData(response.data);
+        console.log(data);
+        setLoading(false);
+      }).catch((err) => console.log(err));
+  };
+  useEffect(() => { makeRequest(); }, []);
+  const RenderAssociatesInformation = data.map((d) => <AssociatesRender data={d} />);
 
   return (
-    <div className="modal" tabIndex="-1">
-      <div className="modal-dialog">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title">Receiver</h5>
+    <>
+      <Row>
+        <Col>
+          <div>
+            <Link to={{
+              pathname: '/',
+            }}
+            >
+              <Button type="button" variant="outline-danger" size="lg">
+                <span>Home</span>
+              </Button>
+            </Link>
+            <Link to={{
+              pathname: `/Biography/${citizenId}`,
+            }}
+            >
+              <Button type="button" variant="outline-danger" size="lg">
+                <span>Biography</span>
+              </Button>
+            </Link>
+            <Link to={{
+              pathname: `/Associates/${citizenId}`,
+            }}
+            >
+              <Button type="button" variant="outline-danger" size="lg">
+                <span>Associates</span>
+              </Button>
+            </Link>
+            <Link to={{
+              pathname: `/FinanceHistory/${citizenId}`,
+            }}
+            >
+              <Button type="button" variant="outline-danger" size="lg">
+                <span>Financial History</span>
+              </Button>
+            </Link>
+            <Link to={{
+              pathname: `/Whereabouts/${citizenId}`,
+            }}
+            >
+              <Button type="button" variant="outline-danger" size="lg">
+                <span>Whereabouts</span>
+              </Button>
+            </Link>
           </div>
-          <div className="modal-body">
-            <h4>
-              Citizen Name:
-              {' '}
-              {firstName + lastName}
-            </h4>
-            <h5>
-              Date of Birth:
-              {' '}
-              {dateOfBirth}
-            </h5>
-            <h5>
-              Place of Birth:
-              {' '}
-              {placeOfBirth}
-            </h5>
-            <h5>
-              Address:
-              {' '}
-              {address}
-            </h5>
-          </div>
-          <div className="modal-footer">
-            <button type="button" className="btn-close" data-bs-dismiss="modal" variant="outline-danger" size="lg" aria-label="Close">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
+        </Col>
+      </Row>
+      {RenderAssociatesInformation}
+      { loading === true
+        && (
+          <ThreeDots className="loading-icon" />
+        )}
+    </>
   );
 };
 
 export default Associates;
-
-Associates.propTypes = {
-  firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired,
-  dateOfBirth: PropTypes.string.isRequired,
-  placeOfBirth: PropTypes.string.isRequired,
-  address: PropTypes.string.isRequired,
-  timeStamp: PropTypes.string.isRequired,
-  receiver: PropTypes.string.isRequired,
-  receiverPhoneNumber: PropTypes.string.isRequired,
-};

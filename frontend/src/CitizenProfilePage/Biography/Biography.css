@@ -1,13 +1,16 @@
-.card-cntainer {
+.card-container {
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
   padding-top: 50px;
-  padding-left: 45px;
+  padding-left: 40px;
   padding-right: 45px;
   padding-bottom: 50px;
-  height: 800px;
-  width: 1500px;
-  max-width: 90%;
+  height: 50%;
+  width: 600px;
+  max-width: 80%;
   color: white;
-  text-align: center;
+  text-align: left;
   background: rgba(0, 0, 0, 0.60);
   border-radius: 10px;
 }

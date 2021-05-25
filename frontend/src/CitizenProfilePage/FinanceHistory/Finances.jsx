@@ -1,78 +1,96 @@
-import PropTypes from 'prop-types';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import {
+  Button, Row, Col,
+} from 'react-bootstrap';
+import { ThreeDots } from '@agney/react-loading';
+import FinancesRender from './FinancesRender';
+import ErrorMessage from './Error';
 
-const Finances = ({
-  // eslint-disable-next-line max-len
-  bank, sortCode, accountNumber, eposTimeStamp, eposAmount, eposAccountNumber, vendor, eposAddress, atmTimeStamps, atmAmount, operator, streetName, postCode,
-}) => (
-  <>
-    <div>
-      Bank:
-      {' '}
-      {bank}
-      sortCode:
-      {' '}
-      {sortCode}
-      accountNumber:
-      {' '}
-      {accountNumber}
-    </div>
-    <table className="table" id="eposTable">
-      <thead>
-        <tr>
-          <th scope="col">Time Stamp</th>
-          <th scope="col">Amount</th>
-          <th scope="col">Account</th>
-          <th scope="col">Vendor</th>
-          <th scope="col">Address</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">{eposTimeStamp}</th>
-          <td>{eposAmount}</td>
-          <td>{eposAccountNumber}</td>
-          <td>{vendor}</td>
-          <td>{eposAddress}</td>
-        </tr>
-      </tbody>
-    </table>
-    <table className="table" id="atmTable">
-      <thead>
-        <tr>
-          <th scope="col">Time Stamp</th>
-          <th scope="col">Amount</th>
-          <th scope="col">Operator</th>
-          <th scope="col">Street Name</th>
-          <th scope="col">Post Code</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">{atmTimeStamps}</th>
-          <td>{atmAmount}</td>
-          <td>{operator}</td>
-          <td>{streetName}</td>
-          <td>{postCode}</td>
-        </tr>
-      </tbody>
-    </table>
-  </>
-);
+const Finances = () => {
+  const [financialHistory, setFinancialHistory] = useState([]);
+  const { citizenId } = useParams();
+  const [errorVisible, setErrorVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
+  console.log('citizenId ', citizenId);
+  const makeRequest = () => {
+    setLoading(true);
+    axios.get(`http://54.74.11.52:5001/getBiographicalInfo/${citizenId}`)
+      .then((response) => {
+        console.log(response.data);
+        axios.post('http://54.74.11.52:5001/getMatchingBankAccounts/', { forenames: `${response.data[0].forenames}`, surname: `${response.data[0].surname}`, dateOfBirth: `${response.data[0].dateOfBirth}` })
+          .then((res) => {
+            setFinancialHistory(res.data);
+            setLoading(false);
+            if (res.data.length === 0) {
+              setErrorVisible(true);
+            }
+          })
+          .catch((err) => console.log(err));
+      }).catch((err) => console.log(err));
+  };
+  useEffect(() => { makeRequest(); }, []);
+  const RenderFinancesInformation = financialHistory.map((d) => <FinancesRender data={d} />);
+  return (
+    <>
+      <Row>
+        <Col>
+          <div>
+            <Link to={{
+              pathname: '/',
+            }}
+            >
+              <Button type="button" variant="outline-danger" size="lg">
+                <span>Home</span>
+              </Button>
+            </Link>
+            <Link to={{
+              pathname: `/Biography/${citizenId}`,
+            }}
+            >
+              <Button type="button" variant="outline-danger" size="lg">
+                <span>Biography</span>
+              </Button>
+            </Link>
+            <Link to={{
+              pathname: `/Associates/${citizenId}`,
+            }}
+            >
+              <Button type="button" variant="outline-danger" size="lg">
+                <span>Associates</span>
+              </Button>
+            </Link>
+            <Link to={{
+              pathname: `/FinanceHistory/${citizenId}`,
+            }}
+            >
+              <Button type="button" variant="outline-danger" size="lg">
+                <span>Financial History</span>
+              </Button>
+            </Link>
+            <Link to={{
+              pathname: `/Whereabouts/${citizenId}`,
+            }}
+            >
+              <Button type="button" variant="outline-danger" size="lg">
+                <span>Whereabouts</span>
+              </Button>
+            </Link>
+          </div>
+        </Col>
+      </Row>
+      { loading === true
+        && (
+          <ThreeDots className="loading-icon" />
+        )}
+      { errorVisible === true
+        && (
+          <ErrorMessage />
+        )}
+      {RenderFinancesInformation}
+    </>
+  );
+};
 
 export default Finances;
-
-Finances.propTypes = {
-  bank: PropTypes.string.isRequired,
-  sortCode: PropTypes.string.isRequired,
-  accountNumber: PropTypes.string.isRequired,
-  eposTimeStamp: PropTypes.string.isRequired,
-  eposAmount: PropTypes.string.isRequired,
-  eposAccountNumber: PropTypes.string.isRequired,
-  vendor: PropTypes.string.isRequired,
-  eposAddress: PropTypes.string.isRequired,
-  atmTimeStamps: PropTypes.string.isRequired,
-  atmAmount: PropTypes.string.isRequired,
-  operator: PropTypes.string.isRequired,
-  streetName: PropTypes.string.isRequired,
-  postCode: PropTypes.string.isRequired,
-};

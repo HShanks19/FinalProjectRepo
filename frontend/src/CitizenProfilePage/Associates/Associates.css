@@ -1,0 +1,32 @@
+.container {
+  padding-top: 50px;
+  padding-left: 50px;
+  padding-right: 45px;
+  padding-bottom: 50px;
+  align-items: center;
+  height: 70%;
+  width: 700px;
+  max-width: 80%;
+  color: white;
+  text-align: left;
+  background: rgba(0, 0, 0, 0.60);
+  border-radius: 10px;
+}
+
+.associates-titles {
+  color:white;
+}
+
+.associates-table {
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  color: white;
+  max-width: 70%;
+}
+
+.thead {
+  align-items: center;
+  color: white;
+  max-width: 70%;
+}
