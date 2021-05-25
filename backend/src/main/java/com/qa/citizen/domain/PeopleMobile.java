@@ -180,4 +180,11 @@ public class PeopleMobile {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "PeopleMobile [forenames=" + forenames + ", surname=" + surname + ", dateOfBirth=" + dateOfBirth
+				+ ", address=" + address + ", town=" + town + ", postcode=" + postcode + ", phoneNumber=" + phoneNumber
+				+ ", network=" + network + "]";
+	}
+
 }

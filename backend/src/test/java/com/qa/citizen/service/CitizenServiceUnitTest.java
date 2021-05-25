@@ -252,52 +252,27 @@ public class CitizenServiceUnitTest {
 		Mockito.when(this.citizenService.mapToAssociatesDTO(citizenList)).thenReturn(returnedAssociatesDTOList);
 	}
 
-//	private List<ColleaguesDTO> mapToColleguesDTO(List<PeopleBusinessAddress> collegues) {
-//		List<ColleaguesDTO> colleguesDTOList = new ArrayList<>();
-//
-//		for (PeopleBusinessAddress foundCollegue : collegues) {
-//			ColleaguesDTO collegueDTO = new ColleaguesDTO();
-//			collegueDTO.setPersonName(foundCollegue.getPersonName());
-//			collegueDTO.setDateOfBirth(foundCollegue.getDateOfBirth());
-//			colleguesDTOList.add(collegueDTO);
-//
-//		}
-//
-//		return colleguesDTOList;
-//	}
-//
-//	private List<HouseholdDTO> mapToHouseholdDTO(List<Citizen> householdMembers) {
-//		List<HouseholdDTO> householdDTOList = new ArrayList<>();
-//
-//		for (Citizen foundCitizen : householdMembers) {
-//			HouseholdDTO householdDTO = new HouseholdDTO();
-//			householdDTO.setPersonName(foundCitizen.getForenames() + foundCitizen.getSurname());
-//			householdDTO.setDateOfBirth(foundCitizen.getDateOfBirth());
-//			householdDTOList.add(householdDTO);
-//
-//		}
-//
-//		return householdDTOList;
-//	}
-//	
-//	private MobileCallRecordsDTO mapToDTO(MobileCallRecords mobileCallRecords) {
-//		MobileCallRecordsDTO mobileCallRecordsDTO = new MobileCallRecordsDTO();
-//
-//		String callerMobile = mobileCallRecords.getCallerMSISDN();
-//		String receiverMobile = mobileCallRecords.getReceiverMSISDN();
-//		PeopleMobile receiverInformation = this.receiverRepo.findByPhoneNumber(receiverMobile);
-//		if (receiverInformation!=null) {
-//			String receiverName = receiverInformation.getForenames() + " " + receiverInformation.getSurname();
-//			mobileCallRecordsDTO.setReceiverName(receiverName);
-//		}
-//		mobileCallRecordsDTO.setTimestamp(mobileCallRecords.getTimestamp());
-//		mobileCallRecordsDTO.setCallerMSISDN(callerMobile);
-//		mobileCallRecordsDTO.setCallCellTowerId(mobileCallRecords.getCallCellTowerId());
-//		mobileCallRecordsDTO.setReceiverMSISDN(receiverMobile);	
-//		
-//		return mobileCallRecordsDTO;
-//	}
-//	
+	@Test
+	public void testMapToPeopleDTO() {
+
+		List<PeopleMobile> peopleMobileList = new ArrayList<PeopleMobile>();
+		PeopleMobile peopleMobileMichael = new PeopleMobile("Michael Shane", "Cochrane", "1955-09-25",
+				"37 SPUR HILL AVENUE", "POOLE", "BH14 9PJ", "07700 098484", "O2");
+		peopleMobileList.add(peopleMobileMichael);
+
+		List<PeopleMobileDTO> returnedPeopleMobileDTOList = new ArrayList<PeopleMobileDTO>();
+		Set<MobileCallRecordsDTO> mobileCallRecords = new HashSet<MobileCallRecordsDTO>();
+		MobileCallRecordsDTO mobileCallRecordsDTO = new MobileCallRecordsDTO("2015-05-02T15:31:13.335", "07700 098484",
+				0L, "07700 192766");
+		mobileCallRecordsDTO.setReceiverName("Mathew Terry James");
+		mobileCallRecords.add(mobileCallRecordsDTO);
+		PeopleMobileDTO peopleMobileDTO = new PeopleMobileDTO("07700 098484", "O2", mobileCallRecords);
+		returnedPeopleMobileDTOList.add(peopleMobileDTO);
+
+		assertThat(returnedPeopleMobileDTOList).isEqualTo(this.citizenService.mapToPeopleDTO(peopleMobileList));
+
+	}
+
 //	public List<PeopleMobileDTO> mapToPeopleDTO(List<PeopleMobile> peopleMobile) {
 //		List<PeopleMobileDTO> callHistory = new ArrayList<>();
 //		
