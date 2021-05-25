@@ -1,13 +1,13 @@
-const eposTransactions = ({ data }) => (
+const EposTransactions = ({ data }) => (
   <tbody>
     <tr>
-      <th scope="row">{data.bankcardDTOs.eposTransactions.timestamp}</th>
-      <td>{data.bankcardDTOs.eposTransactions.amount}</td>
-      <td>{data.bankcardDTOs.eposTransactions.vendor}</td>
-      <td>{data.bankcardDTOs.eposTransactions.streetName}</td>
-      <td>{data.bankcardDTOs.eposTransactions.postcode}</td>
+      <th scope="row">{data.timestamp}</th>
+      <td>{data.amount}</td>
+      <td>{data.vendor}</td>
+      <td>{data.streetName}</td>
+      <td>{data.postcode}</td>
     </tr>
   </tbody>
 );
 
-export default eposTransactions;
+export default EposTransactions;

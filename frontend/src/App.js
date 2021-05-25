@@ -25,7 +25,7 @@ function App() {
           <Route path="/Associates/:citizenId">
             <Associates />
           </Route>
-          <Route path="/Finances/:citizenId">
+          <Route path="/FinanceHistory/:citizenId">
             <Finances />
           </Route>
           <Route path="/Whereabouts/:citizenId">
