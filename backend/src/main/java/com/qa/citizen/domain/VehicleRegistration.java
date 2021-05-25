@@ -235,4 +235,12 @@ public class VehicleRegistration {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "VehicleRegistration [registrationId=" + registrationId + ", registrationDate=" + registrationDate
+				+ ", vehicleRegistrationNo=" + vehicleRegistrationNo + ", make=" + make + ", model=" + model
+				+ ", colour=" + colour + ", forenames=" + forenames + ", surname=" + surname + ", address=" + address
+				+ ", dateOfBirth=" + dateOfBirth + ", driverLicenceId=" + driverLicenceId + "]";
+	}
+
 }
