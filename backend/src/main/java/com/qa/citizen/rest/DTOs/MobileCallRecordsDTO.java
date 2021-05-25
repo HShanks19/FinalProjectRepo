@@ -123,4 +123,10 @@ public class MobileCallRecordsDTO {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "MobileCallRecordsDTO [timestamp=" + timestamp + ", callerMSISDN=" + callerMSISDN + ", callCellTowerId="
+				+ callCellTowerId + ", receiverMSISDN=" + receiverMSISDN + ", receiverName=" + receiverName + "]";
+	}
+
 }

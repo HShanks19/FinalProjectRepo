@@ -20,6 +20,7 @@ import com.qa.citizen.domain.Citizen;
 import com.qa.citizen.domain.PeopleMobile;
 import com.qa.citizen.domain.VehicleRegistration;
 import com.qa.citizen.repo.CitizenRepo;
+import com.qa.citizen.rest.DTOs.AssociatesDTO;
 import com.qa.citizen.rest.DTOs.CitizenDTO;
 import com.qa.citizen.rest.DTOs.MobileCallRecordsDTO;
 import com.qa.citizen.rest.DTOs.PeopleMobileDTO;
@@ -193,7 +194,7 @@ public class CitizenServiceUnitTest {
 	}
 
 	@Test
-	public void TestSortAndFilterCitizensMapToDTO() {
+	public void testSortAndFilterCitizensMapToDTO() {
 		Citizen citizenSentByUser = new Citizen();
 		citizenSentByUser.setHomeAddress("37 SPUR HILL AVENUE, POOLE, BH14 9PJ");
 		List<Citizen> returnedCitizenList = new ArrayList<>();
@@ -210,11 +211,36 @@ public class CitizenServiceUnitTest {
 
 	}
 
-//	public List<CitizenDTO> sortAndFilterCitizensMapToDTO(Citizen citizen) {
-//		List<Citizen> citizenList = this.repo.findAll(Example.of(citizen));
-//		return this.mapToCitizenDTO(citizenList);
-//	}
-//	
+	@Test
+	public void testMapToAssociatesDTO() {
+
+		List<Citizen> citizenList = new ArrayList<Citizen>();
+		Citizen citizenSentByUser = new Citizen();
+		citizenSentByUser.setHomeAddress("37 SPUR HILL AVENUE, POOLE, BH14 9PJ");
+		Citizen foundCitizen = new Citizen(9171862863L, "Michael Shane", "Cochrane",
+				"37 SPUR HILL AVENUE, POOLE, BH14 9PJ", "1955-09-25", "LONDON", "Male");
+		citizenList.add(foundCitizen);
+
+		List<AssociatesDTO> returnedAssociatesDTOList = new ArrayList<AssociatesDTO>();
+
+		Mockito.when(this.citizenService.mapToAssociatesDTO(citizenList)).thenReturn(returnedAssociatesDTOList);
+
+		AssociatesDTO returnedAssociatesDTO = new AssociatesDTO();
+		returnedAssociatesDTO.setBusinessAddress("Seamoor Road, BH4 9AE");
+		returnedAssociatesDTO.setBusinessName("Wash and Dry");
+		List<PeopleMobileDTO> callRecords = new ArrayList<PeopleMobileDTO>();
+		Set<MobileCallRecordsDTO> mobileCallRecords = new HashSet<MobileCallRecordsDTO>();
+		MobileCallRecordsDTO mobileCallRecordsDTO = new MobileCallRecordsDTO("2015-05-02T15:31:13.335", "07700 098484",
+				0L, "07700 192766");
+		mobileCallRecords.add(mobileCallRecordsDTO);
+		PeopleMobileDTO peopleMobile = new PeopleMobileDTO("07700 098484", "O2", mobileCallRecords);
+		callRecords.add(peopleMobile);
+
+		returnedAssociatesDTO.setCallRecords(callRecords);
+
+		assertThat(this.citizenService.mapToAssociatesDTO(citizenList)).contains(returnedAssociatesDTO);
+	}
+
 //	public List<AssociatesDTO> mapToAssociatesDTO(List<Citizen> citizenList) {
 //		List<AssociatesDTO> foundAssociates = new ArrayList<>();
 //
