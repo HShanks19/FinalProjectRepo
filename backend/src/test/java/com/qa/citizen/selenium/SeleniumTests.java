@@ -27,7 +27,7 @@ public class SeleniumTests {
 
 	@BeforeEach
 	void setup() {
-		System.setProperty("webdriver.chrome.driver","backend/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver","/home/ubuntu/FinalProjectRepo/backend/chromedriver.exe");
 		this.driver = new ChromeDriver();
 		this.driver.manage().window().maximize();
 		
