@@ -1,20 +1,6 @@
-.container {
-  padding-top: 50px;
-  padding-left: 50px;
-  padding-right: 45px;
-  padding-bottom: 50px;
-  align-items: center;
-  height: 70%;
-  width: 700px;
-  max-width: 80%;
-  color: white;
-  text-align: left;
-  background: rgba(0, 0, 0, 0.60);
-  border-radius: 10px;
-}
-
 .associates-titles {
   color:white;
+  font-size: 30px;
 }
 
 .associates-table {
