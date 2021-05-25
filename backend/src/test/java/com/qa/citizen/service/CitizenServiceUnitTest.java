@@ -245,7 +245,7 @@ public class CitizenServiceUnitTest {
 		colleaguesDTOList.add(colleaguesDTOMichael);
 		colleaguesDTOList.add(colleaguesDTOLynda);
 
-		returnedAssociatesDTO.setCollegues(colleaguesDTOList);
+		returnedAssociatesDTO.setColleagues(colleaguesDTOList);
 		returnedAssociatesDTO.setHousehold(null);
 
 		returnedAssociatesDTOList.add(returnedAssociatesDTO);
@@ -305,7 +305,7 @@ public class CitizenServiceUnitTest {
 		AssociatesDTO associatesDTO = new AssociatesDTO(callRecords, "Wash and Dry", "Seamoor Road, BH4 9AE",
 				colleaguesDTOList, household);
 
-		associatesDTO.setCollegues(colleaguesDTOList);
+		associatesDTO.setColleagues(colleaguesDTOList);
 		associatesDTO.setHousehold(household);
 
 		associatesDtoList.add(associatesDTO);
