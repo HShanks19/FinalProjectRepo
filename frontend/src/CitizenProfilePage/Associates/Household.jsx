@@ -35,7 +35,9 @@ const Household = ({ data }) => {
       <tr>
         <th scope="row">{ fullName }</th>
         <td>{data.dateOfBirth}</td>
-        <button type="button" onClick={handleChange}>View Profile</button>
+        <div>
+          <Button type="button" className="btn btn-danger btn-block" onClick={handleChange}>View Profile</Button>
+        </div>
       </tr>
       <>
         <Modal show={show}>

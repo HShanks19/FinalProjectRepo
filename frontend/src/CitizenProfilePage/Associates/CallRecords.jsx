@@ -35,7 +35,9 @@ const CallRecords = ({ data }) => {
         <th scope="row">{data.timestamp}</th>
         <td>{data.receiverName}</td>
         <td>{data.receiverMSISDN}</td>
-        <button type="button" onClick={handleChange}>View Profile</button>
+        <div>
+          <Button type="button" className="btn btn-danger btn-block" onClick={handleChange}>View Profile</Button>
+        </div>
       </tr>
       <>
         <Modal show={show}>

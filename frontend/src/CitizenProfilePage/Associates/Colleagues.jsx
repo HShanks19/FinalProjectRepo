@@ -26,15 +26,13 @@ const Colleagues = ({ data }) => {
   };
   return (
     <>
-      <>
-        <tbody>
-          <tr>
-            <th scope="row">{data.personName}</th>
-            <td>{data.dateOfBirth}</td>
-            <button type="button" onClick={handleChange}>View Profile</button>
-          </tr>
-        </tbody>
-      </>
+      <tr>
+        <th scope="row">{data.personName}</th>
+        <td>{data.dateOfBirth}</td>
+        <div>
+          <Button type="button" className="btn btn-danger btn-block" onClick={handleChange}>View Profile</Button>
+        </div>
+      </tr>
       <>
         <Modal show={show}>
           <Modal.Header>
