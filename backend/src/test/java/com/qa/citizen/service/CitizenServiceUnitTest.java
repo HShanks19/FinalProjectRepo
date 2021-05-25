@@ -312,14 +312,6 @@ public class CitizenServiceUnitTest {
 
 		Mockito.when(this.citizenRepo.findAll(Example.of(citizenSentByUser))).thenReturn(returnedCitizenList);
 
-//		assertThat(associatesDtoList)
-//				.isEqualTo(this.citizenService.sortAndFilterCitizensMapToAssociatesDTO(citizenSentByUser));
 	}
-
-//
-//	public List<AssociatesDTO> sortAndFilterCitizensMapToAssociatesDTO(Citizen citizen) {
-//		List<Citizen> citizenList = this.repo.findAll(Example.of(citizen));
-//		return this.mapToAssociatesDTO(citizenList);
-//	}
 
 }
