@@ -1,3 +1,6 @@
+import {
+  Table,
+} from 'react-bootstrap';
 import EposTransactions from './eposTransactions';
 import AtmTransactions from './atmTransactions';
 import ErrorMessageTransactions from './ErrorTransactions';
@@ -9,12 +12,14 @@ const BankcardDTOsContainer = ({ data }) => {
   const RenderEPOSInformation = eposTransactions.map((d) => <EposTransactions data={d} />);
   return (
     <>
-      <div>
-        sortCode:
+      <br />
+      <div className="finances-titles">
+        sort code:
         {' '}
         {data.sortCode}
       </div>
-      <table className="table" id="eposTable">
+      <br />
+      <Table striped bordered className="finances-table" variant="dark" id="eposTable">
         <thead>
           <tr>
             <th scope="col">Time Stamp</th>
@@ -29,8 +34,8 @@ const BankcardDTOsContainer = ({ data }) => {
         && (
           <ErrorMessageTransactions />
         )}
-      </table>
-      <table className="table" id="atmTable">
+      </Table>
+      <Table striped bordered className="finances-table" variant="dark" id="atmTable">
         <thead>
           <tr>
             <th scope="col">Time Stamp</th>
@@ -45,7 +50,7 @@ const BankcardDTOsContainer = ({ data }) => {
         && (
           <ErrorMessageTransactions />
         )}
-      </table>
+      </Table>
     </>
   );
 };

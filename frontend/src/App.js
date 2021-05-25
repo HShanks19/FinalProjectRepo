@@ -6,6 +6,7 @@ import './Search/Search.css';
 import './Footer/Footer.css';
 import './CitizenProfilePage/Associates/Associates.css';
 import './CitizenProfilePage/Biography/Biography.css';
+import './CitizenProfilePage/FinanceHistory/Finances.css';
 import redsearchText from './redsearchText.svg';
 import Biography from './CitizenProfilePage/Biography/Biography';
 import Associates from './CitizenProfilePage/Associates/Associates';

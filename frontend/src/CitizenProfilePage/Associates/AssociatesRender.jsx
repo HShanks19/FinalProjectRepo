@@ -21,7 +21,7 @@ const AssociatesRender = ({ data }) => {
         Recent Call History
       </div>
       <br />
-      <Table striped bordered className="associates-table" variant="light" id="callRecordsTable">
+      <Table striped bordered className="associates-table" variant="dark" id="callRecordsTable">
         <thead>
           <tr>
             <th scope="col">Time Stamp</th>
@@ -48,7 +48,7 @@ const AssociatesRender = ({ data }) => {
         <br />
       </div>
       <br />
-      <Table striped bordered className="associates-table" variant="light" id="colleaguesTable">
+      <Table striped bordered className="associates-table" variant="dark" id="colleaguesTable">
         <thead>
           <tr>
             <th scope="col">Colleague</th>
@@ -69,7 +69,7 @@ const AssociatesRender = ({ data }) => {
         Household
       </div>
       <br />
-      <Table striped bordered className="associates-table" variant="light" id="householdTable">
+      <Table striped bordered className="associates-table" variant="dark" id="householdTable">
         <thead>
           <tr>
             <th scope="col">Household Member</th>

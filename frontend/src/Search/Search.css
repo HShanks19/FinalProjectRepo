@@ -131,6 +131,7 @@ div.search-card {
 }
 
 svg.loading-icon {
+  color: white;
   height: 10px;
   width: 80px;
   margin-left: auto;
@@ -138,7 +139,7 @@ svg.loading-icon {
   margin-top: 13px;
 }
 
-.user-prompt-text {
+p.user-prompt-text {
   margin-left: auto;
   margin-right: auto;
   margin-top: 10px;
