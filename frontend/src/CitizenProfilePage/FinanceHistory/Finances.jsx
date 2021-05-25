@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import {
+  Button, Row, Col,
+} from 'react-bootstrap';
 import FinancesRender from './FinancesRender';
 
 const Finances = () => {
@@ -24,6 +27,44 @@ const Finances = () => {
   const RenderFinancesInformation = financialHistory.map((d) => <FinancesRender data={d} />);
   return (
     <>
+      <Row>
+        <Col>
+          <div>
+            <Link to={{
+              pathname: `/Biography/${citizenId}`,
+            }}
+            >
+              <Button type="button" variant="outline-danger" size="lg">
+                <span>Biography</span>
+              </Button>
+            </Link>
+            <Link to={{
+              pathname: `/Associates/${citizenId}`,
+            }}
+            >
+              <Button type="button" variant="outline-danger" size="lg">
+                <span>Associates</span>
+              </Button>
+            </Link>
+            <Link to={{
+              pathname: `/FinanceHistory/${citizenId}`,
+            }}
+            >
+              <Button type="button" variant="outline-danger" size="lg">
+                <span>Financial History</span>
+              </Button>
+            </Link>
+            <Link to={{
+              pathname: `/Whereabouts/${citizenId}`,
+            }}
+            >
+              <Button type="button" variant="outline-danger" size="lg">
+                <span>Whereabouts</span>
+              </Button>
+            </Link>
+          </div>
+        </Col>
+      </Row>
       {RenderFinancesInformation}
     </>
   );

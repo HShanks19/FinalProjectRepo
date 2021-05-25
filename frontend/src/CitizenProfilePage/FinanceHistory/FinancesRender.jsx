@@ -10,7 +10,8 @@ const FinancesRender = ({ data }) => {
           Bank:
           {' '}
           {data.bank}
-          accountNumber:
+          {' '}
+          Account Number:
           {' '}
           {data.accountNumber}
         </div>
