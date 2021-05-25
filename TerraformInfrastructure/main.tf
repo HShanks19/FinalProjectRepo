@@ -75,17 +75,16 @@ resource "local_file" "tf_daemon_json" {
 resource "local_file" "instructions_next" {
   content = <<-DOC
     Following Commands to run:
-    1. scp -i C:/Users/local_admin/.ssh/ssh-aws-key.pem -r C:/Users/local_admin/Documents/NSACData ubuntu@${module.ec2.bast_ip}:~/.
-    3. ssh -i C:/Users/local_admin/.ssh/ssh-aws-pc.pem ubuntu@${module.ec2.bast_ip}
-    4. cd ansible_files
-    5. sh runansible.sh
-    6. View Jenkins on ${module.ec2.jenk_ip}:8080 (Admin Password output to console)
+    1. scp -i C:/Users/local_admin/.ssh/ssh-aws-key.pem -r ansible_files ubuntu@${module.ec2.bast_ip}:~/.
+    2. ssh -i C:/Users/local_admin/.ssh/ssh-aws-key.pem ubuntu@${module.ec2.bast_ip}
+    3. cd ansible_files
+    4. sh runansible.sh
+    5. View Jenkins on ${module.ec2.jenk_ip}:8080 (Admin Password output to console)
       a. Set up 2 pipelines- Production_Server and Development_Server
       b. Set up global credentials for:
-        - DOCKER_PASSWORD
         - SSHKey
       c. For Production_Server use /main branch and production/Jenkinsfile 
-         For Development_Server use /Dev branch and development/jenkinsfile
+         For Development_Server use /Dev branch and development/Jenkinsfile
   DOC
   filename = "./ansible_files/instructions"
 }
