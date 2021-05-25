@@ -1,13 +1,13 @@
-const atmTransactions = ({ data }) => (
+const AtmTransactions = ({ data }) => (
   <tbody>
     <tr>
-      <th scope="row">{data.bankcardDTOs.atmTransactions.timestamp}</th>
-      <td>{data.bankcardDTOs.atmTransactions.amount}</td>
-      <td>{data.bankcardDTOs.atmTransactions.operator}</td>
-      <td>{data.bankcardDTOs.atmTransactions.streetName}</td>
-      <td>{data.bankcardDTOs.atmTransactions.postcode}</td>
+      <th scope="row">{data.timestamp}</th>
+      <td>{data.amount}</td>
+      <td>{data.operator}</td>
+      <td>{data.streetName}</td>
+      <td>{data.postcode}</td>
     </tr>
   </tbody>
 );
 
-export default atmTransactions;
+export default AtmTransactions;
