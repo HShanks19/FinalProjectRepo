@@ -192,6 +192,24 @@ public class CitizenServiceUnitTest {
 
 	}
 
+	@Test
+	public void TestSortAndFilterCitizensMapToDTO() {
+		Citizen citizenSentByUser = new Citizen();
+		citizenSentByUser.setHomeAddress("37 SPUR HILL AVENUE, POOLE, BH14 9PJ");
+		List<Citizen> returnedCitizenList = new ArrayList<>();
+		Citizen foundCitizen = new Citizen(9171862863L, "Michael Shane", "Cochrane",
+				"37 SPUR HILL AVENUE, POOLE, BH14 9PJ", "1955-09-25", "LONDON", "Male");
+		returnedCitizenList.add(foundCitizen);
+
+		List<CitizenDTO> returnedCitizenDTOList = new ArrayList<CitizenDTO>();
+		CitizenDTO returnedCitizenDTO = new CitizenDTO("Michael Shane", "Cochrane",
+				"37 SPUR HILL AVENUE, POOLE, BH14 9PJ", "1955-09-25", "LONDON", "Male");
+		returnedCitizenDTOList.add(returnedCitizenDTO);
+
+		Mockito.when(this.citizenRepo.findAll(Example.of(citizenSentByUser))).thenReturn(returnedCitizenList);
+
+	}
+
 //	public List<CitizenDTO> sortAndFilterCitizensMapToDTO(Citizen citizen) {
 //		List<Citizen> citizenList = this.repo.findAll(Example.of(citizen));
 //		return this.mapToCitizenDTO(citizenList);

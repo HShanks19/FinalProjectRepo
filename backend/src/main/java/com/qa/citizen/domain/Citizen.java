@@ -173,4 +173,11 @@ public class Citizen {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Citizen [citizenID=" + citizenID + ", forenames=" + forenames + ", surname=" + surname
+				+ ", homeAddress=" + homeAddress + ", dateOfBirth=" + dateOfBirth + ", placeOfBirth=" + placeOfBirth
+				+ ", sex=" + sex + "]";
+	}
+
 }
