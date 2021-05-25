@@ -18,7 +18,7 @@ const Biography = () => {
         console.log(data);
       }).catch((err) => console.log(err));
   };
-  useEffect(() => { makeRequest(); }, [data]);
+  useEffect(() => { makeRequest(); }, []);
   const RenderInformation = data.map((d) => <BiographyRender data={d} />);
   return (
     <>

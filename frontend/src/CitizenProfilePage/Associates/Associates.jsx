@@ -19,7 +19,7 @@ const Associates = () => {
         console.log(data);
       }).catch((err) => console.log(err));
   };
-  useEffect(() => { makeRequest(); }, [data]);
+  useEffect(() => { makeRequest(); }, []);
   const RenderAssociatesInformation = data.map((d) => <AssociatesRender data={d} />);
 
   return (

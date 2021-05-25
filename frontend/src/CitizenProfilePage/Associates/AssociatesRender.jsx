@@ -1,3 +1,6 @@
+import {
+  Table,
+} from 'react-bootstrap';
 import CallRecordsTable from './CallRecordsTable';
 import Colleagues from './Colleagues';
 import Household from './Household';
@@ -12,10 +15,12 @@ const AssociatesRender = ({ data }) => {
 
   return (
     <>
-      <div>
+      <br />
+      <div className="associates-titles">
         Recent Call History
       </div>
-      <table className="table" id="callRecordsTable">
+      <br />
+      <Table striped bordered className="associates-table" variant="light" id="callRecordsTable">
         <thead>
           <tr>
             <th scope="col">Time Stamp</th>
@@ -25,9 +30,9 @@ const AssociatesRender = ({ data }) => {
           </tr>
         </thead>
         { RenderCallRecords }
-      </table>
+      </Table>
       <br />
-      <div>
+      <div className="associates-titles">
         Business Name:
         {' '}
         {data.businessName}
@@ -37,26 +42,31 @@ const AssociatesRender = ({ data }) => {
         {data.businessAddress}
         <br />
       </div>
-      <table className="table" id="colleaguesTable">
+      <br />
+      <Table striped bordered className="associates-table" variant="light" id="colleaguesTable">
         <thead>
           <tr>
             <th scope="col">Colleague</th>
             <th scope="col">Date of Birth</th>
+            <th scope="col">View Receiver Bio</th>
           </tr>
         </thead>
-        { RenderColleagues }
-      </table>
-      <table className="table" id="householdTable">
+        <tbody>
+          { RenderColleagues }
+        </tbody>
+      </Table>
+      <Table striped bordered className="associates-table" variant="light" id="householdTable">
         <thead>
           <tr>
             <th scope="col">Household Member</th>
             <th scope="col">Date of Birth</th>
+            <th scope="col">View Receiver Bio</th>
           </tr>
         </thead>
         <tbody>
           { RenderHousehold }
         </tbody>
-      </table>
+      </Table>
     </>
   );
 };

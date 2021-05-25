@@ -13,7 +13,13 @@
   border-radius: 10px;
 }
 
-.table {
+.associates-titles {
+  color:white;
+}
+
+.associates-table {
+  margin-left: auto;
+  margin-right: auto;
   align-items: center;
   color: white;
   max-width: 70%;
