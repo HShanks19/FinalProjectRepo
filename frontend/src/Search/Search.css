@@ -1,0 +1,148 @@
+div.container {
+  padding-top: 50px;
+  height: 450px;
+  width: 500px;
+  color: white;
+  text-align: left;
+  background: rgba(27, 17, 27, 0.3);
+  padding-left: 45px;
+  padding-right: 45px;
+  padding-bottom: 50px;
+  max-width: 80%;
+  border-radius: 10px;
+}
+
+.address-input {
+  margin-left: auto;
+  margin-right: auto;
+  width: 94%;
+}
+
+.wide-button {
+  margin-left: auto;
+  margin-right: auto;
+  width: 91%;
+}
+
+.citizen-card-button {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  width: 50%
+}
+
+.create-new-search-button {
+  display: flex;
+  justify-content: left;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-form-container {
+  height: 100vh;
+  width: 100vw;
+}
+
+div.search-card {
+  font-size: 15px;
+  width: 30rem;
+  color: rgb(255, 255, 255);
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  text-align: center;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.65);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+  transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+}
+
+.search-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.search-card-subcontainer {
+  height: 13vh;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.search-card-heading {
+  font-size: 17px;
+}
+
+.search-card-subtext {
+  margin-top: 10px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  bottom: 0px;
+}
+
+.results-container {
+  margin-top: -31px;
+  min-height: 80vh;
+  height: 70%;
+  width: 100%;
+}
+
+.results-subcontainer {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.results-found-text {
+  color: white;
+}
+
+.prev.disabled,
+.next.disabled {
+  pointer-events: none;
+  box-shadow: none;
+  color: #999;
+}
+
+.search-container-top-row-buttons {
+  display: flex;
+  width: 600px;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-container-data-limit-select {
+  width: 140px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-container-sort-select {
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+svg.loading-icon {
+  color: white;
+  height: 10px;
+  width: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 13px;
+}
+
+p.user-prompt-text {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  text-align: center;
+  color: red;
+}
