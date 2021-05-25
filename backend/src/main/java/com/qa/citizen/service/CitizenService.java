@@ -1,6 +1,5 @@
 package com.qa.citizen.service;
 
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -29,19 +28,21 @@ import com.qa.citizen.rest.DTOs.VehicleRegistrationDTO;
 public class CitizenService {
 
 	private CitizenRepo repo;
-	
+
 	private PeopleMobileRepo receiverRepo;
 
 	private PeopleMobileService peopleMobileService;
 
 	private VehicleRegistrationService vehicleRegistrationService;
-	
+
 	private PeopleBusinessAddressService peopleBusinessAddressService;
-	
+
 	private MobileCallRecordsService mobileCallRecordsService;
-	
+
 	public CitizenService(CitizenRepo repo, PeopleMobileService peopleMobileService,
-			VehicleRegistrationService vehicleRegistrationService, PeopleBusinessAddressService peopleBusinessAddressService, MobileCallRecordsService mobileCallRecordsService, PeopleMobileRepo receiverRepo) {
+			VehicleRegistrationService vehicleRegistrationService,
+			PeopleBusinessAddressService peopleBusinessAddressService,
+			MobileCallRecordsService mobileCallRecordsService, PeopleMobileRepo receiverRepo) {
 		super();
 		this.repo = repo;
 		this.peopleMobileService = peopleMobileService;
@@ -54,7 +55,7 @@ public class CitizenService {
 	public List<Citizen> getCitizen() {
 		return this.repo.findAll();
 	}
-	
+
 	public List<Citizen> getByAddress(String Address) {
 		return this.repo.findByHomeAddress(Address);
 	}
@@ -67,7 +68,6 @@ public class CitizenService {
 	public List<Citizen> sortAndFilterCitizens(Citizen citizen) {
 		return this.repo.findAll(Example.of(citizen));
 	}
-
 
 	public List<VehicleRegistrationDTO> mapToVehicleRegistrationDTO(List<VehicleRegistration> vehicleRegistration) {
 
@@ -136,36 +136,38 @@ public class CitizenService {
 		List<Citizen> citizenList = this.repo.findAll(Example.of(citizen));
 		return this.mapToCitizenDTO(citizenList);
 	}
-	
+
 	public List<AssociatesDTO> mapToAssociatesDTO(List<Citizen> citizenList) {
 		List<AssociatesDTO> foundAssociates = new ArrayList<>();
 
 		for (Citizen foundCitizen : citizenList) {
 			AssociatesDTO associatesDTO = new AssociatesDTO();
-			PeopleBusinessAddress workplace = this.peopleBusinessAddressService.getWorkplaceByName(foundCitizen.getForenames() + " " + foundCitizen.getSurname());
+			PeopleBusinessAddress workplace = this.peopleBusinessAddressService
+					.getWorkplaceByName(foundCitizen.getForenames() + " " + foundCitizen.getSurname());
 			associatesDTO.setBusinessName(workplace.getBusinessName());
 			associatesDTO.setBusinessAddress(workplace.getBusinessAddress());
 			String householdAddress = foundCitizen.getHomeAddress();
-			
+
 			List<PeopleMobile> peopleMobile = this.peopleMobileService.getMobileByCitizen(foundCitizen.getForenames(),
 					foundCitizen.getSurname(), foundCitizen.getDateOfBirth());
-			
+
 			associatesDTO.setCallRecords(this.mapToPeopleDTO(peopleMobile));
-			
+
 			List<Citizen> householdMembers = getByAddress(householdAddress);
 
 			associatesDTO.setHousehold(this.mapToHouseholdDTO(householdMembers));
-			
+
 			List<PeopleBusinessAddress> colleagues = this.peopleBusinessAddressService.getByBusinessAddress(workplace.getBusinessAddress());
 
 			associatesDTO.setColleagues(this.mapToColleaguesDTO(colleagues));
 			
+
 			foundAssociates.add(associatesDTO);
 		}
 
 		return foundAssociates;
 	}
-	
+
 	private List<ColleaguesDTO> mapToColleaguesDTO(List<PeopleBusinessAddress> colleagues) {
 		List<ColleaguesDTO> colleaguesDTOList = new ArrayList<>();
 
@@ -194,47 +196,48 @@ public class CitizenService {
 
 		return householdDTOList;
 	}
-	
+
 	private MobileCallRecordsDTO mapToDTO(MobileCallRecords mobileCallRecords) {
 		MobileCallRecordsDTO mobileCallRecordsDTO = new MobileCallRecordsDTO();
 
 		String callerMobile = mobileCallRecords.getCallerMSISDN();
 		String receiverMobile = mobileCallRecords.getReceiverMSISDN();
 		PeopleMobile receiverInformation = this.receiverRepo.findByPhoneNumber(receiverMobile);
-		if (receiverInformation!=null) {
+		if (receiverInformation != null) {
 			String receiverName = receiverInformation.getForenames() + " " + receiverInformation.getSurname();
 			mobileCallRecordsDTO.setReceiverName(receiverName);
 		}
 		mobileCallRecordsDTO.setTimestamp(mobileCallRecords.getTimestamp());
 		mobileCallRecordsDTO.setCallerMSISDN(callerMobile);
 		mobileCallRecordsDTO.setCallCellTowerId(mobileCallRecords.getCallCellTowerId());
-		mobileCallRecordsDTO.setReceiverMSISDN(receiverMobile);	
-		
+		mobileCallRecordsDTO.setReceiverMSISDN(receiverMobile);
+
 		return mobileCallRecordsDTO;
 	}
-	
+
 	public List<PeopleMobileDTO> mapToPeopleDTO(List<PeopleMobile> peopleMobile) {
 		List<PeopleMobileDTO> callHistory = new ArrayList<>();
-		
+
 		for (PeopleMobile receiver : peopleMobile) {
 			PeopleMobileDTO dto = new PeopleMobileDTO();
 			dto.setPhoneNumber(receiver.getPhoneNumber());
 			dto.setNetwork(receiver.getNetwork());
-	
+
 			Set<MobileCallRecordsDTO> mobileCallRecordsDTOs = new HashSet<>();
-			
-			List<MobileCallRecords> mobileCallRecordsNew = this.mobileCallRecordsService.getCallsByPhoneNumber(receiver.getPhoneNumber());
-	
+
+			List<MobileCallRecords> mobileCallRecordsNew = this.mobileCallRecordsService
+					.getCallsByPhoneNumber(receiver.getPhoneNumber());
+
 			for (MobileCallRecords mobileCallRecords : mobileCallRecordsNew) {
 				MobileCallRecordsDTO mobileCallRecordsDTO = this.mapToDTO(mobileCallRecords);
 				mobileCallRecordsDTOs.add(mobileCallRecordsDTO);
 			}
-	
+
 			dto.setMobileCallRecords(mobileCallRecordsDTOs);
-			
+
 			callHistory.add(dto);
 		}
-		
+
 		return callHistory;
 	}
 

@@ -66,4 +66,59 @@ public class VehicleRegistrationDTO {
 		this.colour = colour;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((colour == null) ? 0 : colour.hashCode());
+		result = prime * result + ((make == null) ? 0 : make.hashCode());
+		result = prime * result + ((model == null) ? 0 : model.hashCode());
+		result = prime * result + ((registrationDate == null) ? 0 : registrationDate.hashCode());
+		result = prime * result + ((vehicleRegistrationNo == null) ? 0 : vehicleRegistrationNo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		VehicleRegistrationDTO other = (VehicleRegistrationDTO) obj;
+		if (colour == null) {
+			if (other.colour != null)
+				return false;
+		} else if (!colour.equals(other.colour))
+			return false;
+		if (make == null) {
+			if (other.make != null)
+				return false;
+		} else if (!make.equals(other.make))
+			return false;
+		if (model == null) {
+			if (other.model != null)
+				return false;
+		} else if (!model.equals(other.model))
+			return false;
+		if (registrationDate == null) {
+			if (other.registrationDate != null)
+				return false;
+		} else if (!registrationDate.equals(other.registrationDate))
+			return false;
+		if (vehicleRegistrationNo == null) {
+			if (other.vehicleRegistrationNo != null)
+				return false;
+		} else if (!vehicleRegistrationNo.equals(other.vehicleRegistrationNo))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "VehicleRegistrationDTO [registrationDate=" + registrationDate + ", vehicleRegistrationNo="
+				+ vehicleRegistrationNo + ", make=" + make + ", model=" + model + ", colour=" + colour + "]";
+	}
+
 }
