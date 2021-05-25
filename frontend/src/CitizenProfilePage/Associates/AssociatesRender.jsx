@@ -4,6 +4,7 @@ import {
 import CallRecordsTable from './CallRecordsTable';
 import Colleagues from './Colleagues';
 import Household from './Household';
+import ErrorMessage from './Error';
 
 const AssociatesRender = ({ data }) => {
   const { colleagues } = data;
@@ -30,6 +31,10 @@ const AssociatesRender = ({ data }) => {
           </tr>
         </thead>
         { RenderCallRecords }
+        { called.length === 0
+          && (
+            <ErrorMessage />
+          )}
       </Table>
       <br />
       <div className="associates-titles">
@@ -53,8 +58,17 @@ const AssociatesRender = ({ data }) => {
         </thead>
         <tbody>
           { RenderColleagues }
+          { colleagues.length === 0
+          && (
+            <ErrorMessage />
+          )}
         </tbody>
       </Table>
+      <br />
+      <div className="associates-titles">
+        Household
+      </div>
+      <br />
       <Table striped bordered className="associates-table" variant="dark" id="householdTable">
         <thead>
           <tr>
@@ -65,6 +79,10 @@ const AssociatesRender = ({ data }) => {
         </thead>
         <tbody>
           { RenderHousehold }
+          { household.length === 0
+          && (
+            <ErrorMessage />
+          )}
         </tbody>
       </Table>
     </>
