@@ -1,8 +1,5 @@
 package com.qa.citizen.rest.DTOs;
 
-import com.qa.citizen.domain.AtmPoint;
-import com.qa.citizen.domain.Bankcard;
-
 public class AtmTransactionsDTO {
 
 	public AtmTransactionsDTO(String timestamp, String type, Double amount, String operator, String streetName,
@@ -22,22 +19,22 @@ public class AtmTransactionsDTO {
 		this.type = type;
 		this.amount = amount;
 	}
-	
+
 	public AtmTransactionsDTO() {
 		super();
 	}
-	
+
 	private String timestamp;
-	
+
 	private String type;
-	
+
 	private Double amount;
-	
+
 //	private AtmPoint atmId;
 	private String operator;
-	
+
 	private String streetName;
-	
+
 	private String postcode;
 
 	public String getTimestamp() {
@@ -96,6 +93,65 @@ public class AtmTransactionsDTO {
 		this.operator = operator;
 	}
 
-	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((amount == null) ? 0 : amount.hashCode());
+		result = prime * result + ((operator == null) ? 0 : operator.hashCode());
+		result = prime * result + ((postcode == null) ? 0 : postcode.hashCode());
+		result = prime * result + ((streetName == null) ? 0 : streetName.hashCode());
+		result = prime * result + ((timestamp == null) ? 0 : timestamp.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AtmTransactionsDTO other = (AtmTransactionsDTO) obj;
+		if (amount == null) {
+			if (other.amount != null)
+				return false;
+		} else if (!amount.equals(other.amount))
+			return false;
+		if (operator == null) {
+			if (other.operator != null)
+				return false;
+		} else if (!operator.equals(other.operator))
+			return false;
+		if (postcode == null) {
+			if (other.postcode != null)
+				return false;
+		} else if (!postcode.equals(other.postcode))
+			return false;
+		if (streetName == null) {
+			if (other.streetName != null)
+				return false;
+		} else if (!streetName.equals(other.streetName))
+			return false;
+		if (timestamp == null) {
+			if (other.timestamp != null)
+				return false;
+		} else if (!timestamp.equals(other.timestamp))
+			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "AtmTransactionsDTO [timestamp=" + timestamp + ", type=" + type + ", amount=" + amount + ", operator="
+				+ operator + ", streetName=" + streetName + ", postcode=" + postcode + "]";
+	}
 
 }
