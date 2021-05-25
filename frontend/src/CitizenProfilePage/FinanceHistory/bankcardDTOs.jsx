@@ -1,5 +1,6 @@
 import EposTransactions from './eposTransactions';
 import AtmTransactions from './atmTransactions';
+import ErrorMessageTransactions from './ErrorTransactions';
 
 const BankcardDTOsContainer = ({ data }) => {
   const { atmTransactions } = data;
@@ -24,6 +25,10 @@ const BankcardDTOsContainer = ({ data }) => {
           </tr>
         </thead>
         { RenderEPOSInformation }
+        { eposTransactions.length === 0
+        && (
+          <ErrorMessageTransactions />
+        )}
       </table>
       <table className="table" id="atmTable">
         <thead>
@@ -36,6 +41,10 @@ const BankcardDTOsContainer = ({ data }) => {
           </tr>
         </thead>
         { RenderATMInformation }
+        { atmTransactions.length === 0
+        && (
+          <ErrorMessageTransactions />
+        )}
       </table>
     </>
   );
