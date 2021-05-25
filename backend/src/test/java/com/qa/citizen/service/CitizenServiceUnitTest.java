@@ -23,6 +23,7 @@ import com.qa.citizen.repo.CitizenRepo;
 import com.qa.citizen.rest.DTOs.AssociatesDTO;
 import com.qa.citizen.rest.DTOs.CitizenDTO;
 import com.qa.citizen.rest.DTOs.ColleaguesDTO;
+import com.qa.citizen.rest.DTOs.HouseholdDTO;
 import com.qa.citizen.rest.DTOs.MobileCallRecordsDTO;
 import com.qa.citizen.rest.DTOs.PeopleMobileDTO;
 import com.qa.citizen.rest.DTOs.VehicleRegistrationDTO;
@@ -273,30 +274,48 @@ public class CitizenServiceUnitTest {
 
 	}
 
-//	public List<PeopleMobileDTO> mapToPeopleDTO(List<PeopleMobile> peopleMobile) {
-//		List<PeopleMobileDTO> callHistory = new ArrayList<>();
-//		
-//		for (PeopleMobile receiver : peopleMobile) {
-//			PeopleMobileDTO dto = new PeopleMobileDTO();
-//			dto.setPhoneNumber(receiver.getPhoneNumber());
-//			dto.setNetwork(receiver.getNetwork());
-//	
-//			Set<MobileCallRecordsDTO> mobileCallRecordsDTOs = new HashSet<>();
-//			
-//			List<MobileCallRecords> mobileCallRecordsNew = this.mobileCallRecordsService.getCallsByPhoneNumber(receiver.getPhoneNumber());
-//	
-//			for (MobileCallRecords mobileCallRecords : mobileCallRecordsNew) {
-//				MobileCallRecordsDTO mobileCallRecordsDTO = this.mapToDTO(mobileCallRecords);
-//				mobileCallRecordsDTOs.add(mobileCallRecordsDTO);
-//			}
-//	
-//			dto.setMobileCallRecords(mobileCallRecordsDTOs);
-//			
-//			callHistory.add(dto);
-//		}
-//		
-//		return callHistory;
-//	}
+	@Test
+	public void testsortAndFilterCitizensMapToAssociatesDTO() {
+
+		Citizen citizenSentByUser = new Citizen();
+		citizenSentByUser.setHomeAddress("37 SPUR HILL AVENUE, POOLE, BH14 9PJ");
+		List<Citizen> returnedCitizenList = new ArrayList<>();
+		Citizen foundCitizen = new Citizen(9171862863L, "Michael Shane", "Cochrane",
+				"37 SPUR HILL AVENUE, POOLE, BH14 9PJ", "1955-09-25", "LONDON", "Male");
+		returnedCitizenList.add(foundCitizen);
+
+		List<AssociatesDTO> associatesDtoList = new ArrayList<AssociatesDTO>();
+
+		List<PeopleMobileDTO> callRecords = new ArrayList<PeopleMobileDTO>();
+		Set<MobileCallRecordsDTO> mobileCallRecords = new HashSet<MobileCallRecordsDTO>();
+		MobileCallRecordsDTO mobileCallRecordsDTO = new MobileCallRecordsDTO("2015-05-02T15:31:13.335", "07700 098484",
+				0L, "07700 192766");
+		mobileCallRecordsDTO.setReceiverName("Mathew Terry James");
+		mobileCallRecords.add(mobileCallRecordsDTO);
+		PeopleMobileDTO peopleMobileDTO = new PeopleMobileDTO("07700 098484", "O2", mobileCallRecords);
+		callRecords.add(peopleMobileDTO);
+
+		List<ColleaguesDTO> colleaguesDTOList = new ArrayList<ColleaguesDTO>();
+		ColleaguesDTO colleaguesDTOMichael = new ColleaguesDTO("Michael Shane Cochrane", "1955-09-25");
+		ColleaguesDTO colleaguesDTOLynda = new ColleaguesDTO("Lynda Anderson", "1959-05-06");
+		colleaguesDTOList.add(colleaguesDTOMichael);
+		colleaguesDTOList.add(colleaguesDTOLynda);
+
+		List<HouseholdDTO> household = new ArrayList<HouseholdDTO>();
+		AssociatesDTO associatesDTO = new AssociatesDTO(callRecords, "Wash and Dry", "Seamoor Road, BH4 9AE",
+				colleaguesDTOList, household);
+
+		associatesDTO.setCollegues(colleaguesDTOList);
+		associatesDTO.setHousehold(household);
+
+		associatesDtoList.add(associatesDTO);
+
+		Mockito.when(this.citizenRepo.findAll(Example.of(citizenSentByUser))).thenReturn(returnedCitizenList);
+
+//		assertThat(associatesDtoList)
+//				.isEqualTo(this.citizenService.sortAndFilterCitizensMapToAssociatesDTO(citizenSentByUser));
+	}
+
 //
 //	public List<AssociatesDTO> sortAndFilterCitizensMapToAssociatesDTO(Citizen citizen) {
 //		List<Citizen> citizenList = this.repo.findAll(Example.of(citizen));
