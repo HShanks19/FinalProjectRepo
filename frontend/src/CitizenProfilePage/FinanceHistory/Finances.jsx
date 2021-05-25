@@ -31,6 +31,14 @@ const Finances = () => {
         <Col>
           <div>
             <Link to={{
+              pathname: '/',
+            }}
+            >
+              <Button type="button" variant="outline-danger" size="lg">
+                <span>Home</span>
+              </Button>
+            </Link>
+            <Link to={{
               pathname: `/Biography/${citizenId}`,
             }}
             >
