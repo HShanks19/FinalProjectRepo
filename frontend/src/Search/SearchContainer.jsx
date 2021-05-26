@@ -31,18 +31,18 @@ const SearchContainer = ({
   }
 
   const getPaginatedData = () => {
-    debugger;
     const startIndex = currentPage * dataLimit - dataLimit;
     const endIndex = startIndex + dataLimit;
     return searchResults.slice(startIndex, endIndex);
   };
 
   const getPaginationGroup = () => {
+    debugger;
     const start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
-    if (pages - currentPage > 5) {
+    if (pages - currentPage + 1 >= 5) {
       return new Array(pageLimit).fill().map((_, idx) => start + idx + 1);
     }
-    return new Array(pages).fill().map((_, idx) => start + idx + 1);
+    return new Array(pages % 5).fill().map((_, idx) => (pages - (pages % 5)) + idx + 1);
   };
 
   function makeFormVisible() {

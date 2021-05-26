@@ -4,12 +4,11 @@
   min-height: 100vh;
   min-width: 100%;
   max-width: 100%;
-  /* background-image: linear-gradient(to right, #0D2545 , #A21F44); */
-  background-image: url("main_background.svg");
-  background-size: cover;
+  background-image: linear-gradient(to right top, #920018, #680091);
   text-align: center;
   padding-bottom: 20px;
   font-family: 'Noto Sans';
+  overflow-x: hidden;
 }
 
 .App-logo {
