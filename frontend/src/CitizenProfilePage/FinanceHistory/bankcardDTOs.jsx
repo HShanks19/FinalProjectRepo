@@ -12,9 +12,8 @@ const BankcardDTOsContainer = ({ data }) => {
   const RenderEPOSInformation = eposTransactions.map((d) => <EposTransactions data={d} />);
   return (
     <>
-      <br />
       <div className="finances-titles">
-        sort code:
+        Sort Code:
         {' '}
         {data.sortCode}
       </div>
