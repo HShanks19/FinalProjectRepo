@@ -56,8 +56,13 @@ Production Pipeline:
 * Docker- Within the EC2 instances, 3 Docker instances were built containing the backend Spring Boot Application, the frontend React Application, and an NGINX container which was used as a reverse proxy.
 
 ### Spring Boot
+To build the backend we used spring boot and associated dependencies in order to interact with our relation RDS relational database and retrieve information that closely matches the users search criteria.
 
 ### Testing
+For the back end we performed integration testing and unit testing.
+we used junit for the integration testing which involved testing whether communication between the controller methods and service methods communicate correctly. 
+you would pass in what you expect to receive from interaction between controller and service, then create a mock request, if both outcomes are the same, the test passes.
+We used Mockito for the unit testing to test the individual service methods. We tested what we expected to be returned from individual methods in the service or repo matches what has been returned from a mockito mock test.
 
 ### React Application
 
