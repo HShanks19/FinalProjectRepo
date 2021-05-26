@@ -22,7 +22,17 @@ As our final group project, we were tasked to create and deploy an application t
 
 ### Brief
 
-We chose to answer the MVP for Scenario 1. (EXPAND)
+Background information:
+Our customer, Sophie from the National Investigation Unit, has built a relationship with a third-party provider in order to gain access to some data. 
+This third-party will be referred to as REDSHIFT in order to protect their identity. They specialize in gathering call records, financial transaction and automatic number plate recognition (ANPR) sightings.
+The third-party has provided the data in a raw CSV format. Sophie and her team would like to explore the data using a simple-to-use interface.
+We have been given 3 scenarios in which we need to ensure they can use the interface to complete.
+* Scenario 1: A suspect has been detained and they need to know background information on the suspect, including: Biological Information, Associates, Financial transactions and Whereabouts.
+* Scenario 2: An incident has occurred and they need to know who was in that location at the point of the incident.
+* Scenario 3: The suspect has fled the scene of an incident in a car and an officer has spotted them. They have reported back with their registration plate. The investigation team now need to search on the ANPR system and find out who the suspect was and where else they have been in the vehicle and where they last were.
+
+We chose to work on scenario 1.
+
 
 ### Technology Stack
 
