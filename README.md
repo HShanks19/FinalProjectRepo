@@ -69,15 +69,35 @@ We used React to build our front-end, whilst using Bootstrap and a few other ope
 
 ### Achievements
 
-*
+* For this project we chose to do scenario 1:
+* “A suspect has been detained and they need to know background information on the suspect, including: Biological Information, Associates, Financial transactions and Whereabouts.” 
 
-### Improvements
+* We took into consideration what needs to be done in order to create a minimum viable product and how we wanted it to look.
 
-* 
+### Improvements/ Stretch Goals
+
+* Fix bugs
+* Sorting CSS
+* Unpublished back-end container
+* Use docker network
+* Finish whereabouts functionality
 
 ### Future prospects
 
-* 
+* A map showing locations of interest
+* Scenario 2 – an incident has occurred
+* Scenario 3 – Tracking a known suspect using ANPR cameras
+
+### Reflections
+* We’ve all...
+* Learnt a lot about collaboration using agile methodologies, using tools such as Git, Github and Jira.
+* Strengthened our overall software engineering skills.
+* Improved our soft skills.
+* Learnt a lot from working together as a team and from my teammates.
+
 
 ### Acknowledgements
 
+* We would like to acknowledge:
+* Jordan for being constant support throughout the project, helping us with aspects we struggled.
+* Geoff for being supportive throughout the project, helping us to stay on track and for bringing up anything we should be focusing on at that time.
