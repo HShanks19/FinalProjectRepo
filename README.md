@@ -55,20 +55,17 @@ Production Pipeline:
 ![jenkins production image](/readmeImages/jenkins-production.png)
 * Docker- Within the EC2 instances, 3 Docker instances were built containing the backend Spring Boot Application, the frontend React Application, and an NGINX container which was used as a reverse proxy.
 
-### Front-end
+### Spring Boot
+
+### Testing
+
+### React Application
 
 We used React to build our front-end, whilst using Bootstrap and a few other open-source NPM packages to provide styling.
 
 ![image](https://user-images.githubusercontent.com/10779091/119632671-f0914480-be08-11eb-9c69-65d3ddd9c1c2.png)
 
 ![image](https://user-images.githubusercontent.com/10779091/119632727-fd159d00-be08-11eb-917c-e9715788d619.png)
-
-
-### Spring Boot
-
-### Testing
-
-### React Application
 
 ### Achievements
 
