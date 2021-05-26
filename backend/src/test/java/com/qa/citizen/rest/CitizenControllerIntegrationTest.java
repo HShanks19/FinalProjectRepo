@@ -89,7 +89,6 @@ public class CitizenControllerIntegrationTest {
 		PeopleMobileDTO peopleMobileDTO = new PeopleMobileDTO("07700 098484", "O2", mobileCallRecords);
 		peopleMobileDTOList.add(peopleMobileDTO);
 
-
 		List<ColleaguesDTO> colleaguesDtoList = new ArrayList<>();
 
 		ColleaguesDTO colleaguesDTO1 = new ColleaguesDTO("Michael Shane Cochrane", "1955-09-25");

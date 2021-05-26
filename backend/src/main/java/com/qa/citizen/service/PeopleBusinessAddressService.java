@@ -1,6 +1,5 @@
 package com.qa.citizen.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,9 +7,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.qa.citizen.domain.PeopleBusinessAddress;
-import com.qa.citizen.domain.PeopleMobile;
 import com.qa.citizen.repo.PeopleBusinessAddressRepo;
-import com.qa.citizen.rest.DTOs.PeopleMobileDTO;
 
 @Service
 public class PeopleBusinessAddressService {

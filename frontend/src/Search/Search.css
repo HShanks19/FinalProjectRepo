@@ -4,7 +4,7 @@ div.container {
   width: 500px;
   color: white;
   text-align: left;
-  background: rgba(27, 17, 27, 0.3);
+  background: rgba(27, 17, 27, 0.5);
   padding-left: 45px;
   padding-right: 45px;
   padding-bottom: 50px;
@@ -18,10 +18,10 @@ div.container {
   width: 94%;
 }
 
-.wide-button {
+Button.wide-button {
   margin-left: auto;
   margin-right: auto;
-  width: 91%;
+  width: 94%;
 }
 
 .citizen-card-button {
@@ -136,7 +136,7 @@ svg.loading-icon {
   width: 80px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 13px;
+  margin-top: 20px;
 }
 
 p.user-prompt-text {
